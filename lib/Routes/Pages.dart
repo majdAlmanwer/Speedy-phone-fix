@@ -6,7 +6,7 @@ import 'package:speedy_phone_fix/Screen/Auth/SignIn/SignInScreen.dart';
 
 final pages = <GetPage>[
   GetPage(
-    name: AppRoutes.loginpage,
+    name: AppRoutes.signinscreen,
     page: () => const SignInScreen(),
   ),
 ];

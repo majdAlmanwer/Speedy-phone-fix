@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
 
 class AppRoutes {
-  static const String loginpage = '/loginpage';
+  static const String signinscreen = '/signinscreen';
 }
