@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.signinscreen,
+      initialRoute: AppRoutes.homescreen,
       getPages: pages,
       title: 'Speedy Phone Fix',
       translationsKeys: AppTranslation.translationKeys,

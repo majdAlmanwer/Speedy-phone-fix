@@ -1,12 +1,16 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
+import 'package:speedy_phone_fix/Screen/Home/HomeScreenBody.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: HomeScreenBody(),
+    );
   }
 }
