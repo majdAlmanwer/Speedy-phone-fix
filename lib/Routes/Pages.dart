@@ -3,8 +3,11 @@
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
 import 'package:speedy_phone_fix/Screen/Auth/SignIn/SignInScreen.dart';
+import 'package:speedy_phone_fix/Screen/CompanyCustomer/CompanyCustomerScreen.dart';
 import 'package:speedy_phone_fix/Screen/Home/HomeScreen.dart';
+import 'package:speedy_phone_fix/Screen/IndividualCustomer/IndividualCustomerScreen.dart';
 import 'package:speedy_phone_fix/Screen/NewCase/NewCaseScreen.dart';
+import 'package:speedy_phone_fix/Screen/Order/OrderScreen.dart';
 
 final pages = <GetPage>[
   GetPage(
@@ -18,5 +21,17 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.newcasescreen,
     page: () => const NewCaseScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.companyCustomerScreen,
+    page: () => const CompanyCustomerScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.individualCustomerScreen,
+    page: () => const IndividualCustomerScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.orderScreen,
+    page: () => const OrderScreen(),
   ),
 ];
