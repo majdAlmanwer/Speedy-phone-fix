@@ -29,7 +29,7 @@ class HomeScreenBody extends StatelessWidget {
               title: 'Customers\n(Private)',
               iconPath: 'Assets/Icons/Vector (2).png',
               onTap: () {
-                Get.toNamed(AppRoutes.newcasescreen);
+                Get.toNamed(AppRoutes.individualCustomerScreen);
               },
             ),
             HomeCardWidget(
