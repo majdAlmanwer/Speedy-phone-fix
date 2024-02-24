@@ -20,7 +20,7 @@ class HomeScreenBody extends StatelessWidget {
               title: 'Cases/Repairs',
               iconPath: 'Assets/Icons/Vector (2).png',
               onTap: () {
-                Get.toNamed(AppRoutes.newcasescreen);
+                Get.toNamed(AppRoutes.individualCustomerScreen);
               },
             ),
           ],
