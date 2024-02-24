@@ -36,7 +36,7 @@ class HomeScreenBody extends StatelessWidget {
               title: 'Customers\n(Companies)',
               iconPath: 'Assets/Icons/Vector (1).png',
               onTap: () {
-                Get.toNamed(AppRoutes.newcasescreen);
+                Get.toNamed(AppRoutes.companyCustomerScreen);
               },
             ),
             HomeCardWidget(
