@@ -1,12 +1,28 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  CustomButton({super.key, required this.text});
+  String text;
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      margin: EdgeInsets.only(top: 50, bottom: 50),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        minWidth: Get.width * 0.92,
+        height: Get.height * 0.07,
+        onPressed: () {},
+        color: BlueColor,
+        child: Text(
+          text,
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
+        ),
+      ),
+    );
   }
 }
