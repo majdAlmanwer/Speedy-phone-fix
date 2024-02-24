@@ -10,6 +10,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
@@ -79,5 +80,6 @@ class IndividualCustomerScreenBody extends StatelessWidget {
 
       ]),
     );
+
   }
 }

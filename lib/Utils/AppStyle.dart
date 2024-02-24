@@ -14,10 +14,16 @@ const TextStyle titleCardStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 const TextStyle textStyle = TextStyle(
-  fontSize: 15,
+  fontSize: 16,
   color: TextGrey,
 );
-const TextStyle FormTextStyle =
-    TextStyle(fontSize: 15, color: BorderGrey, fontWeight: FontWeight.w400);
-const TextStyle AppBarTextStyle =
-    TextStyle(fontSize: 22, color: TextGrey, fontWeight: FontWeight.w500);
+const TextStyle FormTextStyle = TextStyle(
+  fontSize: 15,
+  color: BorderGrey,
+  fontWeight: FontWeight.w400,
+);
+const TextStyle AppBarTextStyle = TextStyle(
+  fontSize: 22,
+  color: TextGrey,
+  fontWeight: FontWeight.w500,
+);

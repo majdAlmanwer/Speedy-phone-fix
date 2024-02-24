@@ -18,13 +18,18 @@ class HomeCardWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.all(5),
+
+        margin: const EdgeInsets.all(2),
+
+    
+
         padding: const EdgeInsets.only(right: 1, left: 5),
         width: Get.width,
         height: Get.height * .215,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
             image: DecorationImage(
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 image: AssetImage('Assets/Images/Rectangle.png'))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
