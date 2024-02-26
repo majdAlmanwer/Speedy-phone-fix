@@ -3,10 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
+import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import '../../Utils/AppStyle.dart';
 
 class IndividualCustomerScreenBody extends StatelessWidget {
-  const IndividualCustomerScreenBody({super.key});
+   IndividualCustomerScreenBody({super.key});
+
+  final TextEditingController customerNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController carController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController customerTypeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Add customer's name"),
+        CustomTextFormField(hint: "Add customer's name", controller: customerNameController,),
 
         const ListTile(
           leading: Icon(Icons.location_on_outlined),
@@ -29,7 +36,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Customer's Address",),
+        CustomTextFormField(hint: "Customer's Address", controller: addressController,),
 
         const ListTile(
           leading: Icon(Icons.call),
@@ -38,7 +45,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "+46", prefixIcon: Icon(Icons.flag), keyboardType: TextInputType.phone,),
+        CustomTextFormField(hint: "+46", prefixIcon: Icon(Icons.flag), keyboardType: TextInputType.phone, controller: carController,),
 
         const ListTile(
           leading: Icon(Icons.email_outlined),
@@ -47,7 +54,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Email Address",keyboardType: TextInputType.emailAddress,),
+        CustomTextFormField(hint: "Email Address",keyboardType: TextInputType.emailAddress, controller: emailController,),
 
         const ListTile(
           leading: Icon(Icons.person_2_outlined),
@@ -60,10 +67,10 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 2')),
           DropdownMenuItem(value: '2', child: Text('Option 3')),
-        ], onChanged: (Value){}, hint: 'Private' ),
+        ], onChanged: (Value){}, hint: 'Private', controller: customerTypeController, ),
 
 
-        SizedBox(height: 30,),
+        SizedBox(height: 50,),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +83,10 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           ],
         ),
 
-        SizedBox(height: 30,),
+
+        CustomButton(
+            text: "Submit",
+          ),
 
       ]),
     );
