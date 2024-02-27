@@ -13,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
       this.focusNode,
       this.onChange,
       this.suffixIcon,
+      this.prefixIcon,
       this.obscureText = false,
       this.onTap});
   TextEditingController? controller = TextEditingController();
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   String? hint;
   FocusNode? focusNode;
   Widget? suffixIcon;
+  Widget? prefixIcon;
   bool obscureText = false;
   final String? Function(String?)? validator;
   Function(String)? onChange;
@@ -27,7 +29,8 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Form(
+        child: Padding(
       padding: EdgeInsets.only(
         right: 15.0,
         left: 15.0,
@@ -59,8 +62,9 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hint,
           hintStyle: FormTextStyle,
           suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
         ),
       ),
-    );
+    ));
   }
 }
