@@ -7,4 +7,5 @@ class AppRoutes {
   static const String companyCustomerScreen = '/companyCustomerScreen';
   static const String individualCustomerScreen = '/individualCustomerScreen';
   static const String orderScreen = '/orderScreen';
+  static const String authtabbar = '/authtabbar';
 }

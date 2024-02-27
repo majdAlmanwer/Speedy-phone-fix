@@ -23,6 +23,20 @@ class HomeScreenBody extends StatelessWidget {
                 Get.toNamed(AppRoutes.newcasescreen);
               },
             ),
+            HomeCardWidget(
+              title: 'Customers\n(Companies)',
+              iconPath: 'Assets/Icons/Vector (1).png',
+              onTap: () {
+                Get.toNamed(AppRoutes.newcasescreen);
+              },
+            ),
+            HomeCardWidget(
+              title: 'Orders',
+              iconPath: 'Assets/Icons/Vector (3).png',
+              onTap: () {
+                Get.toNamed(AppRoutes.orderScreen);
+              },
+            )
           ],
         ),
       ),
