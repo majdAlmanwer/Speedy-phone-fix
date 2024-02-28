@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:speedy_phone_fix/Screen/Auth/SignIn/SignInScreenBody.dart';
+
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
 
@@ -12,6 +15,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     var passwordController = TextEditingController();
     return Scaffold(
       body: Padding(
@@ -116,6 +120,7 @@ class SignInScreen extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
