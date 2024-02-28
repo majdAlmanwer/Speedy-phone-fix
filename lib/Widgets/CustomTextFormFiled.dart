@@ -29,7 +29,8 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Form(
+        child: Padding(
       padding: EdgeInsets.only(
         right: 15.0,
         left: 15.0,
@@ -64,6 +65,6 @@ class CustomTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
         ),
       ),
-    );
+    ));
   }
 }

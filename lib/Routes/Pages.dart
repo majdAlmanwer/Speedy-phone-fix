@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
+import 'package:speedy_phone_fix/Screen/Auth/AuthTabBarScreen.dart';
 import 'package:speedy_phone_fix/Screen/Auth/SignIn/SignInScreen.dart';
 import 'package:speedy_phone_fix/Screen/CompanyCustomer/CompanyCustomerScreen.dart';
 import 'package:speedy_phone_fix/Screen/Home/HomeScreen.dart';
@@ -16,7 +17,7 @@ final pages = <GetPage>[
   ),
   GetPage(
     name: AppRoutes.homescreen,
-    page: () => const HomeScreen(),
+    page: () => HomeScreen(),
   ),
   GetPage(
     name: AppRoutes.newcasescreen,
@@ -33,5 +34,9 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.orderScreen,
     page: () => const OrderScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.authtabbar,
+    page: () => const AuthTabBar(),
   ),
 ];

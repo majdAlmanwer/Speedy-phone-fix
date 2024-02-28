@@ -26,6 +26,8 @@ class HomeScreenBody extends StatelessWidget {
               },
             ),
             HomeCardWidget(
+
+
               title: 'Customers\n(Private)',
               iconPath: 'Assets/Icons/Vector (2).png',
               onTap: () {
@@ -36,14 +38,21 @@ class HomeScreenBody extends StatelessWidget {
               title: 'Customers\n(Companies)',
               iconPath: 'Assets/Icons/Vector (1).png',
               onTap: () {
-                Get.toNamed(AppRoutes.newcasescreen);
+                Get.toNamed(AppRoutes.companyCustomerScreen);
+
               },
             ),
             HomeCardWidget(
               title: 'Orders',
               iconPath: 'Assets/Icons/Vector (3).png',
               onTap: () {
-                Get.toNamed(AppRoutes.signinscreen);
+
+
+                Get.toNamed(AppRoutes.orderScreen);
+
+         
+
+
               },
             )
           ],

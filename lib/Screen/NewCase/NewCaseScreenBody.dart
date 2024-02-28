@@ -1,10 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
+
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import '../../Utils/AppStyle.dart';
+
 
 class NewCaseScreenBody extends StatelessWidget {
    NewCaseScreenBody({super.key});
@@ -21,8 +26,22 @@ class NewCaseScreenBody extends StatelessWidget {
     final TextEditingController problemDescriptionController = TextEditingController();
     final TextEditingController expectedDeliveryDateController = TextEditingController();
 
+class NewCaseScreenBody extends StatefulWidget {
+  NewCaseScreenBody({super.key});
+
+  @override
+  State<NewCaseScreenBody> createState() => _NewCaseScreenBodyState();
+}
+
+class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
+  NewCaseController newCaseController = Get.find();
+
+
   @override
   Widget build(BuildContext context) {
+
+  
+
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
@@ -34,6 +53,7 @@ class NewCaseScreenBody extends StatelessWidget {
         ),
         CustomTextFormField(hint: 'Search customer by mobile', controller: searchController,),
       
+
         //start ayah code
         const ListTile(
           leading: Icon(Icons.person_2_outlined),
@@ -46,8 +66,11 @@ class NewCaseScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 2')),
           DropdownMenuItem(value: '2', child: Text('Option 3')),
+
         ], onChanged: (Value){}, hint: 'Choose customer', controller: searchCustomerController, ),
+
       
+
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -55,12 +78,23 @@ class NewCaseScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
-        ], onChanged: (Value){}, hint: 'Submitted for repair', controller: caseStatusController, ),
-      
+
+
+        CustomDropdownFormField(
+            items: newCaseController.caseStatusList
+                .map((e) => DropdownMenuItem(
+                    value: e.statusId, child: Text('${e.status}')))
+                .toList()
+            // [
+            //   DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            //   DropdownMenuItem(value: '1', child: Text('Option 1')),
+            //   DropdownMenuItem(value: '2', child: Text('Option 2')),
+            // ]
+            ,
+            onChanged: (Value) {},
+            hint: 'Submitted for repair',controller: caseStatusController,),
+
+
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -72,20 +106,29 @@ class NewCaseScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType1Controller, ),
+
         SizedBox( height: 8,),
+
         CustomDropdownFormField(items: [
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType2Controller, ),
+
         SizedBox( height: 8,),
+
         CustomDropdownFormField(items: [
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType3Controller, ),
+
       
+
         const ListTile(
           leading: Icon(Icons.mobile_friendly_outlined),
           title: Text(
@@ -97,7 +140,10 @@ class NewCaseScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'Motorola', controller: makeModelController, ),
+
+
 
         const ListTile(
           leading: Icon(Icons.mobile_friendly_outlined),
@@ -110,7 +156,10 @@ class NewCaseScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'g5', controller: deviceDataController, ),
+
+
 
         const ListTile(
           leading: Icon(Icons.data_object_sharp),
@@ -123,7 +172,10 @@ class NewCaseScreenBody extends StatelessWidget {
           DropdownMenuItem(value: 'Nothing', child: Text('--')),
           DropdownMenuItem(value: '1', child: Text('Option 1')),
           DropdownMenuItem(value: '2', child: Text('Option 2')),
+
         ], onChanged: (Value){}, hint: 'g5', controller: imeiController, ),
+
+
 
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
@@ -141,12 +193,14 @@ class NewCaseScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
+
         CustomTextFormField(hint: '11/02/2024  10:00 a.m', controller: expectedDeliveryDateController,),
         SizedBox(height: 20,),
 
         CustomButton(
             text: "Submit",
           ),
+
       ]),
     );
   }

@@ -29,7 +29,9 @@ class CustomDropdownFormField extends StatelessWidget {
   Function()? onTap;
 
   // قائمة العناصر
-  final List<DropdownMenuItem<String>> items;
+
+  final List<DropdownMenuItem<dynamic>> items;
+
 
   // القيمة المختارة
   final String? selectedValue;
