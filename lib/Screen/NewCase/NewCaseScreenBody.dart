@@ -8,23 +8,11 @@ import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
+
 import '../../Utils/AppStyle.dart';
 
 
-class NewCaseScreenBody extends StatelessWidget {
-   NewCaseScreenBody({super.key});
 
-    final TextEditingController searchController = TextEditingController();
-    final TextEditingController searchCustomerController = TextEditingController();
-    final TextEditingController caseStatusController = TextEditingController();
-    final TextEditingController caseType1Controller = TextEditingController();
-    final TextEditingController caseType2Controller = TextEditingController();
-    final TextEditingController caseType3Controller = TextEditingController();
-    final TextEditingController makeModelController = TextEditingController();
-    final TextEditingController deviceDataController = TextEditingController();
-    final TextEditingController imeiController = TextEditingController();
-    final TextEditingController problemDescriptionController = TextEditingController();
-    final TextEditingController expectedDeliveryDateController = TextEditingController();
 
 class NewCaseScreenBody extends StatefulWidget {
   NewCaseScreenBody({super.key});
@@ -35,13 +23,24 @@ class NewCaseScreenBody extends StatefulWidget {
 
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   NewCaseController newCaseController = Get.find();
+  final TextEditingController searchController = TextEditingController();
+  final TextEditingController searchCustomerController =
+      TextEditingController();
+  final TextEditingController caseStatusController = TextEditingController();
+  final TextEditingController caseType1Controller = TextEditingController();
+  final TextEditingController caseType2Controller = TextEditingController();
+  final TextEditingController caseType3Controller = TextEditingController();
+  final TextEditingController makeModelController = TextEditingController();
+  final TextEditingController deviceDataController = TextEditingController();
+  final TextEditingController imeiController = TextEditingController();
+  final TextEditingController problemDescriptionController =
+      TextEditingController();
+  final TextEditingController expectedDeliveryDateController =
+      TextEditingController();
 
 
   @override
   Widget build(BuildContext context) {
-
-  
-
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
@@ -51,8 +50,12 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: 'Search customer by mobile', controller: searchController,),
-      
+
+        CustomTextFormField(
+          hint: 'Search customer by mobile',
+          controller: searchController,
+        ),
+
 
         //start ayah code
         const ListTile(
@@ -62,14 +65,18 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 2')),
-          DropdownMenuItem(value: '2', child: Text('Option 3')),
 
-        ], onChanged: (Value){}, hint: 'Choose customer', controller: searchCustomerController, ),
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 2')),
+            DropdownMenuItem(value: '2', child: Text('Option 3')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Choose customer',
+          controller: searchCustomerController,
+        ),
 
-      
 
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
@@ -81,18 +88,21 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
 
 
         CustomDropdownFormField(
-            items: newCaseController.caseStatusList
-                .map((e) => DropdownMenuItem(
-                    value: e.statusId, child: Text('${e.status}')))
-                .toList()
-            // [
-            //   DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            //   DropdownMenuItem(value: '1', child: Text('Option 1')),
-            //   DropdownMenuItem(value: '2', child: Text('Option 2')),
-            // ]
-            ,
-            onChanged: (Value) {},
-            hint: 'Submitted for repair',controller: caseStatusController,),
+
+          items: newCaseController.caseStatusList
+              .map((e) => DropdownMenuItem(
+                  value: e.statusId, child: Text('${e.status}')))
+              .toList()
+          // [
+          //   DropdownMenuItem(value: 'Nothing', child: Text('--')),
+          //   DropdownMenuItem(value: '1', child: Text('Option 1')),
+          //   DropdownMenuItem(value: '2', child: Text('Option 2')),
+          // ]
+          ,
+          onChanged: (Value) {},
+          hint: 'Submitted for repair',
+          controller: caseStatusController,
+        ),
 
 
         const ListTile(
@@ -102,32 +112,51 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
 
-        ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType1Controller, ),
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Not Specified',
+          controller: caseType1Controller,
+        ),
 
-        SizedBox( height: 8,),
 
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
+        SizedBox(
+          height: 8,
+        ),
 
-        ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType2Controller, ),
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Not Specified',
+          controller: caseType2Controller,
+        ),
 
-        SizedBox( height: 8,),
 
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
+        SizedBox(
+          height: 8,
+        ),
 
-        ], onChanged: (Value){}, hint: 'Not Specified', controller: caseType3Controller, ),
 
-      
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Not Specified',
+          controller: caseType3Controller,
+        ),
+
 
         const ListTile(
           leading: Icon(Icons.mobile_friendly_outlined),
@@ -136,12 +165,17 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
 
-        ], onChanged: (Value){}, hint: 'Motorola', controller: makeModelController, ),
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Motorola',
+          controller: makeModelController,
+        ),
 
 
 
@@ -152,13 +186,17 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
 
-        ], onChanged: (Value){}, hint: 'g5', controller: deviceDataController, ),
-
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'g5',
+          controller: deviceDataController,
+        ),
 
 
         const ListTile(
@@ -168,13 +206,17 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 1')),
-          DropdownMenuItem(value: '2', child: Text('Option 2')),
 
-        ], onChanged: (Value){}, hint: 'g5', controller: imeiController, ),
-
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 1')),
+            DropdownMenuItem(value: '2', child: Text('Option 2')),
+          ],
+          onChanged: (Value) {},
+          hint: 'g5',
+          controller: imeiController,
+        ),
 
 
         const ListTile(
@@ -184,7 +226,12 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: 'Write here...', controller: problemDescriptionController,),
+
+        CustomTextFormField(
+          hint: 'Write here...',
+          controller: problemDescriptionController,
+        ),
+
 
         const ListTile(
           leading: Icon(Icons.date_range_outlined),
@@ -194,13 +241,18 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           ),
         ),
 
-        CustomTextFormField(hint: '11/02/2024  10:00 a.m', controller: expectedDeliveryDateController,),
-        SizedBox(height: 20,),
+        CustomTextFormField(
+          hint: '11/02/2024  10:00 a.m',
+          controller: expectedDeliveryDateController,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+
 
         CustomButton(
-            text: "Submit",
-          ),
-
+          text: "Submit",
+        ),
       ]),
     );
   }
