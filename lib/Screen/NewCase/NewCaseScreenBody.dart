@@ -11,6 +11,9 @@ import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 
 import '../../Utils/AppStyle.dart';
 
+
+
+
 class NewCaseScreenBody extends StatefulWidget {
   NewCaseScreenBody({super.key});
 
@@ -35,6 +38,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   final TextEditingController expectedDeliveryDateController =
       TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -42,14 +46,16 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
         const ListTile(
           leading: Icon(Icons.search),
           title: Text(
-            'title',
+            'Search',
             style: textStyle,
           ),
         ),
+
         CustomTextFormField(
           hint: 'Search customer by mobile',
           controller: searchController,
         ),
+
 
         //start ayah code
         const ListTile(
@@ -59,6 +65,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomDropdownFormField(
           items: [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
@@ -70,6 +77,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: searchCustomerController,
         ),
 
+
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -78,7 +86,9 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           ),
         ),
 
+
         CustomDropdownFormField(
+
           items: newCaseController.caseStatusList
               .map((e) => DropdownMenuItem(
                   value: e.statusId, child: Text('${e.status}')))
@@ -94,6 +104,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: caseStatusController,
         ),
 
+
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -101,6 +112,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomDropdownFormField(
           items: [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
@@ -111,6 +123,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           hint: 'Not Specified',
           controller: caseType1Controller,
         ),
+
 
         SizedBox(
           height: 8,
@@ -127,9 +140,11 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: caseType2Controller,
         ),
 
+
         SizedBox(
           height: 8,
         ),
+
 
         CustomDropdownFormField(
           items: [
@@ -142,6 +157,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: caseType3Controller,
         ),
 
+
         const ListTile(
           leading: Icon(Icons.mobile_friendly_outlined),
           title: Text(
@@ -149,6 +165,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomDropdownFormField(
           items: [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
@@ -160,6 +177,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: makeModelController,
         ),
 
+
+
         const ListTile(
           leading: Icon(Icons.mobile_friendly_outlined),
           title: Text(
@@ -167,6 +186,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomDropdownFormField(
           items: [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
@@ -178,6 +198,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: deviceDataController,
         ),
 
+
         const ListTile(
           leading: Icon(Icons.data_object_sharp),
           title: Text(
@@ -185,6 +206,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomDropdownFormField(
           items: [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
@@ -196,6 +218,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           controller: imeiController,
         ),
 
+
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -203,10 +226,12 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
+
         CustomTextFormField(
           hint: 'Write here...',
           controller: problemDescriptionController,
         ),
+
 
         const ListTile(
           leading: Icon(Icons.date_range_outlined),
@@ -215,7 +240,6 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: '11/02/2024  10:00 a.m'),
 
         CustomTextFormField(
           hint: '11/02/2024  10:00 a.m',
@@ -224,6 +248,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
         SizedBox(
           height: 20,
         ),
+
 
         CustomButton(
           text: "Submit",
