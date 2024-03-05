@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:speedy_phone_fix/Screen/Home/HomeScreenBody.dart';
-
 import '../../Controller/NewCaseController.dart';
+import '../../Widgets/CustomButtomNavBar.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -23,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: HomeScreenBody(),
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
