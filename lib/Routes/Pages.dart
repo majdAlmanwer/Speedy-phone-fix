@@ -26,10 +26,10 @@ final pages = <GetPage>[
     name: AppRoutes.homescreen,
     page: () => HomeScreen(),
   ),
-  // GetPage(
-  //   name: AppRoutes.newcasescreen,
-  //   page: () => const NewCaseScreen(),
-  // ),
+  GetPage(
+    name: AppRoutes.newcasescreen,
+    page: () => const NewCaseScreen(),
+  ),
   GetPage(
     name: AppRoutes.companyCustomerScreen,
     page: () => const CompanyCustomerScreen(),
