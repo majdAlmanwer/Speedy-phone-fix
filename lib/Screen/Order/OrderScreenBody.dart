@@ -26,9 +26,11 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.edit_location_alt_outlined),
             title: Text(
@@ -36,9 +38,11 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.person_outline),
             title: Text(
@@ -46,10 +50,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: 'Add Customer Name',
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.phone),
             title: Text(
@@ -57,10 +63,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: '+49',
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.email_outlined),
             title: Text(
@@ -68,10 +76,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: 'Customer Email Address',
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.monetization_on_outlined),
             title: Text(
@@ -79,10 +89,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: 'Quantity',
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.local_offer_outlined),
             title: Text(
@@ -90,10 +102,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: 'Unit Price',
             controller: null,
           ),
+
           const ListTile(
             leading: Icon(Icons.date_range_outlined),
             title: Text(
@@ -101,10 +115,12 @@ class OrderScreenBody extends StatelessWidget {
               style: textStyle,
             ),
           ),
+
           CustomTextFormField(
             hint: '11/02/2024  10:00 a.m',
             controller: null,
           ),
+
           SizedBox(
             height: 20,
           ),

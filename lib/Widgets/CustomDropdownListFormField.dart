@@ -1,49 +1,57 @@
-// ignore_for_file: file_names, must_be_immutable, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import '../Utils/AppStyle.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {super.key,
-      this.keyboardType,
-      this.hint,
-      required this.controller,
-      this.validator,
-      this.focusNode,
-      this.onChange,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.obscureText = false,
-      this.onTap});
+class CustomDropdownFormField extends StatelessWidget {
+  CustomDropdownFormField({
+    Key? key,
+    this.keyboardType,
+    this.hint,
+    this.controller,
+    this.validator,
+    this.focusNode,
+    this.onChange,
+    this.suffixIcon,
+    this.obscureText = false,
+    this.onTap,
+    required this.items, // أضيفت قائمة العناصر هنا
+    this.selectedValue, // قيمة افتراضية
+    required this.onChanged, // دالة للتحكم في القيمة المختارة
+  }) : super(key: key);
+
   TextEditingController? controller = TextEditingController();
   TextInputType? keyboardType;
   String? hint;
   FocusNode? focusNode;
   Widget? suffixIcon;
-  Widget? prefixIcon;
   bool obscureText = false;
   final String? Function(String?)? validator;
   Function(String)? onChange;
   Function()? onTap;
 
+  // قائمة العناصر
+
+  final List<DropdownMenuItem<dynamic>> items;
+
+
+  // القيمة المختارة
+  final String? selectedValue;
+
+  // دالة للتحديث عند تغيير القيمة
+  final Function(String?) onChanged;
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-        child: Padding(
+    return Padding(
       padding: EdgeInsets.only(
         right: 15.0,
         left: 15.0,
       ),
-      child: TextFormField(
-        validator: validator,
-        controller: controller,
-        focusNode: focusNode,
-        onChanged: onChange,
-        obscureText: obscureText,
-        textInputAction: TextInputAction.next,
-        onTap: onTap,
-        keyboardType: keyboardType,
+      child: DropdownButtonFormField(
+        value: selectedValue, // القيمة المختارة
+        items: items, // قائمة العناصر
+        onChanged: (value) {
+          onChanged(value as String?); // دالة التحديث
+        },
         decoration: InputDecoration(
           filled: true,
           fillColor: FormBackGraund.withOpacity(.5),
@@ -62,9 +70,8 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hint,
           hintStyle: FormTextStyle,
           suffixIcon: suffixIcon,
-          prefixIcon: prefixIcon,
         ),
       ),
-    ));
+    );
   }
 }

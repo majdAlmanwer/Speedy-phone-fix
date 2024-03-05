@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
 import 'package:speedy_phone_fix/Model/CaseDeviceDataModel.dart';
 import 'package:speedy_phone_fix/Model/CaseMakeModel.dart';
 
@@ -12,19 +13,27 @@ import 'package:speedy_phone_fix/Model/CaseTypeModel.dart';
 import 'package:speedy_phone_fix/Service/NewCaseService.dart';
 
 import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
+
+import 'package:speedy_phone_fix/Service/NewCaseService.dart';
+
+import '../Model/CaseStatusModel.dart';
+
 import 'LoaderController.dart';
 
 class NewCaseController extends GetxController {
   final loaderController = Get.put(LoaderController());
   final box = GetStorage();
   List<CaseStatus> caseStatusList = [];
+
   List<CaseType>? caseTypeList = [];
   List<CaseMakeModel>? caseMakeModelList = [];
   List<CaseDeviceTypeModel>? caseDeviceTypeList = [];
   List<AllCustomers>? allCustomersList = [];
   List<Customers>? customersList = [];
+
   @override
-  Future<void> onInit() async {
+  void onInit() {
+
     // Perform initialization tasks here
     getCaseStatus(9);
 
@@ -48,6 +57,7 @@ class NewCaseController extends GetxController {
     update();
     loaderController.loading(false);
   }
+
 
   Future<dynamic> getCaseType(int branchId) async {
     loaderController.loading(true);
@@ -138,4 +148,5 @@ class NewCaseController extends GetxController {
     update();
     loaderController.loading(false);
   }
+
 }

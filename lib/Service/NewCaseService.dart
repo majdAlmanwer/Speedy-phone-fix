@@ -2,12 +2,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+
 import 'package:speedy_phone_fix/Model/CaseDeviceDataModel.dart';
 import 'package:speedy_phone_fix/Model/CaseMakeModel.dart';
 import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
 import 'package:speedy_phone_fix/Model/CaseTypeModel.dart';
 import 'package:speedy_phone_fix/Model/FindCustomerByMobile.dart';
 import 'package:speedy_phone_fix/Model/ListAllCustomers.dart';
+
+import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
+
 
 import '../Api/Api.dart';
 import '../Controller/LoaderController.dart';
@@ -43,6 +47,7 @@ class NewCaseService {
     }
     return CaseStatusModel();
   }
+
 
   Future<CaseTypeModel> fetchCaseType(int id) async {
     loaderController.loading(true);
@@ -153,4 +158,5 @@ class NewCaseService {
     }
     return AllCustomersModel();
   }
+
 }
