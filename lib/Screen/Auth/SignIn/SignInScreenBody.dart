@@ -2,6 +2,7 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:speedy_phone_fix/Controller/AuthController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
@@ -11,28 +12,34 @@ import 'package:flutter/material.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
+
 class SignInScreenBody extends StatefulWidget {
-  const SignInScreenBody({ super.key });
+  const SignInScreenBody({super.key});
   @override
   State<SignInScreenBody> createState() => _SignInScreenBodyPageState();
 }
-class _SignInScreenBodyPageState extends State<SignInScreenBody> with SingleTickerProviderStateMixin  {
-late TabController _tabController;
+
+class _SignInScreenBodyPageState extends State<SignInScreenBody>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: 2);
   }
+
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
   }
+
+  AuthController authController = Get.put(AuthController());
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-    return  Scaffold(
+    return Scaffold(
       // appBar: AppBar(
       //   title: Center(child: Text('Welcome!',
       //       style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold,
@@ -159,7 +166,7 @@ late TabController _tabController;
                       fontSize: 14,
                       decoration: TextDecoration.underline,
                       decorationColor:
-                      BlueColor, // You can adjust the line color
+                          BlueColor, // You can adjust the line color
                       decorationThickness: 1.0,
                     ))
               ],
@@ -167,8 +174,6 @@ late TabController _tabController;
           ],
         ),
       ),
-
     );
   }
 }
-
