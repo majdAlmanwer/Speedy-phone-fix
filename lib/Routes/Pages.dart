@@ -9,6 +9,7 @@ import 'package:speedy_phone_fix/Screen/Home/HomeScreen.dart';
 import 'package:speedy_phone_fix/Screen/IndividualCustomer/IndividualCustomerScreen.dart';
 import 'package:speedy_phone_fix/Screen/NewCase/NewCaseScreen.dart';
 import 'package:speedy_phone_fix/Screen/Order/OrderScreen.dart';
+import 'package:speedy_phone_fix/Screen/Settings/SettingsScreen.dart';
 
 final pages = <GetPage>[
   GetPage(
@@ -19,10 +20,10 @@ final pages = <GetPage>[
     name: AppRoutes.homescreen,
     page: () => HomeScreen(),
   ),
-  // GetPage(
-  //   name: AppRoutes.newcasescreen,
-  //   page: () => const NewCaseScreen(),
-  // ),
+  GetPage(
+    name: AppRoutes.newcasescreen,
+    page: () => const NewCaseScreen(),
+  ),
   GetPage(
     name: AppRoutes.companyCustomerScreen,
     page: () => const CompanyCustomerScreen(),
@@ -38,5 +39,9 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.authtabbar,
     page: () => const AuthTabBar(),
+  ),
+  GetPage(
+    name: AppRoutes.settingScreen,
+    page: () => const SettingsScreen(),
   ),
 ];
