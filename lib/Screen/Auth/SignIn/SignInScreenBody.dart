@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
-
+import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
 
 //aleen code
 import 'package:flutter/material.dart';
@@ -85,46 +85,26 @@ late TabController _tabController;
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                labelText: 'Phone Number',
-                prefixIcon: Icon(
-                  Icons.phone,
-                  color: BlueColor,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
+            AuthFormField(
+              prefixIcon: Icon(
+                Icons.phone,
+                color: BlueColor,
               ),
+              hint: 'Phone Number',
             ),
             SizedBox(
-              height: 10.0,
+              height: 20.0,
             ),
-            TextFormField(
-              controller: passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: true,
-              onFieldSubmitted: (String value) {
-                print(value);
-              },
-              onChanged: (String value) {
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Password',
-                prefixIcon: Icon(
-                  Icons.lock_open_outlined,
-                  color: BlueColor,
-                ),
-                suffixIcon: Icon(
-                  Icons.remove_red_eye,
-                  color: LightGrey,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
+            AuthFormField(
+              prefixIcon: Icon(
+                Icons.lock_open_outlined,
+                color: BlueColor,
               ),
+              hint: 'Password',
+              suffixIcon: Icon(
+                      Icons.remove_red_eye,
+                      color: LightGrey,
+                    ),
             ),
             SizedBox(
               height: 20.0,
@@ -140,26 +120,32 @@ late TabController _tabController;
             SizedBox(
               height: 20.0,
             ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18), color: BlueColor),
-              child: TextButton(
-                  child: Text("Sign In".toUpperCase(),
-                      style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.all(15)),
-                      foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.homescreen);
-                  }),
+            Padding(
+              padding: EdgeInsets.only(
+                right: 8.0,
+                left: 8.0,
+              ),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10), color: BlueColor),
+                child: TextButton(
+                    child: Text("Sign In",
+                        style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(15)),
+                        foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.homescreen);
+                    }),
+              ),
             ),
             SizedBox(
               height: 20.0,
