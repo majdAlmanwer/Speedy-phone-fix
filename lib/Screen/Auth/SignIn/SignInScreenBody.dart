@@ -93,6 +93,10 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AuthFormField(
+              controller: emailController,
+              onChange: (val) {
+                val == emailController.text;
+              },
               prefixIcon: Icon(
                 Icons.phone,
                 color: BlueColor,
@@ -103,15 +107,19 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
               height: 20.0,
             ),
             AuthFormField(
+              controller: passwordController,
+              onChange: (val) {
+                val == passwordController.text;
+              },
               prefixIcon: Icon(
                 Icons.lock_open_outlined,
                 color: BlueColor,
               ),
               hint: 'Password',
               suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: LightGrey,
-                    ),
+                Icons.remove_red_eye,
+                color: LightGrey,
+              ),
             ),
             SizedBox(
               height: 20.0,
@@ -138,19 +146,22 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                     borderRadius: BorderRadius.circular(10), color: BlueColor),
                 child: TextButton(
                     child: Text("Sign In",
-                        style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold)),
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             EdgeInsets.all(15)),
                         foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ))),
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ))),
                     onPressed: () {
-                      Get.toNamed(AppRoutes.homescreen);
+                      authController.login(
+                          userName: emailController.text,
+                          password: passwordController.text);
                     }),
               ),
             ),
