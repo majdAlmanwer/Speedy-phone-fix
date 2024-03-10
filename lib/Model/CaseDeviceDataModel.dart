@@ -1,14 +1,14 @@
 // CaseDeviceTypeModel
 class CaseDeviceTypeModel {
-  List<CaseDeviceTypeModel>? caseDeviceType;
+  List<CaseDeviceType>? caseDeviceType;
 
   CaseDeviceTypeModel({this.caseDeviceType});
 
   CaseDeviceTypeModel.fromJson(Map<String, dynamic> json) {
     if (json['CaseDeviceType'] != null) {
-      caseDeviceType = <CaseDeviceTypeModel>[];
+      caseDeviceType = <CaseDeviceType>[];
       json['CaseDeviceType'].forEach((v) {
-        caseDeviceType!.add(new CaseDeviceTypeModel.fromJson(v));
+        caseDeviceType!.add(new CaseDeviceType.fromJson(v));
       });
     }
   }

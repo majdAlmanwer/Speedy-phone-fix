@@ -8,9 +8,11 @@ import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
+import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
+import 'package:speedy_phone_fix/Routes/Routes.dart';
 import '../../Utils/AppStyle.dart';
-
+import 'package:intl/intl.dart';
 class NewCaseScreenBody extends StatefulWidget {
   NewCaseScreenBody({super.key});
 
@@ -19,6 +21,8 @@ class NewCaseScreenBody extends StatefulWidget {
 }
 
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
+
+  TextEditingController _textEditingController = TextEditingController();
   NewCaseController newCaseController = Get.find();
   final TextEditingController searchController = TextEditingController();
   final TextEditingController searchCustomerController =
@@ -62,11 +66,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
         ),
 
         CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 2')),
-            DropdownMenuItem(value: '2', child: Text('Option 3')),
-          ],
+          items: newCaseController.customersList!
+              .map((e) => DropdownMenuItem(
+              value: e.cusId, child: Text('${e.cusName}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'Choose customer',
           controller: searchCustomerController,
@@ -84,32 +87,43 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           items: newCaseController.caseStatusList
               .map((e) => DropdownMenuItem(
                   value: e.statusId, child: Text('${e.status}')))
-              .toList()
-          // [
-          //   DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          //   DropdownMenuItem(value: '1', child: Text('Option 1')),
-          //   DropdownMenuItem(value: '2', child: Text('Option 2')),
-          // ]
-          ,
+              .toList(),
           onChanged: (Value) {},
           hint: 'Submitted for repair',
           controller: caseStatusController,
         ),
 
-        const ListTile(
-          leading: Icon(Icons.edit_location_alt_outlined),
-          title: Text(
-            'Case Type',
-            style: textStyle,
-          ),
-        ),
-
-        CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
+        Row(
+          children: [
+            Expanded(
+              child: const ListTile(
+                leading: Icon(Icons.edit_location_alt_outlined),
+                title: Text(
+                  'Case Type',
+                ),
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.makemodelscreen);
+              },
+              minWidth: 15,
+              height: 0,
+               padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Text('Add',
+              style: TextStyle(
+                color: BlueColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 16
+              ),),
+            )
           ],
+        ),
+        CustomDropdownFormField(
+          items: newCaseController.caseTypeList!
+              .map((e) => DropdownMenuItem(
+              value: e.typeId, child: Text('${e.type}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'Not Specified',
           controller: caseType1Controller,
@@ -120,11 +134,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
         ),
 
         CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
-          ],
+          items: newCaseController.caseTypeList!
+              .map((e) => DropdownMenuItem(
+              value: e.typeId, child: Text('${e.type}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'Not Specified',
           controller: caseType2Controller,
@@ -135,54 +148,87 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
         ),
 
         CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
-          ],
+          items: newCaseController.caseTypeList!
+              .map((e) => DropdownMenuItem(
+              value: e.typeId, child: Text('${e.type}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'Not Specified',
           controller: caseType3Controller,
         ),
-
-        const ListTile(
-          leading: Icon(Icons.mobile_friendly_outlined),
-          title: Text(
-            'Make & Model',
-            style: textStyle,
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: const ListTile(
+                leading: Icon(Icons.mobile_friendly_outlined),
+                title: Text(
+                  'Make & Model',
+                  style: textStyle,
+                ),
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.makemodelscreen);
+              },
+              minWidth: 15,
+              height: 0,
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Text('Add',
+                style: TextStyle(
+                    color: BlueColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16
+                ),),
+            )
+          ],
         ),
 
         CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
-          ],
+          items: newCaseController.caseMakeModelList!
+              .map((e) => DropdownMenuItem(
+              value: e.makemodelId, child: Text('${e.makemodel}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'Motorola',
           controller: makeModelController,
         ),
-
-        const ListTile(
-          leading: Icon(Icons.mobile_friendly_outlined),
-          title: Text(
-            'Device Data',
-            style: textStyle,
-          ),
-        ),
-
-        CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
+        Row(
+          children: [
+            Expanded(
+              child: const ListTile(
+                leading: Icon(Icons.mobile_friendly_outlined),
+                title: Text(
+                  'Device Data',
+                  style: textStyle,
+                ),
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.devicedatascreen);
+              },
+              minWidth: 15,
+              height: 0,
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Text('Add',
+                style: TextStyle(
+                    color: BlueColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16
+                ),),
+            )
           ],
+        ),
+        CustomDropdownFormField(
+          items: newCaseController.caseDeviceTypeList!
+              .map((e) => DropdownMenuItem(
+              value: e.deviceTypeId, child: Text('${e.deviceType}')))
+              .toList(),
           onChanged: (Value) {},
           hint: 'g5',
           controller: deviceDataController,
         ),
-
         const ListTile(
           leading: Icon(Icons.data_object_sharp),
           title: Text(
@@ -190,18 +236,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-
-        CustomDropdownFormField(
-          items: [
-            DropdownMenuItem(value: 'Nothing', child: Text('--')),
-            DropdownMenuItem(value: '1', child: Text('Option 1')),
-            DropdownMenuItem(value: '2', child: Text('Option 2')),
-          ],
-          onChanged: (Value) {},
-          hint: 'g5',
+        CustomTextFormField(
+          hint: 'IMEI',
           controller: imeiController,
         ),
-
         const ListTile(
           leading: Icon(Icons.edit_location_alt_outlined),
           title: Text(
@@ -209,12 +247,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-
         CustomTextFormField(
           hint: 'Write here...',
           controller: problemDescriptionController,
         ),
-
         const ListTile(
           leading: Icon(Icons.date_range_outlined),
           title: Text(
@@ -222,19 +258,29 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-
         CustomTextFormField(
           hint: '11/02/2024  10:00 a.m',
-          controller: expectedDeliveryDateController,
+          controller: datePickerController,
+          onTap: () => onTapFunction(context: context),
         ),
         SizedBox(
           height: 20,
         ),
-
         CustomButton(
           text: "Submit",
         ),
       ]),
     );
+  }
+  TextEditingController datePickerController = TextEditingController();
+  onTapFunction({required BuildContext context}) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      lastDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      initialDate: DateTime.now(),
+    );
+    if (pickedDate == null) return;
+    datePickerController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
   }
 }
