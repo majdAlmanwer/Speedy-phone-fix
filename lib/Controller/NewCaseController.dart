@@ -26,8 +26,8 @@ class NewCaseController extends GetxController {
   List<CaseStatus> caseStatusList = [];
 
   List<CaseType>? caseTypeList = [];
-  List<CaseMakeModel>? caseMakeModelList = [];
-  List<CaseDeviceTypeModel>? caseDeviceTypeList = [];
+  List<CaseMake>? caseMakeModelList = [];
+  List<CaseDeviceType>? caseDeviceTypeList = [];
   List<AllCustomers>? allCustomersList = [];
   List<Customers>? customersList = [];
 
@@ -36,7 +36,11 @@ class NewCaseController extends GetxController {
 
     // Perform initialization tasks here
     getCaseStatus(9);
-
+    getCaseType(9);
+    getCaseMake(9);
+    getCaseDeviceData(9);
+    getCaseMake(9);
+    getCustomersByMobile(9);
     super.onInit();
   }
 

@@ -1,14 +1,14 @@
 // CaseMakeModel
 class CaseMakeModel {
-  List<CaseMakeModel>? caseMakeModel;
+  List<CaseMake>? caseMakeModel;
 
   CaseMakeModel({this.caseMakeModel});
 
   CaseMakeModel.fromJson(Map<String, dynamic> json) {
     if (json['CaseMakeModel'] != null) {
-      caseMakeModel = <CaseMakeModel>[];
+      caseMakeModel = <CaseMake>[];
       json['CaseMakeModel'].forEach((v) {
-        caseMakeModel!.add(new CaseMakeModel.fromJson(v));
+        caseMakeModel!.add(new CaseMake.fromJson(v));
       });
     }
   }
