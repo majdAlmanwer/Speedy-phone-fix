@@ -14,7 +14,7 @@ class BottomNavBar extends StatelessWidget {
     return GetBuilder<CustomBottomNavBarController>(
       builder: (controller) {
         return Container(
-          height: Get.height * .08,
+          height: Get.height * .09,
           // padding: EdgeInsets.all(8),
           child: BottomNavigationBar(
             showUnselectedLabels: true,

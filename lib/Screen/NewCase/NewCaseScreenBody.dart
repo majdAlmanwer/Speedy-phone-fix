@@ -1,9 +1,11 @@
 // ignore_for_file: file_names
 
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
+import 'package:speedy_phone_fix/Model/FindCustomerByMobile.dart';
 
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
@@ -12,6 +14,8 @@ import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Routes/Routes.dart';
 import '../../Utils/AppStyle.dart';
+import '../../Widgets/CustomSearchDropDown.dart';
+
 import 'package:intl/intl.dart';
 class NewCaseScreenBody extends StatefulWidget {
   NewCaseScreenBody({super.key});
@@ -50,11 +54,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             style: textStyle,
           ),
         ),
-
-        CustomTextFormField(
-          hint: 'Search customer by mobile',
-          controller: searchController,
-        ),
+        CustomSearchDropDown(),
 
         //start ayah code
         const ListTile(

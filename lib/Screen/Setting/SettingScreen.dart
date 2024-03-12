@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/Setting/SettingBody.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButtomNavBar.dart';
 
