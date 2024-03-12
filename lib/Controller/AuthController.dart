@@ -17,6 +17,8 @@ class AuthController extends GetxController {
   GetStorage box = GetStorage();
 
   String branchId = '';
+  String branchName = '';
+  String employeeName = '';
   Future<dynamic> login(
       {required String userName, required String password}) async {
     loaderController.loading(true);
@@ -25,10 +27,13 @@ class AuthController extends GetxController {
     var response = await AuthService().login(request);
     try {
       branchId = response.branchId!.toString();
-
+      branchName = response.branchName!;
+      employeeName = response.empName!;
       print('user branchId is .... .... $branchId}');
 
       box.write('branchId', branchId);
+      box.write('branchName', branchName);
+      box.write('employeeName', employeeName);
 
       print('sssssssssssss user branchId is .... .... ${box.read('branchId')}');
 
