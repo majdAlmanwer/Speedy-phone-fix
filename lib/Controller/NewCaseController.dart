@@ -39,7 +39,7 @@ class NewCaseController extends GetxController {
     getCaseMake(9);
     getCaseDeviceData(9);
     getCaseMake(9);
-    getCustomersByMobile(9);
+    // getCustomersByMobile(9);
     super.onInit();
   }
 
