@@ -7,7 +7,7 @@ import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import '../../Utils/AppStyle.dart';
 
 class IndividualCustomerScreenBody extends StatelessWidget {
-   IndividualCustomerScreenBody({super.key});
+  IndividualCustomerScreenBody({super.key});
 
   final TextEditingController customerNameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
@@ -17,7 +17,6 @@ class IndividualCustomerScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
@@ -27,8 +26,10 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Add customer's name", controller: customerNameController,),
-
+        CustomTextFormField(
+          hint: "Add customer's name",
+          controller: customerNameController,
+        ),
         const ListTile(
           leading: Icon(Icons.location_on_outlined),
           title: Text(
@@ -36,8 +37,10 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Customer's Address", controller: addressController,),
-
+        CustomTextFormField(
+          hint: "Customer's Address",
+          controller: addressController,
+        ),
         const ListTile(
           leading: Icon(Icons.call),
           title: Text(
@@ -45,8 +48,12 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "+46", prefixIcon: Icon(Icons.flag), keyboardType: TextInputType.phone, controller: carController,),
-
+        CustomTextFormField(
+          hint: "+46",
+          prefixIcon: Icon(Icons.flag),
+          keyboardType: TextInputType.phone,
+          controller: carController,
+        ),
         const ListTile(
           leading: Icon(Icons.email_outlined),
           title: Text(
@@ -54,8 +61,11 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Email Address",keyboardType: TextInputType.emailAddress, controller: emailController,),
-
+        CustomTextFormField(
+          hint: "Email Address",
+          keyboardType: TextInputType.emailAddress,
+          controller: emailController,
+        ),
         const ListTile(
           leading: Icon(Icons.person_2_outlined),
           title: Text(
@@ -63,15 +73,19 @@ class IndividualCustomerScreenBody extends StatelessWidget {
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 2')),
-          DropdownMenuItem(value: '2', child: Text('Option 3')),
-        ], onChanged: (Value){}, hint: 'Private', controller: customerTypeController, ),
-
-
-        SizedBox(height: 50,),
-
+        CustomDropdownFormField(
+          items: [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 2')),
+            DropdownMenuItem(value: '2', child: Text('Option 3')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Private',
+          controller: customerTypeController,
+        ),
+        SizedBox(
+          height: 50,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -79,17 +93,16 @@ class IndividualCustomerScreenBody extends StatelessWidget {
               value: false,
               onChanged: (bool? value) {},
             ),
-            Text('Term of use & privacy policy', style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),),
+            Text(
+              'Term of use & privacy policy',
+              style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
-
-
         CustomButton(
-            text: "Submit",
-          ),
-
+          text: "Submit",
+        ),
       ]),
     );
-
   }
 }
