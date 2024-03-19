@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:speedy_phone_fix/Screen/Setting/CaseStatus/CaseStatusBody.dart';
+import 'package:speedy_phone_fix/Screen/Setting/CaseType/CaseTypeBody.dart';
 
 import '../../../Utils/AppStyle.dart';
 
@@ -21,7 +21,7 @@ class CaseTypeScreen extends StatelessWidget {
           title: Text('Case Type'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: CaseStatusBody(),
+      body: CaseTypeBody(),
     );
   }
 }
