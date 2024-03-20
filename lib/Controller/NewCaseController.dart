@@ -26,17 +26,20 @@ class NewCaseController extends GetxController {
   List<CaseStatus> caseStatusList = [];
 
   List<CaseType>? caseTypeList = [];
-  List<CaseMakeModel>? caseMakeModelList = [];
-  List<CaseDeviceTypeModel>? caseDeviceTypeList = [];
+  List<CaseMake>? caseMakeModelList = [];
+  List<CaseDeviceType>? caseDeviceTypeList = [];
   List<AllCustomers>? allCustomersList = [];
-  List<Customers>? customersList = [];
+  RxList<Customers> customersList = <Customers>[].obs;
 
   @override
   void onInit() {
-
     // Perform initialization tasks here
     getCaseStatus(9);
-
+    getCaseType(9);
+    getCaseMake(9);
+    getCaseDeviceData(9);
+    getCaseMake(9);
+    // getCustomersByMobile(9);
     super.onInit();
   }
 
@@ -57,7 +60,6 @@ class NewCaseController extends GetxController {
     update();
     loaderController.loading(false);
   }
-
 
   Future<dynamic> getCaseType(int branchId) async {
     loaderController.loading(true);
@@ -113,13 +115,14 @@ class NewCaseController extends GetxController {
     loaderController.loading(false);
   }
 
-  Future<dynamic> getCustomersByMobile(int branchId) async {
+  Future<dynamic> getCustomersByMobile(int branchId, String phoneNumber) async {
     loaderController.loading(true);
     try {
-      var res = await NewCaseService().fetchFindCustomerByMobile(9);
+      var res =
+          await NewCaseService().fetchFindCustomerByMobile(9, phoneNumber);
 
-      customersList = res.customers!;
-      print(caseStatusList.length);
+      customersList.value = res.customers!;
+      print(customersList.length);
     } catch (e) {
       if (e is DioException) {
         log(e.toString());
@@ -148,5 +151,4 @@ class NewCaseController extends GetxController {
     update();
     loaderController.loading(false);
   }
-
 }
