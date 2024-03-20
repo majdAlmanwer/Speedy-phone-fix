@@ -8,6 +8,7 @@ class AppRoutes {
   static const String individualCustomerScreen = '/individualCustomerScreen';
   static const String orderScreen = '/orderScreen';
   static const String authtabbar = '/authtabbar';
+
   static const String settingscreen = '/settingscreen';
   static const String profilescreen = '/profilescreen';
   static const String casestatusscreen = '/casestatusscreen';
@@ -15,4 +16,5 @@ class AppRoutes {
   static const String devicedatascreen = '/devicedatascreen';
   static const String makemodelscreen = '/makemodelscreen';
   static const String unitscreen = '/unitscreen';
+
 }

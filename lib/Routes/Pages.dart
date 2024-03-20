@@ -17,6 +17,7 @@ import 'package:speedy_phone_fix/Screen/Setting/MakeModel/MakeModelScreen.dart';
 import 'package:speedy_phone_fix/Screen/Setting/SettingScreen.dart';
 import 'package:speedy_phone_fix/Screen/Setting/Unit/UnitScreen.dart';
 
+
 final pages = <GetPage>[
   GetPage(
     name: AppRoutes.signinscreen,
@@ -47,6 +48,7 @@ final pages = <GetPage>[
     page: () => const AuthTabBar(),
   ),
   GetPage(
+
     name: AppRoutes.settingscreen,
     page: () => const SettingScreen(),
   ),
@@ -73,5 +75,6 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.unitscreen,
     page: () => const UnitScreen(),
+
   ),
 ];
