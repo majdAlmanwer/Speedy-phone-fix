@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CustomBottomNavBarController>(
       builder: (controller) {
-        return Container(
+        return SizedBox(
           height: Get.height * .09,
           // padding: EdgeInsets.all(8),
           child: BottomNavigationBar(

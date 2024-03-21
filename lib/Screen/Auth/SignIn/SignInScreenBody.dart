@@ -88,101 +88,107 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
       // ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AuthFormField(
-              controller: emailController,
-              onChange: (val) {
-                val == emailController.text;
-              },
-              prefixIcon: Icon(
-                Icons.phone,
-                color: BlueColor,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: Get.height * 0.1,
               ),
-              hint: 'Phone Number',
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            AuthFormField(
-              controller: passwordController,
-              onChange: (val) {
-                val == passwordController.text;
-              },
-              prefixIcon: Icon(
-                Icons.lock_open_outlined,
-                color: BlueColor,
+              AuthFormField(
+                controller: emailController,
+                onChange: (val) {
+                  val == emailController.text;
+                },
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'Assets/Icons/profile.png',
+                    height: 10,
+                    width: 10,
+                  ),
+                ),
+                hint: 'User Name',
               ),
-              hint: 'Password',
-              suffixIcon: Icon(
-                Icons.remove_red_eye,
-                color: LightGrey,
+              SizedBox(
+                height: 20.0,
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('OR',
-                    style: TextStyle(
-                        color: BlueColor, fontWeight: FontWeight.bold))
-              ],
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                right: 8.0,
-                left: 8.0,
+              AuthFormField(
+                controller: passwordController,
+                onChange: (val) {
+                  val == passwordController.text;
+                },
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'Assets/Icons/lock.png',
+                    height: 10,
+                    width: 10,
+                  ),
+                ),
+                hint: 'Password',
+                suffixIcon: Icon(
+                  Icons.remove_red_eye,
+                  color: LightGrey,
+                ),
               ),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10), color: BlueColor),
-                child: TextButton(
-                    child: Text("Sign In",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold)),
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.all(15)),
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ))),
-                    onPressed: () {
-                      authController.login(
-                          userName: emailController.text,
-                          password: passwordController.text);
-                    }),
+              SizedBox(
+                height: 20.0,
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Reset Your Password',
-                    style: TextStyle(
-                      color: BlueColor, fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
-                      decorationColor:
-                          BlueColor, // You can adjust the line color
-                      decorationThickness: 1.0,
-                    ))
-              ],
-            ),
-          ],
+              SizedBox(
+                height: 20.0,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  right: 8.0,
+                  left: 8.0,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: BlueColor),
+                  child: TextButton(
+                      child: Text("Sign In",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(15)),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ))),
+                      onPressed: () {
+                        authController.login(
+                            userName: emailController.text,
+                            password: passwordController.text);
+                      }),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Reset Your Password',
+                      style: TextStyle(
+                        color: BlueColor, fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        decorationColor:
+                            BlueColor, // You can adjust the line color
+                        decorationThickness: 1.0,
+                      ))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -14,10 +14,6 @@ import 'package:speedy_phone_fix/Service/NewCaseService.dart';
 
 import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
 
-import 'package:speedy_phone_fix/Service/NewCaseService.dart';
-
-import '../Model/CaseStatusModel.dart';
-
 import 'LoaderController.dart';
 
 class NewCaseController extends GetxController {
@@ -37,8 +33,9 @@ class NewCaseController extends GetxController {
     getCaseStatus(9);
     getCaseType(9);
     getCaseMake(9);
-    getCaseDeviceData(9);
+
     getCaseMake(9);
+    getAllCustomers(9);
     // getCustomersByMobile(9);
     super.onInit();
   }
@@ -97,10 +94,10 @@ class NewCaseController extends GetxController {
     loaderController.loading(false);
   }
 
-  Future<dynamic> getCaseDeviceData(int branchId) async {
+  Future<dynamic> getCaseDeviceData(String MakeModelId) async {
     loaderController.loading(true);
     try {
-      var res = await NewCaseService().fetchCaseDeviceData(9);
+      var res = await NewCaseService().fetchCaseDeviceData(MakeModelId);
 
       caseDeviceTypeList = res.caseDeviceType!;
       print(caseStatusList.length);
@@ -137,7 +134,7 @@ class NewCaseController extends GetxController {
   Future<dynamic> getAllCustomers(int branchId) async {
     loaderController.loading(true);
     try {
-      var res = await NewCaseService().fetchListAllCustomers(9);
+      var res = await NewCaseService().fetchListAllCustomers(branchId);
 
       allCustomersList = res.Allcustomers!;
       print(caseStatusList.length);

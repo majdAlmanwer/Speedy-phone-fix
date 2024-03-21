@@ -13,10 +13,13 @@ import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Routes/Routes.dart';
+import '../../Controller/LoaderController.dart';
 import '../../Utils/AppStyle.dart';
+import '../../Widgets/CustomAlertDialog.dart';
 import '../../Widgets/CustomSearchDropDown.dart';
 
 import 'package:intl/intl.dart';
+
 class NewCaseScreenBody extends StatefulWidget {
   NewCaseScreenBody({super.key});
 
@@ -25,7 +28,6 @@ class NewCaseScreenBody extends StatefulWidget {
 }
 
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
-
   TextEditingController _textEditingController = TextEditingController();
   NewCaseController newCaseController = Get.find();
   final TextEditingController searchController = TextEditingController();
@@ -42,236 +44,299 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
       TextEditingController();
   final TextEditingController expectedDeliveryDateController =
       TextEditingController();
+  RxString searchCustomer = ''.obs;
+  final loaderController = Get.put(LoaderController());
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(children: [
-        const ListTile(
-          leading: Icon(Icons.search),
-          title: Text(
-            'Search',
-            style: textStyle,
-          ),
-        ),
-        CustomSearchDropDown(),
-
-        //start ayah code
-        const ListTile(
-          leading: Icon(Icons.person_2_outlined),
-          title: Text(
-            'Customer',
-            style: textStyle,
-          ),
-        ),
-
-        CustomDropdownFormField(
-          items: newCaseController.customersList!
-              .map((e) => DropdownMenuItem(
-              value: e.cusId, child: Text('${e.cusName}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Choose customer',
-          controller: searchCustomerController,
-        ),
-
-        const ListTile(
-          leading: Icon(Icons.edit_location_alt_outlined),
-          title: Text(
-            'Case Status',
-            style: textStyle,
-          ),
-        ),
-
-        CustomDropdownFormField(
-          items: newCaseController.caseStatusList
-              .map((e) => DropdownMenuItem(
-                  value: e.statusId, child: Text('${e.status}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Submitted for repair',
-          controller: caseStatusController,
-        ),
-
-        Row(
-          children: [
-            Expanded(
-              child: const ListTile(
-                leading: Icon(Icons.edit_location_alt_outlined),
-                title: Text(
-                  'Case Type',
-                ),
-              ),
-            ),
-            MaterialButton(
-              onPressed: () {
-                Get.toNamed(AppRoutes.makemodelscreen);
-              },
-              minWidth: 15,
-              height: 0,
-               padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Text('Add',
-              style: TextStyle(
-                color: BlueColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 16
-              ),),
+    return GetBuilder<NewCaseController>(
+      builder: (controller) => loaderController.loading.isTrue
+          ? Center(
+              child: CircularProgressIndicator(color: BlueColor),
             )
-          ],
-        ),
-        CustomDropdownFormField(
-          items: newCaseController.caseTypeList!
-              .map((e) => DropdownMenuItem(
-              value: e.typeId, child: Text('${e.type}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Not Specified',
-          controller: caseType1Controller,
-        ),
-
-        SizedBox(
-          height: 8,
-        ),
-
-        CustomDropdownFormField(
-          items: newCaseController.caseTypeList!
-              .map((e) => DropdownMenuItem(
-              value: e.typeId, child: Text('${e.type}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Not Specified',
-          controller: caseType2Controller,
-        ),
-
-        SizedBox(
-          height: 8,
-        ),
-
-        CustomDropdownFormField(
-          items: newCaseController.caseTypeList!
-              .map((e) => DropdownMenuItem(
-              value: e.typeId, child: Text('${e.type}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Not Specified',
-          controller: caseType3Controller,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: const ListTile(
-                leading: Icon(Icons.mobile_friendly_outlined),
-                title: Text(
-                  'Make & Model',
-                  style: textStyle,
+          : SingleChildScrollView(
+              child: Column(children: [
+                const ListTile(
+                  leading: Icon(Icons.search),
+                  title: Text(
+                    'Search',
+                    style: textStyle,
+                  ),
                 ),
-              ),
-            ),
-            MaterialButton(
-              onPressed: () {
-                Get.toNamed(AppRoutes.makemodelscreen);
-              },
-              minWidth: 15,
-              height: 0,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Text('Add',
-                style: TextStyle(
-                    color: BlueColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16
-                ),),
-            )
-          ],
-        ),
-
-        CustomDropdownFormField(
-          items: newCaseController.caseMakeModelList!
-              .map((e) => DropdownMenuItem(
-              value: e.makemodelId, child: Text('${e.makemodel}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'Motorola',
-          controller: makeModelController,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: const ListTile(
-                leading: Icon(Icons.mobile_friendly_outlined),
-                title: Text(
-                  'Device Data',
-                  style: textStyle,
+                CustomSearchDropDown(
+                  searchResult: searchCustomer,
                 ),
-              ),
+
+                //start ayah code
+                Row(
+                  children: [
+                    Expanded(
+                      child: const ListTile(
+                        leading: Icon(Icons.person_2_outlined),
+                        title: Text(
+                          'Customer',
+                          style: textStyle,
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        showDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlertDialog();
+                          },
+                        );
+                      },
+                      minWidth: 15,
+                      height: 0,
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: const Text(
+                        'Add',
+                        style: TextStyle(
+                            color: BlueColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+                // Obx(
+                //   () =>
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 15.0,
+                    left: 15.0,
+                  ),
+                  child: CustomDropdown.search(
+                    decoration: CustomDropdownDecoration(
+                        closedFillColor: FormBackGraund.withOpacity(.5),
+                        closedBorderRadius: BorderRadius.circular(10.0),
+                        closedBorder: Border.all(color: BorderGrey)),
+                    hintText: 'Choose customer',
+                    initialItem: searchCustomer.value,
+                    items: controller.allCustomersList!.isNotEmpty
+                        ? controller.allCustomersList!
+                            .map((e) => e.cusName)
+                            .toList()
+                        : List.generate(1, (index) => Text('...')),
+                    excludeSelected: false,
+                    onChanged: (value) {
+                      searchCustomer.value == value;
+                      print('changing value to: $value');
+                    },
+                  ),
+                ),
+                // ),
+
+                const ListTile(
+                  leading: Icon(Icons.edit_location_alt_outlined),
+                  title: Text(
+                    'Case Status',
+                    style: textStyle,
+                  ),
+                ),
+
+                CustomDropdownFormField(
+                  items: controller.caseStatusList
+                      .map((e) => DropdownMenuItem(
+                          value: e.statusId, child: Text('${e.status}')))
+                      .toList(),
+                  onChanged: (Value) {},
+                  hint: 'Submitted for repair',
+                  controller: caseStatusController,
+                ),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: const ListTile(
+                        leading: Icon(Icons.edit_location_alt_outlined),
+                        title: Text(
+                          'Case Type',
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.makemodelscreen);
+                      },
+                      minWidth: 15,
+                      height: 0,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                            color: BlueColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+                CustomDropdownFormField(
+                  items: controller.caseTypeList!
+                      .map((e) => DropdownMenuItem(
+                          value: e.typeId, child: Text('${e.type}')))
+                      .toList(),
+                  onChanged: (Value) {},
+                  hint: 'Not Specified',
+                  controller: caseType1Controller,
+                ),
+
+                SizedBox(
+                  height: 8,
+                ),
+
+                CustomDropdownFormField(
+                  items: controller.caseTypeList!
+                      .map((e) => DropdownMenuItem(
+                          value: e.typeId, child: Text('${e.type}')))
+                      .toList(),
+                  onChanged: (Value) {},
+                  hint: 'Not Specified',
+                  controller: caseType2Controller,
+                ),
+
+                SizedBox(
+                  height: 8,
+                ),
+
+                CustomDropdownFormField(
+                  items: controller.caseTypeList!
+                      .map((e) => DropdownMenuItem(
+                          value: e.typeId, child: Text('${e.type}')))
+                      .toList(),
+                  onChanged: (Value) {},
+                  hint: 'Not Specified',
+                  controller: caseType3Controller,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: const ListTile(
+                        leading: Icon(Icons.mobile_friendly_outlined),
+                        title: Text(
+                          'Make & Model',
+                          style: textStyle,
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.makemodelscreen);
+                      },
+                      minWidth: 15,
+                      height: 0,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                            color: BlueColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+
+                CustomDropdownFormField(
+                  items: controller.caseMakeModelList!
+                      .map((e) => DropdownMenuItem(
+                          value: e.makemodelId, child: Text('${e.makemodel}')))
+                      .toList(),
+                  onChanged: (Value) {
+                    controller.getCaseDeviceData(Value!);
+                  },
+                  hint: 'Motorola',
+                  controller: makeModelController,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: const ListTile(
+                        leading: Icon(Icons.mobile_friendly_outlined),
+                        title: Text(
+                          'Device Data',
+                          style: textStyle,
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.devicedatascreen);
+                      },
+                      minWidth: 15,
+                      height: 0,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                            color: BlueColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+                GetBuilder<NewCaseController>(
+                  builder: (controller) => CustomDropdownFormField(
+                    items: controller.caseDeviceTypeList!
+                        .map((e) => DropdownMenuItem(
+                            value: e.deviceTypeId,
+                            child: Text('${e.deviceType}')))
+                        .toList(),
+                    onChanged: (Value) {},
+                    hint: 'g5',
+                    controller: deviceDataController,
+                  ),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.data_object_sharp),
+                  title: Text(
+                    'IMEI',
+                    style: textStyle,
+                  ),
+                ),
+                CustomTextFormField(
+                  hint: 'IMEI',
+                  controller: imeiController,
+                ),
+                const ListTile(
+                  leading: Icon(Icons.edit_location_alt_outlined),
+                  title: Text(
+                    'Problem Description',
+                    style: textStyle,
+                  ),
+                ),
+                CustomTextFormField(
+                  hint: 'Write here...',
+                  controller: problemDescriptionController,
+                ),
+                const ListTile(
+                  leading: Icon(Icons.date_range_outlined),
+                  title: Text(
+                    'Expected Delivery Date',
+                    style: textStyle,
+                  ),
+                ),
+                CustomTextFormField(
+                  hint: '11/02/2024  10:00 a.m',
+                  controller: datePickerController,
+                  onTap: () => onTapFunction(context: context),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomButton(
+                  text: "Submit",
+                ),
+              ]),
             ),
-            MaterialButton(
-              onPressed: () {
-                Get.toNamed(AppRoutes.devicedatascreen);
-              },
-              minWidth: 15,
-              height: 0,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Text('Add',
-                style: TextStyle(
-                    color: BlueColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16
-                ),),
-            )
-          ],
-        ),
-        CustomDropdownFormField(
-          items: newCaseController.caseDeviceTypeList!
-              .map((e) => DropdownMenuItem(
-              value: e.deviceTypeId, child: Text('${e.deviceType}')))
-              .toList(),
-          onChanged: (Value) {},
-          hint: 'g5',
-          controller: deviceDataController,
-        ),
-        const ListTile(
-          leading: Icon(Icons.data_object_sharp),
-          title: Text(
-            'IMEI',
-            style: textStyle,
-          ),
-        ),
-        CustomTextFormField(
-          hint: 'IMEI',
-          controller: imeiController,
-        ),
-        const ListTile(
-          leading: Icon(Icons.edit_location_alt_outlined),
-          title: Text(
-            'Problem Description',
-            style: textStyle,
-          ),
-        ),
-        CustomTextFormField(
-          hint: 'Write here...',
-          controller: problemDescriptionController,
-        ),
-        const ListTile(
-          leading: Icon(Icons.date_range_outlined),
-          title: Text(
-            'Expected Delivery Date',
-            style: textStyle,
-          ),
-        ),
-        CustomTextFormField(
-          hint: '11/02/2024  10:00 a.m',
-          controller: datePickerController,
-          onTap: () => onTapFunction(context: context),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        CustomButton(
-          text: "Submit",
-        ),
-      ]),
     );
   }
+
   TextEditingController datePickerController = TextEditingController();
   onTapFunction({required BuildContext context}) async {
     DateTime? pickedDate = await showDatePicker(
