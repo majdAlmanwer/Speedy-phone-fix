@@ -71,9 +71,9 @@ class _AuthTabBarPageState extends State<AuthTabBar>
                         tabs: const [
                           Tab(
                             child: Padding(
-                              padding: EdgeInsets.only(left: 12.0, right: 12.0),
+                              padding: EdgeInsets.only(left: 24.0, right: 24.0),
                               child: Text(
-                                'Sign Up',
+                                'Sign In',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   // fontWeight: FontWeight.bold,
@@ -84,9 +84,9 @@ class _AuthTabBarPageState extends State<AuthTabBar>
                           ),
                           Tab(
                             child: Padding(
-                              padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                              padding: EdgeInsets.only(left: 12.0, right: 12.0),
                               child: Text(
-                                'Sign In',
+                                'Sign Up',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   // fontWeight: FontWeight.bold,
@@ -105,8 +105,8 @@ class _AuthTabBarPageState extends State<AuthTabBar>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    SignUpScreen(),
                     SignInScreen(),
+                    SignUpScreen(),
                   ],
                 ),
               )

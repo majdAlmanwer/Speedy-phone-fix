@@ -16,5 +16,5 @@ class AppRoutes {
   static const String devicedatascreen = '/devicedatascreen';
   static const String makemodelscreen = '/makemodelscreen';
   static const String unitscreen = '/unitscreen';
-
+  static const String splash = '/splash';
 }

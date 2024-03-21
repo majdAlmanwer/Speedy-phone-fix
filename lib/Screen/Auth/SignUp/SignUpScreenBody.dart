@@ -2,9 +2,11 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
+
 class SignUpScreenBody extends StatelessWidget {
   const SignUpScreenBody({super.key});
 
@@ -19,7 +21,7 @@ class SignUpScreenBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: Get.height * 0.1),
             AuthFormField(
               prefixIcon: Icon(
                 Icons.person_outline,
@@ -43,9 +45,9 @@ class SignUpScreenBody extends StatelessWidget {
             AuthFormField(
               hint: 'Password',
               prefixIcon: Icon(
-              Icons.lock_open_outlined,
-              color: BlueColor,
-            ),
+                Icons.lock_open_outlined,
+                color: BlueColor,
+              ),
               suffixIcon: Icon(
                 Icons.remove_red_eye,
                 color: LightGrey,
@@ -53,14 +55,6 @@ class SignUpScreenBody extends StatelessWidget {
             ),
             SizedBox(
               height: 20.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('OR',
-                    style: TextStyle(
-                        color: BlueColor, fontWeight: FontWeight.bold))
-              ],
             ),
             SizedBox(
               height: 10.0,
@@ -71,18 +65,17 @@ class SignUpScreenBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10), color: BlueColor),
               child: TextButton(
                   child: Text("Submit",
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold)),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           EdgeInsets.all(15)),
                       foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
+                        borderRadius: BorderRadius.circular(18.0),
+                      ))),
                   onPressed: () => null),
             ),
             SizedBox(
