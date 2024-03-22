@@ -14,8 +14,10 @@ class CustomTextFormField extends StatelessWidget {
       this.onChange,
       this.suffixIcon,
       this.prefixIcon,
+      this.maxLines,
       this.obscureText = false,
-      this.onTap});
+      this.onTap,
+      this.contentPadding});
   TextEditingController? controller = TextEditingController();
   TextInputType? keyboardType;
   String? hint;
@@ -26,7 +28,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   Function(String)? onChange;
   Function()? onTap;
-
+  var maxLines;
+  EdgeInsetsGeometry? contentPadding;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -41,10 +44,12 @@ class CustomTextFormField extends StatelessWidget {
         focusNode: focusNode,
         onChanged: onChange,
         obscureText: obscureText,
+        maxLines: maxLines,
         textInputAction: TextInputAction.next,
         onTap: onTap,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          contentPadding: contentPadding,
           filled: true,
           fillColor: FormBackGraund.withOpacity(.5),
           border: OutlineInputBorder(

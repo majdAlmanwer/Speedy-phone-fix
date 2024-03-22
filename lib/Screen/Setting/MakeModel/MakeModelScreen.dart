@@ -13,15 +13,15 @@ class MakeModelScreen extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
             ),
             color: TextGrey,
           ),
-          title: Text('Make Model'),
+          title: const Text('Make Model'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: MakeModelBody(),
+      body: const MakeModelBody(),
     );
   }
 }

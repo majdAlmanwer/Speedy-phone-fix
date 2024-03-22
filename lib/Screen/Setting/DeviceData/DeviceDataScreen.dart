@@ -13,15 +13,15 @@ class DeviceDataScreen extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
             ),
             color: TextGrey,
           ),
-          title: Text('Device Data'),
+          title: const Text('Device Data'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: DeviceDataBody(),
+      body: const DeviceDataBody(),
     );
   }
 }

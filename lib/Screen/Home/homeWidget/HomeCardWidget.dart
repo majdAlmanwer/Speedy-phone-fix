@@ -28,7 +28,7 @@ class HomeCardWidget extends StatelessWidget {
         height: Get.height * .215,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
+            image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('Assets/Images/Rectangle.png'))),
         child: Row(

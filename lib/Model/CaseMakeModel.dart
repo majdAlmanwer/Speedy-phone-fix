@@ -8,16 +8,16 @@ class CaseMakeModel {
     if (json['CaseMakeModel'] != null) {
       caseMakeModel = <CaseMake>[];
       json['CaseMakeModel'].forEach((v) {
-        caseMakeModel!.add(new CaseMake.fromJson(v));
+        caseMakeModel!.add(CaseMake.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.caseMakeModel != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (caseMakeModel != null) {
       data['CaseMakeModel'] =
-          this.caseMakeModel!.map((v) => v.toJson()).toList();
+          caseMakeModel!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,9 +35,9 @@ class CaseMake {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['makemodel_id'] = this.makemodelId;
-    data['makemodel'] = this.makemodel;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['makemodel_id'] = makemodelId;
+    data['makemodel'] = makemodel;
     return data;
   }
 }

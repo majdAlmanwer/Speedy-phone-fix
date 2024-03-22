@@ -20,9 +20,12 @@ class IndividualCustomerScreenBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
-          leading: Icon(Icons.person_2_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
           title: Text(
-            "Customer's Name",
+            'Customer’s Name',
             style: textStyle,
           ),
         ),
@@ -30,10 +33,16 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           hint: "Add customer's name",
           controller: customerNameController,
         ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.location_on_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/bx_map.png")),
           title: Text(
-            "Address",
+            'Address',
             style: textStyle,
           ),
         ),
@@ -41,23 +50,39 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           hint: "Customer's Address",
           controller: addressController,
         ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.call),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/carbon_phone.png")),
           title: Text(
-            "Car",
+            'Car',
             style: textStyle,
           ),
         ),
         CustomTextFormField(
           hint: "+46",
-          prefixIcon: Icon(Icons.flag),
+          prefixIcon: const Image(
+              width: 20,
+              height: 20,
+              image:
+                  AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
           keyboardType: TextInputType.phone,
           controller: carController,
         ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.email_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/mail.png")),
           title: Text(
-            "Email",
+            'Email',
             style: textStyle,
           ),
         ),
@@ -66,15 +91,21 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
         ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.person_2_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
           title: Text(
-            "Customer's Type",
+            'Customer’s Type',
             style: textStyle,
           ),
         ),
         CustomDropdownFormField(
-          items: [
+          items: const [
             DropdownMenuItem(value: 'Nothing', child: Text('--')),
             DropdownMenuItem(value: '1', child: Text('Option 2')),
             DropdownMenuItem(value: '2', child: Text('Option 3')),
@@ -83,7 +114,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
           hint: 'Private',
           controller: customerTypeController,
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         Row(
@@ -93,7 +124,7 @@ class IndividualCustomerScreenBody extends StatelessWidget {
               value: false,
               onChanged: (bool? value) {},
             ),
-            Text(
+            const Text(
               'Term of use & privacy policy',
               style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
             ),

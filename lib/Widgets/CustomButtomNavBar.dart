@@ -42,7 +42,7 @@ class BottomNavBar extends StatelessWidget {
                 //   height: getPercentScreenHeight(3),
                 //   width: getPercentScreenWidth(8),
                 // ),
-                icon: Icon(Icons.home_rounded),
+                icon: const Icon(Icons.home_rounded),
                 // Image.asset(
                 //   'assets/images/fi_home_1.png',
                 //   height: getPercentScreenHeight(3),
@@ -57,7 +57,7 @@ class BottomNavBar extends StatelessWidget {
                 //   height: getPercentScreenHeight(3),
                 //   width: getPercentScreenWidth(8),
                 // ),
-                icon: Icon(Icons.settings_outlined),
+                icon: const Icon(Icons.settings_outlined),
                 // Image.asset(
                 //   'assets/images/fi_grid.png',
                 //   height: getPercentScreenHeight(3),
@@ -77,7 +77,7 @@ class BottomNavBar extends StatelessWidget {
                 //   height: getPercentScreenHeight(3),
                 //   width: getPercentScreenWidth(8),
                 // ),
-                icon: Icon(Icons.person_2),
+                icon: const Icon(Icons.person_2),
                 // Image.asset(
                 //   'assets/images/fi_user-1.png',
                 //   height: getPercentScreenHeight(3),

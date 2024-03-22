@@ -17,7 +17,7 @@ class HomeScreenBody extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            HomeHeader(),
+            const HomeHeader(),
             HomeCardWidget(
               title: 'Cases/Repairs',
               iconPath: 'Assets/Icons/Vector(4).png',

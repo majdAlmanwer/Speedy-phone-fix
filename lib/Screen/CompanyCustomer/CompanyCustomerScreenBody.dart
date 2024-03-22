@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
@@ -41,8 +39,8 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
         children: [
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Customer’s Name',
@@ -54,13 +52,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             controller: CustomersName,
             keyboardType: TextInputType.text,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/bx_map.png")),
             title: Text(
               'Address',
@@ -72,13 +70,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             controller: CustomerAddress,
             keyboardType: TextInputType.phone,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/carbon_phone.png")),
             title: Text(
               'Car',
@@ -88,20 +86,20 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           CustomTextFormField(
             controller: Car,
             hint: "+46",
-            prefixIcon: Image(
+            prefixIcon: const Image(
                 width: 20,
                 height: 20,
                 image:
                     AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
             keyboardType: TextInputType.number,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/mail.png")),
             title: Text(
               'Email',
@@ -113,13 +111,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Customer’s Email Address",
             keyboardType: TextInputType.emailAddress,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Customer’s Type',
@@ -130,13 +128,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Private",
             controller: CustomerType,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Delegate',
@@ -147,13 +145,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             controller: Delegate,
             hint: "Delegate",
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/build.png")),
             title: Text(
               'Organization No.',
@@ -165,13 +163,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Number",
             keyboardType: TextInputType.number,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/web.png")),
             title: Text(
               'Customer Website',
@@ -183,13 +181,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Website Address",
             keyboardType: TextInputType.url,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const ListTile(
             leading: Image(
-                width: 26,
-                height: 26,
+                width: 23,
+                height: 23,
                 image: AssetImage("Assets/Icons/save.png")),
             title: Text(
               'Invoice Address',
@@ -201,7 +199,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Address",
             keyboardType: TextInputType.phone,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Row(
@@ -211,7 +209,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
                 value: false,
                 onChanged: (bool? value) {},
               ),
-              Text(
+              const Text(
                 'Term of use & privacy policy',
                 style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
               ),

@@ -1,10 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:speedy_phone_fix/Screen/Auth/SignUp/SignUpScreenBody.dart';
 
-import '../../../Utils/AppStyle.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -12,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return const Scaffold(
       body: SignUpScreenBody()
     );
   }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
-import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 
 import '../Utils/AppStyle.dart';
 
 class CustomAlertDialog extends StatelessWidget {
+  const CustomAlertDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,8 +18,8 @@ class CustomAlertDialog extends StatelessWidget {
         elevation: 30,
 
         backgroundColor: Colors.transparent,
-        contentPadding: EdgeInsets.all(12),
-        insetPadding: EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(12),
+        insetPadding: const EdgeInsets.all(10),
 
         content: Container(
           decoration: BoxDecoration(
@@ -39,7 +40,7 @@ class CustomAlertDialog extends StatelessWidget {
                     Get.offNamed(AppRoutes.companyCustomerScreen);
                   },
                   color: BlueColor,
-                  child: Text(
+                  child: const Text(
                     'Company Customer',
                     style: TextStyle(
                         color: Colors.white,
@@ -57,7 +58,7 @@ class CustomAlertDialog extends StatelessWidget {
                     Get.offNamed(AppRoutes.individualCustomerScreen);
                   },
                   color: BlueColor,
-                  child: Text(
+                  child: const Text(
                     'Individual Customer',
                     style: TextStyle(
                         color: Colors.white,

@@ -13,114 +13,159 @@ class OrderScreenBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          const SizedBox(
+            height: 30,
+          ),
           Center(
               child: Text(
             'Order Details',
             style: TextStyle(
                 fontSize: 18, color: BlueColor, fontWeight: FontWeight.bold),
           )),
+          const SizedBox(
+            height: 20,
+          ),
           const ListTile(
-            leading: Icon(Icons.edit_location_alt_outlined),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/edit.png")),
             title: Text(
               'Unit',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.edit_location_alt_outlined),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/edit.png")),
             title: Text(
               'Unit',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             controller: null,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 10.0, vertical: 70),
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.person_outline),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
-              'Customer Name',
+              'Customer’s Name',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             hint: 'Add Customer Name',
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.phone),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/carbon_phone.png")),
             title: Text(
               'Mobile',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
-            hint: '+49',
+            hint: '+46',
+            prefixIcon: Image(
+                width: 20,
+                height: 20,
+                image:
+                    AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.email_outlined),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/mail.png")),
             title: Text(
               'Email',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             hint: 'Customer Email Address',
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.monetization_on_outlined),
+            leading: Image(
+                width: 26,
+                height: 26,
+                image: AssetImage(
+                    "Assets/Icons/ant-design_field-number-outlined.png")),
             title: Text(
               'Quantity',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             hint: 'Quantity',
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.local_offer_outlined),
+            leading: Image(
+                width: 26,
+                height: 26,
+                image: AssetImage("Assets/Icons/solar_tag-price-outline.png")),
             title: Text(
               'Price',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             hint: 'Unit Price',
             controller: null,
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Icon(Icons.date_range_outlined),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/Icon7.png")),
             title: Text(
               'Order Delivery Date',
               style: textStyle,
             ),
           ),
-
           CustomTextFormField(
             hint: '11/02/2024  10:00 a.m',
             controller: null,
           ),
-
           SizedBox(
             height: 20,
           ),
@@ -131,9 +176,7 @@ class OrderScreenBody extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18), color: BlueColor),
               child: TextButton(
-                  child: Text("Save".toUpperCase(),
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                  child: Text("Save", style: TextStyle(fontSize: 18)),
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           EdgeInsets.all(15)),
