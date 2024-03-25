@@ -42,7 +42,7 @@ class AuthController extends GetxController {
 
       msgController.showSuccessMessage(response.message, response.description);
       if (response.message == 'success') {
-        Get.offAndToNamed(AppRoutes.homescreen);
+        Get.offAllNamed(AppRoutes.homescreen);
       }
     } catch (e) {
       if (e is dio.DioException) {

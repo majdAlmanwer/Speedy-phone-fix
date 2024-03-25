@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:speedy_phone_fix/Routes/Routes.dart';
 
 import '../Utils/AppStyle.dart';
 
-class CustomAlertDialog extends StatelessWidget {
+class EditOrDeleteDialog extends StatelessWidget {
+  EditOrDeleteDialog(
+      {super.key,
+      required this.firstOnPressed,
+      required this.secundOnPressed,
+      required this.firstTitle,
+      required this.secundTitle});
+  Function()? firstOnPressed;
+  Function()? secundOnPressed;
+  String firstTitle;
+  String secundTitle;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,12 +43,10 @@ class CustomAlertDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   minWidth: Get.width * 0.82,
                   height: Get.height * 0.07,
-                  onPressed: () {
-                    Get.offNamed(AppRoutes.companyCustomerScreen);
-                  },
+                  onPressed: firstOnPressed,
                   color: BlueColor,
                   child: Text(
-                    'Company Customer',
+                    firstTitle,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -52,12 +59,10 @@ class CustomAlertDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   minWidth: Get.width * 0.92,
                   height: Get.height * 0.07,
-                  onPressed: () {
-                    Get.offNamed(AppRoutes.individualCustomerScreen);
-                  },
+                  onPressed: secundOnPressed,
                   color: BlueColor,
                   child: Text(
-                    'Individual Customer',
+                    secundTitle,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
