@@ -13,15 +13,15 @@ class CaseStatusScreen extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
             ),
             color: TextGrey,
           ),
-          title: Text('Case Status'),
+          title: const Text('Case Status'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: CaseStatusBody(),
+      body: const CaseStatusBody(),
     );
   }
 }

@@ -10,7 +10,6 @@ import 'package:speedy_phone_fix/Model/CaseTypeModel.dart';
 import 'package:speedy_phone_fix/Model/FindCustomerByMobile.dart';
 import 'package:speedy_phone_fix/Model/ListAllCustomers.dart';
 
-import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
 
 import '../Api/Api.dart';
 import '../Controller/LoaderController.dart';

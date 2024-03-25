@@ -23,7 +23,7 @@ class SettingCardWidget extends StatelessWidget {
         height: Get.height * .25,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
+            image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('Assets/Images/back-ground-2.png'))),
         child: Column(

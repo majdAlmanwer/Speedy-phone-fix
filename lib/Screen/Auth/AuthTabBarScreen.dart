@@ -104,7 +104,7 @@ class _AuthTabBarPageState extends State<AuthTabBar>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [
+                  children: const [
                     SignInScreen(),
                     SignUpScreen(),
                   ],

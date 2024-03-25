@@ -38,7 +38,7 @@ class MessagesHandlerController extends GetxController {
   Future<void> showSuccessMessage(String? message, String? description) async {
     Get.showSnackbar(GetSnackBar(
         titleText: Text(message?.tr ?? 'error'.tr,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 16,
                 color: Colors.white,

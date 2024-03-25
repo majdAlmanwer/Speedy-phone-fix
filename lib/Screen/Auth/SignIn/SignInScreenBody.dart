@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:speedy_phone_fix/Controller/AuthController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
@@ -8,10 +7,7 @@ import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
 
 //aleen code
-import 'package:flutter/material.dart';
-import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:get/get.dart';
-import 'package:speedy_phone_fix/Routes/Routes.dart';
 
 class SignInScreenBody extends StatefulWidget {
   const SignInScreenBody({super.key});
@@ -111,7 +107,7 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                 ),
                 hint: 'User Name',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               AuthFormField(
@@ -128,19 +124,19 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                   ),
                 ),
                 hint: 'Password',
-                suffixIcon: Icon(
+                suffixIcon: const Icon(
                   Icons.remove_red_eye,
                   color: LightGrey,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   right: 8.0,
                   left: 8.0,
                 ),
@@ -150,12 +146,9 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                       borderRadius: BorderRadius.circular(10),
                       color: BlueColor),
                   child: TextButton(
-                      child: Text("Sign In",
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold)),
                       style: ButtonStyle(
                           padding: MaterialStateProperty.all<EdgeInsets>(
-                              EdgeInsets.all(15)),
+                              const EdgeInsets.all(15)),
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),
                           shape:
@@ -167,13 +160,16 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                         authController.login(
                             userName: emailController.text,
                             password: passwordController.text);
-                      }),
+                      },
+                      child: const Text("Sign In",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold))),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Reset Your Password',

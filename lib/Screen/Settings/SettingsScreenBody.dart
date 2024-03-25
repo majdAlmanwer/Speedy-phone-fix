@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/Settings/Wedgits/SettingsCard.dart';
@@ -10,7 +9,7 @@ class SettingsScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      padding: EdgeInsets.only(top: 50, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
       child: Column(
         children: [
           Row(

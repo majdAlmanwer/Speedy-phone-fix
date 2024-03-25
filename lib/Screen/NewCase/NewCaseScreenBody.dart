@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
-import 'package:speedy_phone_fix/Model/FindCustomerByMobile.dart';
 
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
@@ -14,21 +13,20 @@ import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Routes/Routes.dart';
 import '../../Controller/LoaderController.dart';
-import '../../Utils/AppStyle.dart';
 import '../../Widgets/CustomAlertDialog.dart';
 import '../../Widgets/CustomSearchDropDown.dart';
 
 import 'package:intl/intl.dart';
 
 class NewCaseScreenBody extends StatefulWidget {
-  NewCaseScreenBody({super.key});
+  const NewCaseScreenBody({super.key});
 
   @override
   State<NewCaseScreenBody> createState() => _NewCaseScreenBodyState();
 }
 
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   NewCaseController newCaseController = Get.find();
   final TextEditingController searchController = TextEditingController();
   final TextEditingController searchCustomerController =
@@ -50,8 +48,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NewCaseController>(
+
       builder: (controller) => loaderController.loading.value
           ? Center(
+
               child: CircularProgressIndicator(color: BlueColor),
             )
           : SingleChildScrollView(
@@ -70,8 +70,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 //start ayah code
                 Row(
                   children: [
-                    Expanded(
-                      child: const ListTile(
+                    const Expanded(
+                      child: ListTile(
                         leading: Icon(Icons.person_2_outlined),
                         title: Text(
                           'Customer',
@@ -85,7 +85,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                           barrierDismissible: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return CustomAlertDialog();
+                            return const CustomAlertDialog();
                           },
                         );
                       },
@@ -109,6 +109,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     right: 15.0,
                     left: 15.0,
                   ),
+
                   child: controller.allCustomersList!.isEmpty
                       ? CircularProgressIndicator(color: BlueColor)
                       : CustomDropdown.search(
@@ -131,6 +132,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                             print('changing value to: $value');
                           },
                         ),
+
                 ),
                 // ),
 
@@ -156,8 +158,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
 
                 Row(
                   children: [
-                    Expanded(
-                      child: const ListTile(
+                    const Expanded(
+                      child: ListTile(
                         leading: Icon(Icons.edit_location_alt_outlined),
                         title: Text(
                           'Case Type',
@@ -170,8 +172,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                       },
                       minWidth: 15,
                       height: 0,
-                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: Text(
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: const Text(
                         'Add',
                         style: TextStyle(
                             color: BlueColor,
@@ -191,7 +193,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   controller: caseType1Controller,
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
 
@@ -205,7 +207,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   controller: caseType2Controller,
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
 
@@ -220,8 +222,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: const ListTile(
+                    const Expanded(
+                      child: ListTile(
                         leading: Icon(Icons.mobile_friendly_outlined),
                         title: Text(
                           'Make & Model',
@@ -235,8 +237,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                       },
                       minWidth: 15,
                       height: 0,
-                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: Text(
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: const Text(
                         'Add',
                         style: TextStyle(
                             color: BlueColor,
@@ -260,8 +262,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: const ListTile(
+                    const Expanded(
+                      child: ListTile(
                         leading: Icon(Icons.mobile_friendly_outlined),
                         title: Text(
                           'Device Data',
@@ -275,8 +277,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                       },
                       minWidth: 15,
                       height: 0,
-                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: Text(
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: const Text(
                         'Add',
                         style: TextStyle(
                             color: BlueColor,
@@ -332,7 +334,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   controller: datePickerController,
                   onTap: () => onTapFunction(context: context),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 CustomButton(

@@ -8,15 +8,15 @@ class CustomersByMobile {
     if (json['Customers'] != null) {
       customers = <Customers>[];
       json['Customers'].forEach((v) {
-        customers!.add(new Customers.fromJson(v));
+        customers!.add(Customers.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.customers != null) {
-      data['Customers'] = this.customers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (customers != null) {
+      data['Customers'] = customers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -34,9 +34,9 @@ class Customers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cus_id'] = this.cusId;
-    data['cus_name'] = this.cusName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cus_id'] = cusId;
+    data['cus_name'] = cusName;
     return data;
   }
 }

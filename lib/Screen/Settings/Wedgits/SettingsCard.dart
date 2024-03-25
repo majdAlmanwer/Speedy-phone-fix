@@ -1,3 +1,4 @@
+
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
@@ -18,11 +19,14 @@ class SettingCard extends StatelessWidget {
         margin: const EdgeInsets.all(5),
         width: Get.width * .450,
         height: Get.height * .200,
+
+
         padding:
             const EdgeInsets.only(left: 16.5, right: 16.5, top: 35, bottom: 35),
+
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
+            image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('Assets/Images/Rectangle 62.png'))),
         child: Column(

@@ -57,9 +57,8 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18), color: BlueColor),
               child: TextButton(
-                  child: const Text("Save",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+
+
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.all(15)),
@@ -67,6 +66,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                           MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
+
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
                   onPressed: () {
@@ -86,11 +86,14 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                           .then((value) => newCaseController.onInit());
                     }
                   }),
+
             ),
           ),
           const SizedBox(
             height: 20,
           ),
+
+
           Table(
               columnWidths: const {
                 0: FlexColumnWidth(1),
@@ -220,6 +223,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                       ],
                                     ),
                                   ),
+
                                 ),
                               ]),
                             ],

@@ -8,11 +8,6 @@ class SplashController extends GetxController {
   GetStorage box = GetStorage();
   // LoginController loginController = Get.put(LoginController());
 
-  @override
-  void onInit() {
-    super.onInit();
-    // checkAndConnectivity();
-  }
 
   void check() async {
     if (box.read('loggedIn') == true) {

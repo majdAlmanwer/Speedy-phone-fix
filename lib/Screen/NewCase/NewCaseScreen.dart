@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/NewCase/NewCaseScreenBody.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
+import 'package:speedy_phone_fix/Widgets/CustomButtomNavBar.dart';
 
 class NewCaseScreen extends StatelessWidget {
   const NewCaseScreen({super.key});
@@ -23,6 +24,7 @@ class NewCaseScreen extends StatelessWidget {
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: NewCaseScreenBody(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

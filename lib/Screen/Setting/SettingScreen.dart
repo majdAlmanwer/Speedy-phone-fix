@@ -14,10 +14,10 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: Container(),
-          title: Text('Settings'),
+          title: const Text('Settings'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: SettingBody(),
+      body: const SettingBody(),
       bottomNavigationBar: BottomNavBar(),
     );
   }

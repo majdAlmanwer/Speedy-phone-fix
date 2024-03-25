@@ -7,15 +7,15 @@ class AllCustomersModel {
     if (json['Customers'] != null) {
       Allcustomers = <AllCustomers>[];
       json['Customers'].forEach((v) {
-        Allcustomers!.add(new AllCustomers.fromJson(v));
+        Allcustomers!.add(AllCustomers.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.Allcustomers != null) {
-      data['Customers'] = this.Allcustomers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (Allcustomers != null) {
+      data['Customers'] = Allcustomers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class AllCustomers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cus_id'] = this.cusId;
-    data['cus_name'] = this.cusName;
-    data['cus_mobile'] = this.cusMobile;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cus_id'] = cusId;
+    data['cus_name'] = cusName;
+    data['cus_mobile'] = cusMobile;
     return data;
   }
 }
