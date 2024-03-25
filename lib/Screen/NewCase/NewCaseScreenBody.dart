@@ -48,8 +48,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NewCaseController>(
-      builder: (controller) => loaderController.loading.isTrue
-          ? const Center(
+
+      builder: (controller) => loaderController.loading.value
+          ? Center(
+
               child: CircularProgressIndicator(color: BlueColor),
             )
           : SingleChildScrollView(
@@ -107,24 +109,30 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     right: 15.0,
                     left: 15.0,
                   ),
-                  child: CustomDropdown.search(
-                    decoration: CustomDropdownDecoration(
-                        closedFillColor: FormBackGraund.withOpacity(.5),
-                        closedBorderRadius: BorderRadius.circular(10.0),
-                        closedBorder: Border.all(color: BorderGrey)),
-                    hintText: 'Choose customer',
-                    initialItem: searchCustomer.value,
-                    items: controller.allCustomersList!.isNotEmpty
-                        ? controller.allCustomersList!
-                            .map((e) => e.cusName)
-                            .toList()
-                        : List.generate(1, (index) => const Text('...')),
-                    excludeSelected: false,
-                    onChanged: (value) {
-                      searchCustomer.value == value;
-                      print('changing value to: $value');
-                    },
-                  ),
+
+                  child: controller.allCustomersList!.isEmpty
+                      ? CircularProgressIndicator(color: BlueColor)
+                      : CustomDropdown.search(
+                          decoration: CustomDropdownDecoration(
+                              closedFillColor: FormBackGraund.withOpacity(.5),
+                              closedBorderRadius: BorderRadius.circular(10.0),
+                              closedBorder: Border.all(color: BorderGrey)),
+                          hintText: 'Choose customer',
+                          initialItem: searchCustomer.value,
+                          items:
+                              // controller.allCustomersList!.isNotEmpty
+                              //     ?
+                              controller.allCustomersList!
+                                  .map((e) => e.cusName)
+                                  .toList(),
+                          // : List.generate(1, (index) => Text('...')),
+                          excludeSelected: false,
+                          onChanged: (value) {
+                            searchCustomer.value == value;
+                            print('changing value to: $value');
+                          },
+                        ),
+
                 ),
                 // ),
 
@@ -141,7 +149,9 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                       .map((e) => DropdownMenuItem(
                           value: e.statusId, child: Text('${e.status}')))
                       .toList(),
-                  onChanged: (Value) {},
+                  onChanged: (Value) {
+                    print(Value);
+                  },
                   hint: 'Submitted for repair',
                   controller: caseStatusController,
                 ),
