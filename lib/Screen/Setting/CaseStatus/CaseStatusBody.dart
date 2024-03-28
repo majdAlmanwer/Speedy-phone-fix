@@ -57,43 +57,39 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18), color: BlueColor),
               child: TextButton(
-
-
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(15)),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-
-                        borderRadius: BorderRadius.circular(18.0),
-                      ))),
-                  onPressed: () {
-                    print(isEdite);
-                    print(caseController.text);
-                    print(box.read('branchId'));
-                    if (isEdite == false) {
-                      caseStatusController
-                          .newCase(
-                              branchId: box.read('branchId'),
-                              status: caseController.text)
-                          .then((value) => newCaseController.onInit());
-                    } else if (isEdite == true) {
-                      caseStatusController
-                          .editCase(
-                              statusId: statusId, status: caseController.text)
-                          .then((value) => newCaseController.onInit());
-                    }
-                  }),
-
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.all(15)),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ))),
+                onPressed: () {
+                  print(isEdite);
+                  print(caseController.text);
+                  print(box.read('branchId'));
+                  if (isEdite == false) {
+                    caseStatusController
+                        .newCase(
+                            branchId: box.read('branchId'),
+                            status: caseController.text)
+                        .then((value) => newCaseController.onInit());
+                  } else if (isEdite == true) {
+                    caseStatusController
+                        .editCase(
+                            statusId: statusId, status: caseController.text)
+                        .then((value) => newCaseController.onInit());
+                  }
+                },
+                child: Text(""),
+              ),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-
-
           Table(
               columnWidths: const {
                 0: FlexColumnWidth(1),
@@ -223,7 +219,6 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                       ],
                                     ),
                                   ),
-
                                 ),
                               ]),
                             ],
