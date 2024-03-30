@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
+import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 
 class MakeModelBody extends StatelessWidget {
-  const MakeModelBody({super.key});
+  MakeModelController makeModelController = Get.put(MakeModelController());
+
+  final MakeModelController newModelController = Get.find();
+
+  final box = GetStorage();
+
+  TextEditingController makeController = TextEditingController();
+
+  bool isEdite = false;
+  String statusId = '';
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +57,26 @@ class MakeModelBody extends StatelessWidget {
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
-                  onPressed: () {},
+                  onPressed: () {
+                    print(isEdite);
+                    print(makeController.text);
+                    print(box.read('branchId'));
+                    if (isEdite == false) {
+                      newModelController
+                          .newMakeModel(
+                              branchId: box.read('branchId'),
+                              status: makeController.text)
+                          .then((value) => newModelController.onInit());
+                    } else if (isEdite == true) {
+                      newModelController
+                          .editMakeModel(
+                              statusId: statusId, status: makeController.text)
+                          .then((value) => newModelController.onInit());
+                    }
+                  },
                   child: const Text("Save",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold))),
             ),
           ),
           const SizedBox(

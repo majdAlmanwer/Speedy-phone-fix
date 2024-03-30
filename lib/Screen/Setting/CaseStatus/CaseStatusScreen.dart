@@ -21,7 +21,7 @@ class CaseStatusScreen extends StatelessWidget {
           title: const Text('Case Status'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: const CaseStatusBody(),
+      body: CaseStatusBody(),
     );
   }
 }
