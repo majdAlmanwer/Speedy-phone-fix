@@ -21,7 +21,7 @@ class DeviceDataScreen extends StatelessWidget {
           title: const Text('Device Data'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: const DeviceDataBody(),
+      body: DeviceDataBody(),
     );
   }
 }
