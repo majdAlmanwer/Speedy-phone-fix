@@ -1,14 +1,16 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:speedy_phone_fix/Routes/Routes.dart';
 import 'package:speedy_phone_fix/Screen/Profile/ProfileWidget/ProfileListItem.dart';
 
 import 'ProfileWidget/ProfileInfoCard.dart';
 
 class ProfileScreenBody extends StatelessWidget {
-  const ProfileScreenBody({super.key});
-
+  ProfileScreenBody({super.key});
+  GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +28,14 @@ class ProfileScreenBody extends StatelessWidget {
               title: 'Change Password', imagePath: 'Assets/Icons/lock.png'),
           ProfileListItem(
               title: 'Delete Account', imagePath: 'Assets/Icons/profile.png'),
-          ProfileListItem(title: 'Logout', imagePath: 'Assets/Icons/logout.png')
+          ProfileListItem(
+            title: 'Logout',
+            imagePath: 'Assets/Icons/logout.png',
+            onTap: () {
+              Get.toNamed(AppRoutes.authtabbar);
+              box.write('loggedIn', false);
+            },
+          )
         ],
       ),
     );

@@ -17,7 +17,7 @@ class HomeScreenBody extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            HomeHeader(),
+            const HomeHeader(),
             HomeCardWidget(
               title: 'Cases/Repairs',
               iconPath: 'Assets/Icons/Vector(4).png',
@@ -26,8 +26,6 @@ class HomeScreenBody extends StatelessWidget {
               },
             ),
             HomeCardWidget(
-
-
               title: 'Customers\n(Private)',
               iconPath: 'Assets/Icons/Vector (2).png',
               onTap: () {
@@ -39,20 +37,13 @@ class HomeScreenBody extends StatelessWidget {
               iconPath: 'Assets/Icons/Vector (1).png',
               onTap: () {
                 Get.toNamed(AppRoutes.companyCustomerScreen);
-
               },
             ),
             HomeCardWidget(
               title: 'Orders',
               iconPath: 'Assets/Icons/Vector (3).png',
               onTap: () {
-
-
                 Get.toNamed(AppRoutes.orderScreen);
-
-         
-
-
               },
             )
           ],

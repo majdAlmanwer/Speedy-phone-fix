@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileListItem extends StatelessWidget {
-  ProfileListItem({super.key, required this.title, required this.imagePath});
+  ProfileListItem(
+      {super.key, required this.title, required this.imagePath, this.onTap});
   String title;
   String imagePath;
+  Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

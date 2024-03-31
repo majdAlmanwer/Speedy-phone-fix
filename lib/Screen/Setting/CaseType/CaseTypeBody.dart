@@ -43,7 +43,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
             hint: 'Case Type',
             controller: caseController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
@@ -53,18 +53,16 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18), color: BlueColor),
               child: TextButton(
-                  child: Text("Save",
-                      style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.all(15)),
+                          const EdgeInsets.all(15)),
                       foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                           ))),
+
                   onPressed: () {
                     print(isEdite);
                     print(caseController.text);
@@ -83,14 +81,16 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                     }
 
                   },
+
                   child: const Text("Save",
                       style:
                       TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
+
 
           Table(
               columnWidths: const {
@@ -161,10 +161,12 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                                 "${index + 1}",
                                 style: const TextStyle(
                                     fontSize: 20.0, color: TextGrey),
+
                               ),
                             ),
                           ],
                         ),
+
                       ),
                       InkWell(
                         onLongPress: () {
@@ -206,10 +208,11 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                         },
                         child: SizedBox(
                           height: 50,
+
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   newCaseController
                                       .caseTypeList![index].type!,

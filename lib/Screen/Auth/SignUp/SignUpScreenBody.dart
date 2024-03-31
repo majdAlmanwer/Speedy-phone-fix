@@ -1,10 +1,11 @@
 // ignore_for_file: file_names
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
+
 class SignUpScreenBody extends StatelessWidget {
   const SignUpScreenBody({super.key});
 
@@ -19,50 +20,42 @@ class SignUpScreenBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: Get.height * 0.1),
             AuthFormField(
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 Icons.person_outline,
                 color: BlueColor,
               ),
               hint: 'Full Name',
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             AuthFormField(
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 Icons.phone,
                 color: BlueColor,
               ),
               hint: 'Phone Number',
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             AuthFormField(
               hint: 'Password',
-              prefixIcon: Icon(
-              Icons.lock_open_outlined,
-              color: BlueColor,
-            ),
-              suffixIcon: Icon(
+              prefixIcon: const Icon(
+                Icons.lock_open_outlined,
+                color: BlueColor,
+              ),
+              suffixIcon: const Icon(
                 Icons.remove_red_eye,
                 color: LightGrey,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('OR',
-                    style: TextStyle(
-                        color: BlueColor, fontWeight: FontWeight.bold))
-              ],
-            ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Container(
@@ -70,25 +63,24 @@ class SignUpScreenBody extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: BlueColor),
               child: TextButton(
-                  child: Text("Submit",
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold)),
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.all(15)),
+                          const EdgeInsets.all(15)),
                       foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-                  onPressed: () => null),
+                        borderRadius: BorderRadius.circular(18.0),
+                      ))),
+                  onPressed: () {},
+                  child: const Text("Submit",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Terms of use & privacy policy',

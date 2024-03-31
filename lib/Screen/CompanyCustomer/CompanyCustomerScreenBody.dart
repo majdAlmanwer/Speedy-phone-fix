@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
@@ -39,18 +38,28 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
       child: Column(
         children: [
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Customer’s Name',
               style: textStyle,
             ),
           ),
           CustomTextFormField(
+            hint: "Add customer’s name",
             controller: CustomersName,
             keyboardType: TextInputType.text,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/bx_map.png")),
             title: Text(
               'Address',
               style: textStyle,
@@ -61,8 +70,14 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             controller: CustomerAddress,
             keyboardType: TextInputType.phone,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/carbon_phone.png")),
             title: Text(
               'Car',
               style: textStyle,
@@ -70,11 +85,22 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           ),
           CustomTextFormField(
             controller: Car,
-            hint: '',
+            hint: "+46",
+            prefixIcon: const Image(
+                width: 20,
+                height: 20,
+                image:
+                    AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
             keyboardType: TextInputType.number,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/mail.png")),
             title: Text(
               'Email',
               style: textStyle,
@@ -85,18 +111,31 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Customer’s Email Address",
             keyboardType: TextInputType.emailAddress,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Customer’s Type',
               style: textStyle,
             ),
           ),
           CustomTextFormField(
+            hint: "Private",
             controller: CustomerType,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
               'Delegate',
               style: textStyle,
@@ -106,8 +145,14 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             controller: Delegate,
             hint: "Delegate",
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/build.png")),
             title: Text(
               'Organization No.',
               style: textStyle,
@@ -118,8 +163,14 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Number",
             keyboardType: TextInputType.number,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/web.png")),
             title: Text(
               'Customer Website',
               style: textStyle,
@@ -130,8 +181,14 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Website Address",
             keyboardType: TextInputType.url,
           ),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
-            leading: Image(image: AssetImage("Icons/profile.png")),
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/save.png")),
             title: Text(
               'Invoice Address',
               style: textStyle,
@@ -142,9 +199,25 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             hint: "Address",
             keyboardType: TextInputType.phone,
           ),
+          const SizedBox(
+            height: 50,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Checkbox(
+                value: false,
+                onChanged: (bool? value) {},
+              ),
+              const Text(
+                'Term of use & privacy policy',
+                style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
           CustomButton(
             text: "Submit",
-          )
+          ),
         ],
       ),
     );

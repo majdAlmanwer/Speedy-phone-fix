@@ -8,16 +8,16 @@ class CaseDeviceTypeModel {
     if (json['CaseDeviceType'] != null) {
       caseDeviceType = <CaseDeviceType>[];
       json['CaseDeviceType'].forEach((v) {
-        caseDeviceType!.add(new CaseDeviceType.fromJson(v));
+        caseDeviceType!.add(CaseDeviceType.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.caseDeviceType != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (caseDeviceType != null) {
       data['CaseDeviceType'] =
-          this.caseDeviceType!.map((v) => v.toJson()).toList();
+          caseDeviceType!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,9 +35,9 @@ class CaseDeviceType {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['device_type_id'] = this.deviceTypeId;
-    data['device_type'] = this.deviceType;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['device_type_id'] = deviceTypeId;
+    data['device_type'] = deviceType;
     return data;
   }
 }

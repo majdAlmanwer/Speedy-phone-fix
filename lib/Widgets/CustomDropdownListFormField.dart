@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, file_names
+
 import 'package:flutter/material.dart';
 import '../Utils/AppStyle.dart';
 
@@ -32,7 +34,6 @@ class CustomDropdownFormField extends StatelessWidget {
 
   final List<DropdownMenuItem<dynamic>> items;
 
-
   // القيمة المختارة
   final String? selectedValue;
 
@@ -42,7 +43,7 @@ class CustomDropdownFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         right: 15.0,
         left: 15.0,
       ),
@@ -57,15 +58,15 @@ class CustomDropdownFormField extends StatelessWidget {
           fillColor: FormBackGraund.withOpacity(.5),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: TextGrey),
+            borderSide: const BorderSide(color: TextGrey),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: TextGrey),
+            borderSide: const BorderSide(color: TextGrey),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: BorderGrey),
+            borderSide: const BorderSide(color: BorderGrey),
           ),
           hintText: hint,
           hintStyle: FormTextStyle,

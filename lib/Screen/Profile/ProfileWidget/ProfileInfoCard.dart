@@ -13,7 +13,7 @@ class ProfileInfoCard extends StatelessWidget {
       height: Get.height * 0.1,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [BoxShadow(offset: Offset.zero, color: Colors.white70)]),
+          boxShadow: const [BoxShadow(offset: Offset.zero, color: Colors.white70)]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

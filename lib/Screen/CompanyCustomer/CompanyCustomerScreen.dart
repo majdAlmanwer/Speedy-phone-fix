@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/CompanyCustomer/CompanyCustomerScreenBody.dart';
+import 'package:speedy_phone_fix/Widgets/CustomButtomNavBar.dart';
 import '../../Utils/AppStyle.dart';
 
 class CompanyCustomerScreen extends StatelessWidget {
@@ -23,6 +24,7 @@ class CompanyCustomerScreen extends StatelessWidget {
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: CompanyCustomerScreenBody(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

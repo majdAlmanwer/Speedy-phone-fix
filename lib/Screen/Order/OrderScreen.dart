@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/Order/OrderScreenBody.dart';
+import 'package:speedy_phone_fix/Widgets/CustomButtomNavBar.dart';
+
 import '../../Utils/AppStyle.dart';
 
 class OrderScreen extends StatelessWidget {
@@ -23,6 +25,7 @@ class OrderScreen extends StatelessWidget {
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: OrderScreenBody(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

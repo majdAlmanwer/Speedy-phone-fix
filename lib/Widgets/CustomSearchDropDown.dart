@@ -1,17 +1,19 @@
+// ignore_for_file: must_be_immutable, prefer_const_constructors
+
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Controller/NewCaseController.dart';
 import '../Utils/AppStyle.dart';
 
 class CustomSearchDropDown extends StatelessWidget {
-  CustomSearchDropDown({super.key});
+  CustomSearchDropDown({super.key, required this.searchResult});
   NewCaseController newCaseController = Get.find();
+  RxString searchResult = ''.obs;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         right: 15.0,
         left: 15.0,
       ),
@@ -36,10 +38,9 @@ class CustomSearchDropDown extends StatelessWidget {
               .obs;
         },
         hintText: 'Search customer by mobile',
-        items: [],
+        items: const [],
         onChanged: (value) {
-          // newCaseController.getCustomersByMobile(9, value.toString());
-          // log('changing value to: $value');
+          searchResult.value = value;
         },
       ),
     );

@@ -13,15 +13,15 @@ class CaseTypeScreen extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
             ),
             color: TextGrey,
           ),
-          title: Text('Case Type'),
+          title: const Text('Case Type'),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
-      body: CaseTypeBody(),
+      body: const CaseTypeBody(),
     );
   }
 }

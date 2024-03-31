@@ -7,7 +7,7 @@ import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import '../../Utils/AppStyle.dart';
 
 class IndividualCustomerScreenBody extends StatelessWidget {
-   IndividualCustomerScreenBody({super.key});
+  IndividualCustomerScreenBody({super.key});
 
   final TextEditingController customerNameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
@@ -17,61 +17,106 @@ class IndividualCustomerScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(children: [
         const ListTile(
-          leading: Icon(Icons.person_2_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
           title: Text(
-            "Customer's Name",
+            'Customer’s Name',
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Add customer's name", controller: customerNameController,),
-
+        CustomTextFormField(
+          hint: "Add customer's name",
+          controller: customerNameController,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.location_on_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/bx_map.png")),
           title: Text(
-            "Address",
+            'Address',
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Customer's Address", controller: addressController,),
-
+        CustomTextFormField(
+          hint: "Customer's Address",
+          controller: addressController,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.call),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/carbon_phone.png")),
           title: Text(
-            "Car",
+            'Car',
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "+46", prefixIcon: Icon(Icons.flag), keyboardType: TextInputType.phone, controller: carController,),
-
+        CustomTextFormField(
+          hint: "+46",
+          prefixIcon: const Image(
+              width: 20,
+              height: 20,
+              image:
+                  AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
+          keyboardType: TextInputType.phone,
+          controller: carController,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.email_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/mail.png")),
           title: Text(
-            "Email",
+            'Email',
             style: textStyle,
           ),
         ),
-        CustomTextFormField(hint: "Email Address",keyboardType: TextInputType.emailAddress, controller: emailController,),
-
+        CustomTextFormField(
+          hint: "Email Address",
+          keyboardType: TextInputType.emailAddress,
+          controller: emailController,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
         const ListTile(
-          leading: Icon(Icons.person_2_outlined),
+          leading: Image(
+              width: 23,
+              height: 23,
+              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
           title: Text(
-            "Customer's Type",
+            'Customer’s Type',
             style: textStyle,
           ),
         ),
-        CustomDropdownFormField(items: [
-          DropdownMenuItem(value: 'Nothing', child: Text('--')),
-          DropdownMenuItem(value: '1', child: Text('Option 2')),
-          DropdownMenuItem(value: '2', child: Text('Option 3')),
-        ], onChanged: (Value){}, hint: 'Private', controller: customerTypeController, ),
-
-
-        SizedBox(height: 50,),
-
+        CustomDropdownFormField(
+          items: const [
+            DropdownMenuItem(value: 'Nothing', child: Text('--')),
+            DropdownMenuItem(value: '1', child: Text('Option 2')),
+            DropdownMenuItem(value: '2', child: Text('Option 3')),
+          ],
+          onChanged: (Value) {},
+          hint: 'Private',
+          controller: customerTypeController,
+        ),
+        const SizedBox(
+          height: 50,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -79,17 +124,16 @@ class IndividualCustomerScreenBody extends StatelessWidget {
               value: false,
               onChanged: (bool? value) {},
             ),
-            Text('Term of use & privacy policy', style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),),
+            const Text(
+              'Term of use & privacy policy',
+              style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
-
-
         CustomButton(
-            text: "Submit",
-          ),
-
+          text: "Submit",
+        ),
       ]),
     );
-
   }
 }

@@ -16,6 +16,7 @@ import 'package:speedy_phone_fix/Screen/Setting/DeviceData/DeviceDataScreen.dart
 import 'package:speedy_phone_fix/Screen/Setting/MakeModel/MakeModelScreen.dart';
 import 'package:speedy_phone_fix/Screen/Setting/SettingScreen.dart';
 import 'package:speedy_phone_fix/Screen/Setting/Unit/UnitScreen.dart';
+import 'package:speedy_phone_fix/Screen/SplashScreen.dart';
 
 final pages = <GetPage>[
   GetPage(
@@ -73,5 +74,9 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.unitscreen,
     page: () => const UnitScreen(),
+  ),
+  GetPage(
+    name: AppRoutes.splash,
+    page: () => const SplashScreen(),
   ),
 ];

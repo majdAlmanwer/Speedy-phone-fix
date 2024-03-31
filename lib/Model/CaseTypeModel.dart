@@ -8,15 +8,15 @@ class CaseTypeModel {
     if (json['CaseType'] != null) {
       caseType = <CaseType>[];
       json['CaseType'].forEach((v) {
-        caseType!.add(new CaseType.fromJson(v));
+        caseType!.add(CaseType.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.caseType != null) {
-      data['CaseType'] = this.caseType!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (caseType != null) {
+      data['CaseType'] = caseType!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -34,9 +34,9 @@ class CaseType {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type_id'] = this.typeId;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type_id'] = typeId;
+    data['type'] = type;
     return data;
   }
 }

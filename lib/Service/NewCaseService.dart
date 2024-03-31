@@ -10,7 +10,6 @@ import 'package:speedy_phone_fix/Model/CaseTypeModel.dart';
 import 'package:speedy_phone_fix/Model/FindCustomerByMobile.dart';
 import 'package:speedy_phone_fix/Model/ListAllCustomers.dart';
 
-import 'package:speedy_phone_fix/Model/CaseStatusModel.dart';
 
 import '../Api/Api.dart';
 import '../Controller/LoaderController.dart';
@@ -91,10 +90,10 @@ class NewCaseService {
     return CaseMakeModel();
   }
 
-  Future<CaseDeviceTypeModel> fetchCaseDeviceData(int id) async {
+  Future<CaseDeviceTypeModel> fetchCaseDeviceData(String id) async {
     loaderController.loading(true);
     try {
-      var res = await Api().dio.get('case_device_data.aspx?branch_id=$id');
+      var res = await Api().dio.get('case_device_data.aspx?MakeModel_id=$id');
 
       if (res.statusCode == 200) {
         return CaseDeviceTypeModel.fromJson(jsonDecode(res.data));
