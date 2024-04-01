@@ -76,14 +76,18 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                             branchId: box.read('branchId'),
                             status: caseController.text)
                         .then((value) => newCaseController.onInit());
+                    caseController.clear();
                   } else if (isEdite == true) {
                     caseStatusController
                         .editCase(
                             statusId: statusId, status: caseController.text)
                         .then((value) => newCaseController.onInit());
+                    caseController.clear();
                   }
                 },
-                child: Text(""),
+                child: const Text("Save",
+                    style:
+                    TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
               ),
             ),
           ),
