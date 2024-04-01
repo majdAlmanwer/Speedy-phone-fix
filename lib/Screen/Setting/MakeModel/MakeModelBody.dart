@@ -17,8 +17,7 @@ class MakeModelBody extends StatelessWidget {
   TextEditingController makeController = TextEditingController();
 
   bool isEdite = false;
-  String statusId = '';
-
+  String makemodelId = '';
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -65,12 +64,13 @@ class MakeModelBody extends StatelessWidget {
                       newModelController
                           .newMakeModel(
                               branchId: box.read('branchId'),
-                              status: makeController.text)
+                              makemodel: makeController.text)
                           .then((value) => newModelController.onInit());
+                    } else if (isEdite == true) {
                     } else if (isEdite == true) {
                       newModelController
                           .editMakeModel(
-                              statusId: statusId, status: makeController.text)
+                          makemodelId: makemodelId, makemodel: makeController.text)
                           .then((value) => newModelController.onInit());
                     }
                   },

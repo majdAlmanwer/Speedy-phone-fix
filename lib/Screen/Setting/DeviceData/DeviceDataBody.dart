@@ -1,68 +1,66 @@
+// ignore_for_file: sort_child_properties_last, must_be_immutable
+
 import 'package:flutter/material.dart';
-import '../../../Utils/AppStyle.dart';
-import 'package:speedy_phone_fix/Controller/DeviceDataController.dart';
-import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:speedy_phone_fix/Controller/DeviceDataController.dart';
+import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
 import 'package:speedy_phone_fix/Widgets/EditOrDeleteDialog.dart';
 import '../../../Controller/NewCaseController.dart';
+import '../../../Utils/AppStyle.dart';
+import '../../../Widgets/CustomTextFormFiled.dart';
+import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
 class DeviceDataBody extends StatefulWidget {
   DeviceDataBody({super.key});
 
   @override
   State<DeviceDataBody> createState() => _DeviceDataBodyState();
 }
+
 class _DeviceDataBodyState extends State<DeviceDataBody> {
   DeviceDataController deviceDataController = Get.put(DeviceDataController());
-  final box = GetStorage();
+  MakeModelController makeModelController = Get.put(MakeModelController());
   final NewCaseController newCaseController = Get.find();
-  final TextEditingController device_dataController = TextEditingController();
-
+  final box = GetStorage();
+  TextEditingController device_dataController = TextEditingController();
+  TextEditingController make_modelController = TextEditingController();
   bool isEdite = false;
   String deviceTypeId = '';
+  String makeModelId = '';
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-
           const ListTile(
-            leading: Icon(Icons.phone_android_outlined,
-              color: TextGrey,),
+            leading: Image(
+              image: AssetImage("Assets/Icons/case-status.png"),
+              width: 28,
+            ),
             title: Text(
               'Device Data',
-              style: TextStyle(
-                color: TextGrey,
-                fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(color: TextGrey),
             ),
           ),
-          CustomDropdownFormField(
-            items: const [
-              DropdownMenuItem(value: 'Nothing', child: Text('--')),
-              DropdownMenuItem(value: '1', child: Text('Samsung')),
-              DropdownMenuItem(value: '2', child: Text('Nokia')),
-            ],
-            onChanged: (Value) {},
-            hint: 'Samsung',
+          CustomTextFormField(
+            hint: 'Device Data',
             controller: device_dataController,
           ),
           const SizedBox(
             height: 20,
           ),
-          CustomDropdownFormField(
-            items: const [
-              DropdownMenuItem(value: 'Nothing', child: Text('--')),
-              DropdownMenuItem(value: '1', child: Text('A70')),
-              DropdownMenuItem(value: '2', child: Text('A54')),
-            ],
-            onChanged: (Value) {},
-            hint: 'A70',
-            controller: device_dataController,
-          ),
-
-          const SizedBox(
-            height: 20,
+          GetBuilder<NewCaseController>(
+            builder: (controller) => CustomDropdownFormField(
+              items: controller.caseMakeModelList!
+                  .map((e) => DropdownMenuItem(
+                  value: e.makemodelId, child: Text('${e.makemodel}')))
+                  .toList(),
+              onChanged: (Value) {
+                controller.getCaseDeviceData(Value!);
+              },
+              hint: 'Motorola',
+              controller: make_modelController,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -71,35 +69,40 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18), color: BlueColor),
               child: TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(15)),
-                      foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-                  onPressed: () {
-                    print(isEdite);
-                    print(device_dataController.text);
-                    print(box.read('branchId'));
-                    if (isEdite == false) {
-                      deviceDataController
-                          .newDeviceData(
-                          branchId: box.read('branchId'),
-                          deviceData: device_dataController.text)
-                          .then((value) => newCaseController.onInit());
-                    } else if (isEdite == true) {
-                      deviceDataController
-                          .editDeviceData(
-                          deviceTypeId: deviceTypeId, deviceType: device_dataController.text)
-                          .then((value) => newCaseController.onInit());
-                    }
-                  },
-                  child: const Text("Save",
-                      style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.all(15)),
+                    foregroundColor:
+                    MaterialStateProperty.all<Color>(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ))),
+                onPressed: () {
+                  if (isEdite == false) {
+                    deviceDataController
+                        .newDeviceData(
+                        makemodelId: make_modelController.text,
+                        deviceData: device_dataController.text)
+                        .then((value) => newCaseController.onInit());
+                    makeModelController
+                        .newMakeModel(
+                        branchId: box.read('branchId'),
+                        makemodel: make_modelController.text)
+                        .then((value) => newCaseController.onInit());
+                  } else if (isEdite == true) {
+                    deviceDataController
+                        .editDeviceData(
+                        deviceTypeId: deviceTypeId, deviceType: device_dataController.text)
+                        .then((value) => newCaseController.onInit());
+                    makeModelController
+                        .editMakeModel(
+                        makemodelId: makeModelId, makemodel: make_modelController.text)
+                        .then((value) => newCaseController.onInit());
+                  }
+                },
+                child: Text("Save"),
+              ),
             ),
           ),
           const SizedBox(
@@ -197,6 +200,14 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                     newCaseController
                                         .caseDeviceTypeList![index]
                                         .deviceType!;
+
+                                    makeModelId = newCaseController
+                                        .caseMakeModelList![index]
+                                        .makemodelId!;
+                                    make_modelController.text =
+                                    newCaseController
+                                        .caseMakeModelList![index]
+                                        .makemodel!;
                                     Get.back();
                                   });
                                 },
@@ -209,6 +220,13 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                           .deviceTypeId!)
                                       .then((value) =>
                                       newCaseController.onInit());
+                                  makeModelController
+                                      .deleteMakeModel(
+                                      makemodelId: newCaseController
+                                          .caseMakeModelList![index]
+                                          .makemodelId!)
+                                      .then((value) =>
+                                      newCaseController.onInit());
                                   Get.back();
                                 },
                               );
@@ -216,6 +234,8 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                           );
                           print(newCaseController
                               .caseDeviceTypeList![index].deviceTypeId);
+                          print(newCaseController
+                              .caseMakeModelList![index].makemodelId);
                         },
                         child: SizedBox(
                           height: 50,
@@ -223,12 +243,24 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  newCaseController
-                                      .caseDeviceTypeList![index].deviceType!,
-                                  style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: TextGrey),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      newCaseController
+                                          .caseDeviceTypeList![index].deviceType!,
+                                      style: const TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.red),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      newCaseController
+                                          .caseMakeModelList![index].makemodel!,
+                                      style: const TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.red),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
