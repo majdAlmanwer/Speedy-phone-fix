@@ -83,7 +83,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                         .then((value) => newCaseController.onInit());
                   }
                 },
-                child: Text(""),
+                child: Text("Save"),
               ),
             ),
           ),

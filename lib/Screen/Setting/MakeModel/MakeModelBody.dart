@@ -6,12 +6,19 @@ import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
+import 'package:speedy_phone_fix/Widgets/EditOrDeleteDialog.dart';
 
-class MakeModelBody extends StatelessWidget {
+class MakeModelBody extends StatefulWidget {
+  MakeModelBody({super.key});
+
+  @override
+  State<MakeModelBody> createState() => _MakeModelBodyState();
+}
+class _MakeModelBodyState extends State<MakeModelBody> {
   MakeModelController makeModelController = Get.put(MakeModelController());
 
   final MakeModelController newModelController = Get.find();
-
+  final NewCaseController newCaseController = Get.find();
   final box = GetStorage();
 
   TextEditingController makeController = TextEditingController();
@@ -35,7 +42,7 @@ class MakeModelBody extends StatelessWidget {
           ),
           CustomTextFormField(
             hint: 'Make & Model',
-            controller: null,
+            controller: makeController,
           ),
           const SizedBox(
             height: 20,
@@ -57,9 +64,6 @@ class MakeModelBody extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
                   onPressed: () {
-                    print(isEdite);
-                    print(makeController.text);
-                    print(box.read('branchId'));
                     if (isEdite == false) {
                       newModelController
                           .newMakeModel(
@@ -82,145 +86,141 @@ class MakeModelBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            children: [
-              Container(
-                child: Expanded(
-                  child: Table(
-                    columnWidths: const {
-                      0: FlexColumnWidth(1),
-                      1: FlexColumnWidth(4),
-                    },
-                    border: TableBorder.all(
-                        color: BorderGrey, style: BorderStyle.solid, width: 1),
-                    children: const [
-                      TableRow(children: [
-                        SizedBox(
-                          height: 50,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  '.No',
-                                  style: TextStyle(
-                                      fontSize: 20.0, color: TextGrey),
-                                ),
-                              ),
-                            ],
+          Table(
+              columnWidths: const {
+                0: FlexColumnWidth(1),
+                1: FlexColumnWidth(5),
+              },
+              border: TableBorder.all(
+                  color: BorderGrey, style: BorderStyle.solid, width: 2),
+              children: const [
+                TableRow(children: [
+                  SizedBox(
+                    height: 50,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            '.No',
+                            style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
-                        SizedBox(
-                          height: 50,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Model',
-                                  style: TextStyle(
-                                      fontSize: 20.0, color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                      TableRow(children: [
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  '1',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Flutter',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                      TableRow(children: [
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  '2',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Dart',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                      TableRow(children: [
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  '3',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Flutter Packages',
-                                  style: TextStyle(color: TextGrey),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            ],
+                  SizedBox(
+                    height: 50,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Make & Model',
+                            style: TextStyle(fontSize: 20.0, color: TextGrey),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
+              ]),
+          GetBuilder<NewCaseController>(
+            builder: (controller) =>
+            newCaseController.loaderController.loading.value
+                ? CircularProgressIndicator()
+                : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: newCaseController.caseMakeModelList!.length,
+              itemBuilder: (context, index) {
+                return Table(
+                  columnWidths: const {
+                    0: FlexColumnWidth(1),
+                    1: FlexColumnWidth(5),
+                  },
+                  border: TableBorder.all(
+                      color: BorderGrey,
+                      style: BorderStyle.solid,
+                      width: 1),
+                  children: [
+                    TableRow(children: [
+                      SizedBox(
+                        height: 50,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "${index + 1}",
+                                style: const TextStyle(
+                                    fontSize: 20.0, color: TextGrey),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onLongPress: () {
+                          showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return EditOrDeleteDialog(
+                                firstTitle: 'Edit',
+                                firstOnPressed: () {
+                                  setState(() {
+                                    isEdite = true;
+                                    makemodelId = newCaseController
+                                        .caseMakeModelList![index]
+                                        .makemodelId!;
+                                    makeController.text =
+                                    newCaseController
+                                        .caseMakeModelList![index]
+                                        .makemodel!;
+                                    Get.back();
+                                  });
+                                },
+                                secundTitle: 'Delete',
+                                secundOnPressed: () {
+                                  makeModelController
+                                      .deleteMakeModel(
+                                      makemodelId: newCaseController
+                                          .caseMakeModelList![index]
+                                          .makemodelId!)
+                                      .then((value) =>
+                                      newCaseController.onInit());
+                                  Get.back();
+                                },
+                              );
+                            },
+                          );
+                          print(newCaseController
+                              .caseMakeModelList![index].makemodelId);
+                        },
+                        child: SizedBox(
+                          height: 50,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  newCaseController
+                                      .caseMakeModelList![index].makemodel!,
+                                  style: const TextStyle(
+                                      fontSize: 20.0,
+                                      color: TextGrey),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ],
+                );
+              },
+            ),
           ),
         ],
       ),
