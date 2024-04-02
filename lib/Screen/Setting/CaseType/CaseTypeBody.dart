@@ -73,11 +73,13 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                           branchId: box.read('branchId'),
                           type: caseController.text)
                           .then((value) => newCaseController.onInit());
+                      caseController.clear();
                     } else if (isEdite == true) {
                       caseTypeController
                           .editCase(
                           typeId: typeId, type: caseController.text)
                           .then((value) => newCaseController.onInit());
+                      caseController.clear();
                     }
 
                   },
