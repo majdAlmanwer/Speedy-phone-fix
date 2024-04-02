@@ -16,10 +16,10 @@ class DeviceDataController extends GetxController {
   GetStorage box = GetStorage();
 
   Future<dynamic> newDeviceData(
-      {required String branchId, required String deviceData}) async {
+      {required String makemodelId, required String deviceData}) async {
     loaderController.loading(true);
     dio.FormData request =
-    dio.FormData.fromMap({'branch_id': branchId, 'device_data': deviceData});
+    dio.FormData.fromMap({'makemodel_id': makemodelId, 'device_data': deviceData});
     var response = await DeviceDataService().addNewDeviceData(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);

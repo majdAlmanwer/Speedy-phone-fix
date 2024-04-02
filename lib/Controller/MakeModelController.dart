@@ -17,10 +17,10 @@ class MakeModelController extends GetxController {
   GetStorage box = GetStorage();
 
   Future<dynamic> newMakeModel(
-      {required String branchId, required String status}) async {
+      {required String branchId, required String makemodel}) async {
     loaderController.loading(true);
     dio.FormData request =
-        dio.FormData.fromMap({'branch_id': branchId, 'status': status});
+        dio.FormData.fromMap({'branch_id': branchId, 'makemodel': makemodel});
     var response = await MakeModelService().addMakeModel(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);
@@ -36,10 +36,10 @@ class MakeModelController extends GetxController {
   }
 
   Future<dynamic> editMakeModel(
-      {required String statusId, required String status}) async {
+      {required String makemodelId, required String makemodel}) async {
     loaderController.loading(true);
     dio.FormData request =
-        dio.FormData.fromMap({'status_id': statusId, 'status': status});
+        dio.FormData.fromMap({'makemodel_id': makemodelId, 'makemodel': makemodel});
     var response = await MakeModelService().editMakeModel(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);
@@ -54,9 +54,9 @@ class MakeModelController extends GetxController {
     }
   }
 
-  Future<dynamic> deleteMakeModel({required String statusId}) async {
+  Future<dynamic> deleteMakeModel({required String makemodelId}) async {
     loaderController.loading(true);
-    dio.FormData request = dio.FormData.fromMap({'status_id': statusId});
+    dio.FormData request = dio.FormData.fromMap({'makemodel_id': makemodelId});
     var response = await MakeModelService().deleteMakeModel(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);
