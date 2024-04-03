@@ -18,7 +18,7 @@ class SettingBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SettingCardWidget(
-                    title: 'Case Ststus',
+                    title: 'Case Status',
                     iconPath: 'Assets/Icons/case-status.png',
                     onTap: () {
                       Get.toNamed(AppRoutes.casestatusscreen);
