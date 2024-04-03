@@ -85,9 +85,12 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                     caseController.clear();
                   }
                 },
+
+
                 child: const Text("Save",
                     style:
                     TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+
               ),
             ),
           ),

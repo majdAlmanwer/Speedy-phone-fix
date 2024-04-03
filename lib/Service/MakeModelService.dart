@@ -25,7 +25,7 @@ class MakeModelService {
     loaderController.loading(true);
 
     try {
-      var res = await Api().dio.post('/xnew_make_model.asp', data: data);
+      var res = await Api().dio.post('/new_make_model.aspx', data: data);
 
       if (res.statusCode == 200) {
         return CaseStutsResponseModel.fromJson(jsonDecode(res.data));
@@ -45,7 +45,7 @@ class MakeModelService {
     loaderController.loading(true);
 
     try {
-      var res = await Api().dio.post('/edit_device_data.aspx', data: data);
+      var res = await Api().dio.post('/edit_make_model.aspx', data: data);
 
       if (res.statusCode == 200) {
         return CaseStutsResponseModel.fromJson(jsonDecode(res.data));
