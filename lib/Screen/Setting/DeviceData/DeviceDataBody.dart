@@ -13,12 +13,14 @@ import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/EditOrDeleteDialog.dart';
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
+
 class DeviceDataBody extends StatefulWidget {
   DeviceDataBody({super.key});
 
   @override
   State<DeviceDataBody> createState() => _DeviceDataBodyState();
 }
+
 class _DeviceDataBodyState extends State<DeviceDataBody> {
   DeviceDataController deviceDataController = Get.put(DeviceDataController());
 
@@ -57,9 +59,13 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
             builder: (controller) => CustomDropdownFormField(
               items: controller.caseMakeModelList!
                   .map((e) => DropdownMenuItem(
-                  value: e.makemodelId, child: Text('${e.makemodel}')))
+                      value: e.makemodelId, child: Text('${e.makemodel}')))
                   .toList(),
               onChanged: (Value) {
+                print(Value);
+
+                makemodelId = Value!;
+
                 controller.getCaseDeviceData(Value!);
               },
               hint: 'Motorola',
@@ -77,23 +83,26 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.all(15)),
                       foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                          MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
+                        borderRadius: BorderRadius.circular(18.0),
+                      ))),
                   onPressed: () {
                     if (isEdite == false) {
                       newDeviceDataController
                           .newDeviceData(
-                          makemodelId: makeController.text,
-                          deviceData: deviceController.text)
-                          .then((value) => newDeviceDataController.onInit());
-                    }  else if (isEdite == true) {
+                              makemodelId: makemodelId,
+                              deviceData: deviceController.text)
+                          .then((value) =>
+                              newCaseController.getCaseDeviceData(makemodelId));
+                    } else if (isEdite == true) {
                       newDeviceDataController
                           .editDeviceData(
-                          deviceTypeId: deviceTypeId, deviceType: deviceController.text)
-                          .then((value) => newDeviceDataController.onInit());
+                              deviceTypeId: deviceTypeId,
+                              deviceType: deviceController.text)
+                          .then((value) =>
+                              newCaseController.getCaseDeviceData(makemodelId));
                     }
                   },
                   child: const Text("Save",
@@ -144,101 +153,101 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                 ]),
               ]),
           GetBuilder<NewCaseController>(
-            builder: (controller) =>
-            newCaseController.loaderController.loading.value
+            builder: (controller) => newCaseController
+                    .loaderController.loading.value
                 ? CircularProgressIndicator()
                 : ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: newCaseController.caseDeviceTypeList!.length,
-              itemBuilder: (context, index) {
-                return Table(
-                  columnWidths: const {
-                    0: FlexColumnWidth(1),
-                    1: FlexColumnWidth(5),
-                  },
-                  border: TableBorder.all(
-                      color: BorderGrey,
-                      style: BorderStyle.solid,
-                      width: 1),
-                  children: [
-                    TableRow(children: [
-                      SizedBox(
-                        height: 50,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "${index + 1}",
-                                style: const TextStyle(
-                                    fontSize: 20.0, color: TextGrey),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: newCaseController.caseDeviceTypeList!.length,
+                    itemBuilder: (context, index) {
+                      return Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(1),
+                          1: FlexColumnWidth(5),
+                        },
+                        border: TableBorder.all(
+                            color: BorderGrey,
+                            style: BorderStyle.solid,
+                            width: 1),
+                        children: [
+                          TableRow(children: [
+                            SizedBox(
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${index + 1}",
+                                      style: const TextStyle(
+                                          fontSize: 20.0, color: TextGrey),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onLongPress: () {
-                          showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return EditOrDeleteDialog(
-                                firstTitle: 'Edit',
-                                firstOnPressed: () {
-                                  setState(() {
-                                    isEdite = true;
-                                    deviceTypeId = newCaseController
-                                        .caseDeviceTypeList![index]
-                                        .deviceTypeId!;
-                                    deviceController.text =
-                                    newCaseController
-                                        .caseDeviceTypeList![index]
-                                        .deviceType!;
-                                    Get.back();
-                                  });
-                                },
-                                secundTitle: 'Delete',
-                                secundOnPressed: () {
-                                  deviceDataController
-                                      .deleteDeviceData(
-                                      deviceTypeId: newCaseController
-                                          .caseDeviceTypeList![index]
-                                          .deviceTypeId!)
-                                      .then((value) =>
-                                      newCaseController.onInit());
-                                  Get.back();
-                                },
-                              );
-                            },
-                          );
-                          print(newCaseController
-                              .caseDeviceTypeList![index].deviceTypeId);
-                        },
-                        child: SizedBox(
-                          height: 50,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  newCaseController
-                                      .caseDeviceTypeList![index].deviceType!,
-                                  style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: TextGrey),
+                            InkWell(
+                              onLongPress: () {
+                                showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return EditOrDeleteDialog(
+                                      firstTitle: 'Edit',
+                                      firstOnPressed: () {
+                                        setState(() {
+                                          isEdite = true;
+                                          deviceTypeId = newCaseController
+                                              .caseDeviceTypeList![index]
+                                              .deviceTypeId!;
+                                          deviceController.text =
+                                              newCaseController
+                                                  .caseDeviceTypeList![index]
+                                                  .deviceType!;
+                                          Get.back();
+                                        });
+                                      },
+                                      secundTitle: 'Delete',
+                                      secundOnPressed: () {
+                                        deviceDataController
+                                            .deleteDeviceData(
+                                                deviceTypeId: newCaseController
+                                                    .caseDeviceTypeList![index]
+                                                    .deviceTypeId!)
+                                            .then((value) =>
+                                                newCaseController.onInit());
+                                        Get.back();
+                                      },
+                                    );
+                                  },
+                                );
+                                print(newCaseController
+                                    .caseDeviceTypeList![index].deviceTypeId);
+                              },
+                              child: SizedBox(
+                                height: 50,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        newCaseController
+                                            .caseDeviceTypeList![index]
+                                            .deviceType!,
+                                        style: const TextStyle(
+                                            fontSize: 20.0, color: TextGrey),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ],
-                );
-              },
-            ),
+                            ),
+                          ]),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
       ),
