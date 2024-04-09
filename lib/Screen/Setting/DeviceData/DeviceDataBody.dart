@@ -10,6 +10,7 @@ import 'package:speedy_phone_fix/Controller/DeviceDataController.dart';
 import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import '../../../Utils/AppStyle.dart';
+import '../../../Widgets/ConfirmationDialog.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/EditOrDeleteDialog.dart';
 import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
@@ -44,16 +45,9 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
               color: TextGrey,
             ),
             title: Text(
-              'Device Data',
+              'Make & Model',
               style: TextStyle(color: TextGrey),
             ),
-          ),
-          CustomTextFormField(
-            hint: 'Device Data',
-            controller: deviceController,
-          ),
-          const SizedBox(
-            height: 20,
           ),
           GetBuilder<NewCaseController>(
             builder: (controller) => CustomDropdownFormField(
@@ -71,6 +65,23 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
               hint: 'Motorola',
               controller: makeController,
             ),
+          ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          const ListTile(
+            leading: Icon(
+              Icons.phone_android,
+              color: TextGrey,
+            ),
+            title: Text(
+              'Device Data',
+              style: TextStyle(color: TextGrey),
+            ),
+          ),
+          CustomTextFormField(
+            hint: 'Device Data',
+            controller: deviceController,
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -96,6 +107,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                               deviceData: deviceController.text)
                           .then((value) =>
                               newCaseController.getCaseDeviceData(makemodelId));
+                      deviceController.clear();
                     } else if (isEdite == true) {
                       newDeviceDataController
                           .editDeviceData(
@@ -103,6 +115,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                               deviceType: deviceController.text)
                           .then((value) =>
                               newCaseController.getCaseDeviceData(makemodelId));
+                      deviceController.clear();
                     }
                   },
                   child: const Text("Save",
@@ -159,7 +172,9 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: newCaseController.caseDeviceTypeList!.length,
+                    itemCount: controller.caseDeviceTypeList!.isNotEmpty
+                        ? controller.caseDeviceTypeList!.length
+                        : null,
                     itemBuilder: (context, index) {
                       return Table(
                         columnWidths: const {
@@ -210,14 +225,32 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                       },
                                       secundTitle: 'Delete',
                                       secundOnPressed: () {
-                                        deviceDataController
-                                            .deleteDeviceData(
-                                                deviceTypeId: newCaseController
-                                                    .caseDeviceTypeList![index]
-                                                    .deviceTypeId!)
-                                            .then((value) =>
-                                                newCaseController.onInit());
-                                        Get.back();
+                                        showDialog(
+                                            barrierDismissible: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return ConfirmationDialog(
+                                                title: 'Are You Sure ?',
+                                                firstOnPressed: () {
+                                                  deviceDataController
+                                                      .deleteDeviceData(
+                                                          deviceTypeId:
+                                                              newCaseController
+                                                                  .caseDeviceTypeList![
+                                                                      index]
+                                                                  .deviceTypeId!)
+                                                      .then((value) => controller
+                                                          .getCaseDeviceData(
+                                                              makemodelId));
+                                                  Get.back();
+                                                },
+                                                secundOnPressed: () {
+                                                  Get.back();
+                                                },
+                                                firstTitle: 'Yes',
+                                                secundTitle: 'No',
+                                              );
+                                            });
                                       },
                                     );
                                   },
@@ -233,8 +266,9 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         newCaseController
-                                            .caseDeviceTypeList![index]
-                                            .deviceType!,
+                                                .caseDeviceTypeList![index]
+                                                .deviceType ??
+                                            '',
                                         style: const TextStyle(
                                             fontSize: 20.0, color: TextGrey),
                                       ),

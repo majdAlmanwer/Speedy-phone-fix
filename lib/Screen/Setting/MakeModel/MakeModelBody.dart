@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import '../../../Utils/AppStyle.dart';
+import '../../../Widgets/ConfirmationDialog.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 import 'package:speedy_phone_fix/Widgets/EditOrDeleteDialog.dart';
 
@@ -14,6 +15,7 @@ class MakeModelBody extends StatefulWidget {
   @override
   State<MakeModelBody> createState() => _MakeModelBodyState();
 }
+
 class _MakeModelBodyState extends State<MakeModelBody> {
   MakeModelController makeModelController = Get.put(MakeModelController());
 
@@ -69,13 +71,16 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                           .newMakeModel(
                               branchId: box.read('branchId'),
                               makemodel: makeController.text)
-                          .then((value) => newModelController.onInit());
-                    } else if (isEdite == true) {
+                          .then((value) => newCaseController.onInit());
+                      makeController.clear();
                     } else if (isEdite == true) {
                       newModelController
                           .editMakeModel(
-                          makemodelId: makemodelId, makemodel: makeController.text)
-                          .then((value) => newModelController.onInit());
+                              makemodelId: makemodelId,
+                              makemodel: makeController.text)
+                          .then((value) => newCaseController.onInit());
+
+                      makeController.clear();
                     }
                   },
                   child: const Text("Save",
@@ -126,101 +131,118 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                 ]),
               ]),
           GetBuilder<NewCaseController>(
-            builder: (controller) =>
-            newCaseController.loaderController.loading.value
+            builder: (controller) => newCaseController
+                    .loaderController.loading.value
                 ? CircularProgressIndicator()
                 : ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: newCaseController.caseMakeModelList!.length,
-              itemBuilder: (context, index) {
-                return Table(
-                  columnWidths: const {
-                    0: FlexColumnWidth(1),
-                    1: FlexColumnWidth(5),
-                  },
-                  border: TableBorder.all(
-                      color: BorderGrey,
-                      style: BorderStyle.solid,
-                      width: 1),
-                  children: [
-                    TableRow(children: [
-                      SizedBox(
-                        height: 50,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "${index + 1}",
-                                style: const TextStyle(
-                                    fontSize: 20.0, color: TextGrey),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.caseMakeModelList!.length,
+                    itemBuilder: (context, index) {
+                      return Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(1),
+                          1: FlexColumnWidth(5),
+                        },
+                        border: TableBorder.all(
+                            color: BorderGrey,
+                            style: BorderStyle.solid,
+                            width: 1),
+                        children: [
+                          TableRow(children: [
+                            SizedBox(
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${index + 1}",
+                                      style: const TextStyle(
+                                          fontSize: 20.0, color: TextGrey),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onLongPress: () {
-                          showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return EditOrDeleteDialog(
-                                firstTitle: 'Edit',
-                                firstOnPressed: () {
-                                  setState(() {
-                                    isEdite = true;
-                                    makemodelId = newCaseController
-                                        .caseMakeModelList![index]
-                                        .makemodelId!;
-                                    makeController.text =
-                                    newCaseController
-                                        .caseMakeModelList![index]
-                                        .makemodel!;
-                                    Get.back();
-                                  });
-                                },
-                                secundTitle: 'Delete',
-                                secundOnPressed: () {
-                                  makeModelController
-                                      .deleteMakeModel(
-                                      makemodelId: newCaseController
-                                          .caseMakeModelList![index]
-                                          .makemodelId!)
-                                      .then((value) =>
-                                      newCaseController.onInit());
-                                  Get.back();
-                                },
-                              );
-                            },
-                          );
-                          print(newCaseController
-                              .caseMakeModelList![index].makemodelId);
-                        },
-                        child: SizedBox(
-                          height: 50,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  newCaseController
-                                      .caseMakeModelList![index].makemodel!,
-                                  style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: TextGrey),
+                            InkWell(
+                              onLongPress: () {
+                                showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return EditOrDeleteDialog(
+                                      firstTitle: 'Edit',
+                                      firstOnPressed: () {
+                                        setState(() {
+                                          isEdite = true;
+                                          makemodelId = newCaseController
+                                              .caseMakeModelList![index]
+                                              .makemodelId!;
+                                          makeController.text =
+                                              newCaseController
+                                                  .caseMakeModelList![index]
+                                                  .makemodel!;
+                                          Get.back();
+                                        });
+                                      },
+                                      secundTitle: 'Delete',
+                                      secundOnPressed: () {
+                                        showDialog(
+                                            barrierDismissible: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return ConfirmationDialog(
+                                                title: 'Are You Sure ?',
+                                                firstOnPressed: () {
+                                                  makeModelController
+                                                      .deleteMakeModel(
+                                                          makemodelId:
+                                                              newCaseController
+                                                                  .caseMakeModelList![
+                                                                      index]
+                                                                  .makemodelId!)
+                                                      .then((value) =>
+                                                          controller.onInit());
+                                                  Get.back();
+                                                },
+                                                secundOnPressed: () {
+                                                  Get.back();
+                                                },
+                                                firstTitle: 'Yes',
+                                                secundTitle: 'No',
+                                              );
+                                            });
+                                      },
+                                    );
+                                  },
+                                );
+                                print(newCaseController
+                                    .caseMakeModelList![index].makemodelId);
+                              },
+                              child: SizedBox(
+                                height: 50,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        newCaseController
+                                            .caseMakeModelList![index]
+                                            .makemodel!,
+                                        style: const TextStyle(
+                                            fontSize: 20.0, color: TextGrey),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ],
-                );
-              },
-            ),
+                            ),
+                          ]),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
       ),
