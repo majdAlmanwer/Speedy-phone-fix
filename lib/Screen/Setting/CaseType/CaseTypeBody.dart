@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../Utils/AppStyle.dart';
+import '../../../Widgets/ConfirmationDialog.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -26,14 +27,16 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
   bool isEdite = false;
   String typeId = '';
 
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           const ListTile(
-            leading: Image(image: AssetImage("Assets/Icons/case-type.png"), width: 28,),
+            leading: Image(
+              image: AssetImage("Assets/Icons/case-type.png"),
+              width: 28,
+            ),
             title: Text(
               'Case Type',
               style: TextStyle(color: TextGrey),
@@ -57,12 +60,11 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.all(15)),
                       foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                          MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-
+                        borderRadius: BorderRadius.circular(18.0),
+                      ))),
                   onPressed: () {
                     print(isEdite);
                     print(caseController.text);
@@ -70,30 +72,25 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                     if (isEdite == false) {
                       caseTypeController
                           .newCase(
-                          branchId: box.read('branchId'),
-                          type: caseController.text)
+                              branchId: box.read('branchId'),
+                              type: caseController.text)
                           .then((value) => newCaseController.onInit());
                       caseController.clear();
                     } else if (isEdite == true) {
                       caseTypeController
-                          .editCase(
-                          typeId: typeId, type: caseController.text)
+                          .editCase(typeId: typeId, type: caseController.text)
                           .then((value) => newCaseController.onInit());
                       caseController.clear();
                     }
-
                   },
-
                   child: const Text("Save",
-                      style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold))),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-
-
           Table(
               columnWidths: const {
                 0: FlexColumnWidth(1),
@@ -134,105 +131,117 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                 ]),
               ]),
           GetBuilder<NewCaseController>(
-            builder: (controller) =>
-            newCaseController.loaderController.loading.value
+            builder: (controller) => newCaseController
+                    .loaderController.loading.value
                 ? CircularProgressIndicator()
                 : ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: newCaseController.caseTypeList?.length,
-              itemBuilder: (context, index) {
-                return Table(
-                  columnWidths: const {
-                    0: FlexColumnWidth(1),
-                    1: FlexColumnWidth(5),
-                  },
-                  border: TableBorder.all(
-                      color: BorderGrey,
-                      style: BorderStyle.solid,
-                      width: 1),
-                  children: [
-                    TableRow(children: [
-                      SizedBox(
-                        height: 50,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "${index + 1}",
-                                style: const TextStyle(
-                                    fontSize: 20.0, color: TextGrey),
-
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: newCaseController.caseTypeList?.length,
+                    itemBuilder: (context, index) {
+                      return Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(1),
+                          1: FlexColumnWidth(5),
+                        },
+                        border: TableBorder.all(
+                            color: BorderGrey,
+                            style: BorderStyle.solid,
+                            width: 1),
+                        children: [
+                          TableRow(children: [
+                            SizedBox(
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${index + 1}",
+                                      style: const TextStyle(
+                                          fontSize: 20.0, color: TextGrey),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                            InkWell(
+                              onLongPress: () {
+                                showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return EditOrDeleteDialog(
+                                      firstTitle: 'Edit',
+                                      firstOnPressed: () {
+                                        setState(() {
+                                          isEdite = true;
+                                          typeId = newCaseController
+                                              .caseTypeList![index].typeId!;
+                                          caseController.text =
+                                              newCaseController
+                                                  .caseTypeList![index].type!;
+                                          Get.back();
+                                        });
+                                      },
+                                      secundTitle: 'Delete',
+                                      secundOnPressed: () {
+                                        showDialog(
+                                            barrierDismissible: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return ConfirmationDialog(
+                                                title: 'Are You Sure ?',
+                                                firstOnPressed: () {
+                                                  caseTypeController
+                                                      .deleteCase(
+                                                          typeId:
+                                                              newCaseController
+                                                                  .caseTypeList![
+                                                                      index]
+                                                                  .typeId!)
+                                                      .then((value) =>
+                                                          newCaseController
+                                                              .onInit());
 
-                      ),
-                      InkWell(
-                        onLongPress: () {
-                          showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return EditOrDeleteDialog(
-                                firstTitle: 'Edit',
-                                firstOnPressed: () {
-                                  setState(() {
-                                    isEdite = true;
-                                    typeId = newCaseController
-                                        .caseTypeList![index]
-                                        .typeId!;
-                                    caseController.text =
-                                    newCaseController
-                                        .caseTypeList![index]
-                                        .type!;
-                                    Get.back();
-                                  });
-                                },
-                                secundTitle: 'Delete',
-                                secundOnPressed: () {
-                                  caseTypeController
-                                      .deleteCase(
-                                      typeId: newCaseController
-                                          .caseTypeList![index]
-                                          .typeId!)
-                                      .then((value) =>
-                                      newCaseController.onInit());
-                                  Get.back();
-                                },
-                              );
-                            },
-                          );
-                          print(newCaseController
-                              .caseTypeList![index].typeId);
-                        },
-                        child: SizedBox(
-                          height: 50,
-
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  newCaseController
-                                      .caseTypeList![index].type!,
-                                  style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: TextGrey),
+                                                  Get.back();
+                                                },
+                                                secundOnPressed: () {
+                                                  Get.back();
+                                                },
+                                                firstTitle: 'Yes',
+                                                secundTitle: 'No',
+                                              );
+                                            });
+                                      },
+                                    );
+                                  },
+                                );
+                                print(newCaseController
+                                    .caseTypeList![index].typeId);
+                              },
+                              child: SizedBox(
+                                height: 50,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        newCaseController
+                                            .caseTypeList![index].type!,
+                                        style: const TextStyle(
+                                            fontSize: 20.0, color: TextGrey),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-
-                      ),
-                    ]),
-                  ],
-                );
-              },
-            ),
+                            ),
+                          ]),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
       ),
