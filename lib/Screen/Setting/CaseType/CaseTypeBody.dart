@@ -205,6 +205,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                                                               .onInit());
 
                                                   Get.back();
+                                                  Get.back();
                                                 },
                                                 secundOnPressed: () {
                                                   Get.back();

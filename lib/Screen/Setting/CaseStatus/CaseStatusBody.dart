@@ -209,6 +209,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                                           newCaseController
                                                               .onInit());
                                                   Get.back();
+                                                  Get.back();
                                                 },
                                                 secundOnPressed: () {
                                                   Get.back();

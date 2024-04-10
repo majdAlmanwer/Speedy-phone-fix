@@ -7,19 +7,18 @@ import 'package:speedy_phone_fix/Controller/LoaderController.dart';
 import 'package:speedy_phone_fix/Controller/MessageHandlerController.dart';
 import 'package:speedy_phone_fix/Service/DeviceDataService.dart';
 
-
 class DeviceDataController extends GetxController {
   LoaderController loaderController = Get.put(LoaderController());
   MessagesHandlerController msgController =
-  Get.put(MessagesHandlerController());
+      Get.put(MessagesHandlerController());
 
   GetStorage box = GetStorage();
 
   Future<dynamic> newDeviceData(
       {required String makemodelId, required String deviceData}) async {
     loaderController.loading(true);
-    dio.FormData request =
-    dio.FormData.fromMap({'makemodel_id': makemodelId, 'device_data': deviceData});
+    dio.FormData request = dio.FormData.fromMap(
+        {'makemodel_id': makemodelId, 'device_data': deviceData});
     var response = await DeviceDataService().addNewDeviceData(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);
@@ -37,8 +36,8 @@ class DeviceDataController extends GetxController {
   Future<dynamic> editDeviceData(
       {required String deviceTypeId, required String deviceType}) async {
     loaderController.loading(true);
-    dio.FormData request =
-    dio.FormData.fromMap({'device_type_id': deviceTypeId, 'device_type': deviceType});
+    dio.FormData request = dio.FormData.fromMap(
+        {'device_type_id': deviceTypeId, 'device_type': deviceType});
     var response = await DeviceDataService().editDeviceData(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);
@@ -55,7 +54,8 @@ class DeviceDataController extends GetxController {
 
   Future<dynamic> deleteDeviceData({required String deviceTypeId}) async {
     loaderController.loading(true);
-    dio.FormData request = dio.FormData.fromMap({'device_type_id': deviceTypeId});
+    dio.FormData request =
+        dio.FormData.fromMap({'device_type_id': deviceTypeId});
     var response = await DeviceDataService().deleteDeviceData(request);
     try {
       msgController.showSuccessMessage(response.message, response.description);

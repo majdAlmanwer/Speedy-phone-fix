@@ -4,10 +4,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:get_storage/get_storage.dart';
 import 'package:speedy_phone_fix/Controller/DeviceDataController.dart';
-import 'package:speedy_phone_fix/Controller/MakeModelController.dart';
+
 import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
 import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/ConfirmationDialog.dart';
@@ -25,7 +25,6 @@ class DeviceDataBody extends StatefulWidget {
 class _DeviceDataBodyState extends State<DeviceDataBody> {
   DeviceDataController deviceDataController = Get.put(DeviceDataController());
 
-  final DeviceDataController newDeviceDataController = Get.find();
   final NewCaseController newCaseController = Get.find();
   final box = GetStorage();
 
@@ -101,7 +100,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                       ))),
                   onPressed: () {
                     if (isEdite == false) {
-                      newDeviceDataController
+                      deviceDataController
                           .newDeviceData(
                               makemodelId: makemodelId,
                               deviceData: deviceController.text)
@@ -109,7 +108,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                               newCaseController.getCaseDeviceData(makemodelId));
                       deviceController.clear();
                     } else if (isEdite == true) {
-                      newDeviceDataController
+                      deviceDataController
                           .editDeviceData(
                               deviceTypeId: deviceTypeId,
                               deviceType: deviceController.text)
@@ -174,7 +173,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.caseDeviceTypeList!.isNotEmpty
                         ? controller.caseDeviceTypeList!.length
-                        : null,
+                        : 0,
                     itemBuilder: (context, index) {
                       return Table(
                         columnWidths: const {
@@ -213,13 +212,20 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                       firstOnPressed: () {
                                         setState(() {
                                           isEdite = true;
-                                          deviceTypeId = newCaseController
-                                              .caseDeviceTypeList![index]
-                                              .deviceTypeId!;
-                                          deviceController.text =
-                                              newCaseController
+                                          controller.caseDeviceTypeList!
+                                                  .isNotEmpty
+                                              ? deviceTypeId = newCaseController
                                                   .caseDeviceTypeList![index]
-                                                  .deviceType!;
+                                                  .deviceTypeId!
+                                              : '';
+                                          controller.caseDeviceTypeList!
+                                                  .isNotEmpty
+                                              ? deviceController.text =
+                                                  newCaseController
+                                                      .caseDeviceTypeList![
+                                                          index]
+                                                      .deviceType!
+                                              : '';
                                           Get.back();
                                         });
                                       },
@@ -232,16 +238,20 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                               return ConfirmationDialog(
                                                 title: 'Are You Sure ?',
                                                 firstOnPressed: () {
-                                                  deviceDataController
-                                                      .deleteDeviceData(
-                                                          deviceTypeId:
-                                                              newCaseController
-                                                                  .caseDeviceTypeList![
-                                                                      index]
-                                                                  .deviceTypeId!)
-                                                      .then((value) => controller
-                                                          .getCaseDeviceData(
-                                                              makemodelId));
+                                                  controller.caseDeviceTypeList!
+                                                          .isNotEmpty
+                                                      ? deviceDataController
+                                                          .deleteDeviceData(
+                                                              deviceTypeId:
+                                                                  newCaseController
+                                                                      .caseDeviceTypeList![
+                                                                          index]
+                                                                      .deviceTypeId!)
+                                                          .then((value) => controller
+                                                              .getCaseDeviceData(
+                                                                  makemodelId))
+                                                      : null;
+                                                  Get.back();
                                                   Get.back();
                                                 },
                                                 secundOnPressed: () {
@@ -255,8 +265,8 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                     );
                                   },
                                 );
-                                print(newCaseController
-                                    .caseDeviceTypeList![index].deviceTypeId);
+                                // print(newCaseController
+                                //     .caseDeviceTypeList![index].deviceTypeId);
                               },
                               child: SizedBox(
                                 height: 50,
@@ -266,9 +276,12 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         newCaseController
-                                                .caseDeviceTypeList![index]
-                                                .deviceType ??
-                                            '',
+                                                .caseDeviceTypeList!.isNotEmpty
+                                            ? newCaseController
+                                                    .caseDeviceTypeList![index]
+                                                    .deviceType ??
+                                                ' empty'
+                                            : '',
                                         style: const TextStyle(
                                             fontSize: 20.0, color: TextGrey),
                                       ),
