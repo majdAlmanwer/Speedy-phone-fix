@@ -205,6 +205,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                                                       .then((value) =>
                                                           controller.onInit());
                                                   Get.back();
+                                                  Get.back();
                                                 },
                                                 secundOnPressed: () {
                                                   Get.back();
