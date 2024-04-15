@@ -24,10 +24,20 @@ class ProfileScreenBody extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.05,
           ),
-          ProfileListItem(
-              title: 'Change Password', imagePath: 'Assets/Icons/lock.png'),
-          ProfileListItem(
-              title: 'Delete Account', imagePath: 'Assets/Icons/profile.png'),
+          InkWell(
+            onTap: () {
+              Get.toNamed(AppRoutes.changepasswordscreen);
+            },
+            child: ProfileListItem(
+                title: 'Change Password', imagePath: 'Assets/Icons/lock.png'),
+          ),
+          InkWell(
+            onTap: () {
+              Get.toNamed(AppRoutes.deleteaccountscreen);
+            },
+            child: ProfileListItem(
+                title: 'Delete Account', imagePath: 'Assets/Icons/profile.png'),
+          ),
           ProfileListItem(
             title: 'Logout',
             imagePath: 'Assets/Icons/logout.png',
