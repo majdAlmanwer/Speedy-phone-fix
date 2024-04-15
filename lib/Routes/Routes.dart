@@ -17,4 +17,6 @@ class AppRoutes {
   static const String makemodelscreen = '/makemodelscreen';
   static const String unitscreen = '/unitscreen';
   static const String splash = '/splash';
+  static const String changepasswordscreen = '/changepasswordscreen';
+  static const String deleteaccountscreen = '/deleteaccountscreen';
 }
