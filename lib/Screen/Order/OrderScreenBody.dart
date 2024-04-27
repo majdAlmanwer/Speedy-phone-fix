@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Utils/AppStyle.dart';
 import '../../Widgets/CustomTextFormFiled.dart';
@@ -36,27 +37,16 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
-            controller: null,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/edit.png")),
-            title: Text(
-              'Unit',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             controller: null,
             maxLines: null,
             keyboardType: TextInputType.multiline,
             contentPadding:
-                EdgeInsets.symmetric(horizontal: 10.0, vertical: 70),
+                EdgeInsets.symmetric(horizontal: 10.0, vertical: 50),
           ),
           const SizedBox(
             height: 10,
@@ -72,6 +62,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Add Customer Name',
             controller: null,
           ),
@@ -89,6 +84,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: '+46',
             prefixIcon: Image(
                 width: 20,
@@ -111,6 +111,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Customer Email Address',
             controller: null,
           ),
@@ -129,6 +134,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Quantity',
             controller: null,
           ),
@@ -146,6 +156,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Unit Price',
             controller: null,
           ),
@@ -163,6 +178,11 @@ class OrderScreenBody extends StatelessWidget {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: '11/02/2024  10:00 a.m',
             controller: null,
           ),
@@ -186,7 +206,13 @@ class OrderScreenBody extends StatelessWidget {
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
-                  onPressed: () {}),
+                  onPressed: () {
+                    if (formstate.currentState!.validate()) {
+                      print("Valid");
+                    } else {
+                      print("Not Valid");
+                    }
+                  }),
             ),
           ),
         ],
