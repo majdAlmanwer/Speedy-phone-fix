@@ -1,12 +1,12 @@
 // ignore_for_file: file_names
 
-class CustomerCompanyModel {
+class CustomerCompanyResponseModel {
   String? message;
   String? description;
 
-  CustomerCompanyModel({this.message, this.description});
+  CustomerCompanyResponseModel({this.message, this.description});
 
-  CustomerCompanyModel.fromJson(Map<String, dynamic> json) {
+  CustomerCompanyResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     description = json['description'];
   }

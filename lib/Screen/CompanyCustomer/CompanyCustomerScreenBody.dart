@@ -1,10 +1,15 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
+import 'package:speedy_phone_fix/Controller/CustomerCompanyController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
+class MyCheckboxController {
+  bool isChecked = false;
+}
 class CompanyCustomerScreenBody extends StatefulWidget {
   const CompanyCustomerScreenBody({super.key});
 
@@ -14,24 +19,41 @@ class CompanyCustomerScreenBody extends StatefulWidget {
 }
 
 class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
-  TextEditingController? CustomersName = TextEditingController();
 
-  TextEditingController? CustomerAddress = TextEditingController();
+  late MyCheckboxController _checkboxController;
 
-  TextEditingController? Car = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _checkboxController = MyCheckboxController();
+  }
 
-  TextEditingController? CustomerEmailAddress = TextEditingController();
+  final box = GetStorage();
+  CustomerCompanyController customerCompanyController = Get.put(CustomerCompanyController());
 
-  TextEditingController? CustomerType = TextEditingController();
+  final CustomerCompanyController newCustomerCompanyController = Get.find();
+  final TextEditingController CustomersName = TextEditingController();
+  final TextEditingController customerNameController = TextEditingController();
+  TextEditingController CustomerAddress = TextEditingController();
 
-  TextEditingController? Delegate = TextEditingController();
+  TextEditingController Car = TextEditingController();
 
-  TextEditingController? OrganizationNo = TextEditingController();
+  TextEditingController CustomerEmailAddress = TextEditingController();
 
-  TextEditingController? WebsiteAddress = TextEditingController();
+  TextEditingController CustomerType = TextEditingController();
 
-  TextEditingController? InvoiceAddress = TextEditingController();
+  TextEditingController Delegate = TextEditingController();
 
+  TextEditingController OrganizationNo = TextEditingController();
+
+  TextEditingController WebsiteAddress = TextEditingController();
+  // MyCheckboxController _checkboxController = MyCheckboxController();
+  TextEditingController InvoiceAddress = TextEditingController();
+  // final CustomerCompanyController newCustomerCompanyController = Get.find();
+  TextEditingController CustomCompanyController = TextEditingController();
+  bool isEdite = false;
+  bool value = false;
+  bool enabled = false ;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -125,7 +147,8 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             ),
           ),
           CustomTextFormField(
-            hint: "Private",
+            hint: "Företag",
+            enabled: false,
             controller: CustomerType,
           ),
           const SizedBox(
@@ -203,20 +226,48 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             height: 50,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Checkbox(
-                value: false,
-                onChanged: (bool? value) {},
+                value: _checkboxController.isChecked,
+                onChanged: (value) {
+                  setState(() {
+                    _checkboxController.isChecked = value!;
+                  });
+                },
               ),
-              const Text(
-                'Term of use & privacy policy',
-                style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+              Flexible( // Wrap the Text with Flexible
+                child: Text(
+                  'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
+                  style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+                  softWrap: true,
+                ),
               ),
             ],
           ),
           CustomButton(
             text: "Submit",
+            onPressed: () {
+              if (isEdite == false) {
+                newCustomerCompanyController
+                    .newCustomerCompany(
+                    branchId: box.read('branchId'),
+                    username: box.read('username'),
+                    cusName: CustomersName.text,
+                    cusEmail: CustomerEmailAddress.text,
+                    cusAddress: CustomerAddress.text,
+                    cusMobile: Car.text,
+                    cus_Delegera : Delegate.text,
+                    cus_orgenization_no : OrganizationNo.text,
+                    cus_invoice_address : InvoiceAddress.text,
+                    cus_wesite : WebsiteAddress.text,
+                    gdpr: _checkboxController.isChecked)
+                    .then((value) => newCustomerCompanyController.onInit());
+                CustomCompanyController.clear();
+              } else if (isEdite == false) {
+                return null;
+              }
+            },
           ),
         ],
       ),

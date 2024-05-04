@@ -1,75 +1,80 @@
-// ignore_for_file: file_names, must_be_immutable, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import '../Utils/AppStyle.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {super.key,
-      this.keyboardType,
-      this.hint,
-      required this.controller,
-      this.validator,
-      this.focusNode,
-      this.onChange,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.maxLines,
-      this.obscureText = false,
-      this.onTap,
-      this.contentPadding});
-  TextEditingController? controller = TextEditingController();
-  TextInputType? keyboardType;
-  String? hint;
-  FocusNode? focusNode;
-  Widget? suffixIcon;
-  Widget? prefixIcon;
-  bool obscureText = false;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final String? hint;
+  final FocusNode? focusNode;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final bool obscureText;
   final String? Function(String?)? validator;
-  Function(String)? onChange;
-  Function()? onTap;
-  var maxLines;
-  EdgeInsetsGeometry? contentPadding;
+  final Function(String)? onChange;
+  final Function()? onTap;
+  final int? maxLines;
+  final EdgeInsetsGeometry? contentPadding;
+  final bool enabled; // Make enabled property optional
+
+  CustomTextFormField({
+    Key? key,
+    this.keyboardType,
+    this.hint,
+    required this.controller,
+    this.validator,
+    this.focusNode,
+    this.onChange,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.maxLines,
+    this.obscureText = false,
+    this.onTap,
+    this.contentPadding,
+    this.enabled = true, // Assign a default value
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: Padding(
-      padding: EdgeInsets.only(
-        right: 15.0,
-        left: 15.0,
-      ),
-      child: TextFormField(
-        validator: validator,
-        controller: controller,
-        focusNode: focusNode,
-        onChanged: onChange,
-        obscureText: obscureText,
-        maxLines: maxLines,
-        textInputAction: TextInputAction.next,
-        onTap: onTap,
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-          contentPadding: contentPadding,
-          filled: true,
-          fillColor: FormBackGraund.withOpacity(.5),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: TextGrey),
+      child: Padding(
+        padding: EdgeInsets.only(
+          right: 15.0,
+          left: 15.0,
+        ),
+        child: TextFormField(
+          enabled: enabled, // Set the enabled property of TextFormField
+          validator: validator,
+          controller: controller,
+          focusNode: focusNode,
+          onChanged: onChange,
+          obscureText: obscureText,
+          maxLines: maxLines,
+          textInputAction: TextInputAction.next,
+          onTap: onTap,
+          keyboardType: keyboardType,
+          decoration: InputDecoration(
+            contentPadding: contentPadding,
+            filled: true,
+            fillColor: FormBackGraund.withOpacity(.5),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: TextGrey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: TextGrey),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(color: BorderGrey),
+            ),
+            hintText: hint,
+            hintStyle: FormTextStyle,
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: TextGrey),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(color: BorderGrey),
-          ),
-          hintText: hint,
-          hintStyle: FormTextStyle,
-          suffixIcon: suffixIcon,
-          prefixIcon: prefixIcon,
         ),
       ),
-    ));
+    );
   }
 }

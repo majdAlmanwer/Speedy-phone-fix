@@ -339,6 +339,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 ),
                 CustomButton(
                   text: "Submit",
+                  onPressed: () {},
                 ),
               ]),
             ),
