@@ -3,7 +3,6 @@ import 'package:speedy_phone_fix/Controller/CustomerCompanyController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,7 +16,6 @@ class CompanyCustomerScreenBody extends StatefulWidget {
   State<CompanyCustomerScreenBody> createState() =>
       _CompanyCustomerScreenBodyState();
 }
-
 class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
 
   late MyCheckboxController _checkboxController;
@@ -33,7 +31,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
 
   final CustomerCompanyController newCustomerCompanyController = Get.find();
   final TextEditingController CustomersName = TextEditingController();
-  final TextEditingController customerNameController = TextEditingController();
   TextEditingController CustomerAddress = TextEditingController();
 
   TextEditingController Car = TextEditingController();
@@ -49,7 +46,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
   TextEditingController WebsiteAddress = TextEditingController();
   // MyCheckboxController _checkboxController = MyCheckboxController();
   TextEditingController InvoiceAddress = TextEditingController();
-  // final CustomerCompanyController newCustomerCompanyController = Get.find();
   TextEditingController CustomCompanyController = TextEditingController();
   bool isEdite = false;
   bool value = false;
@@ -245,30 +241,49 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
               ),
             ],
           ),
-          CustomButton(
-            text: "Submit",
-            onPressed: () {
-              if (isEdite == false) {
-                newCustomerCompanyController
-                    .newCustomerCompany(
-                    branchId: box.read('branchId'),
-                    username: box.read('username'),
-                    cusName: CustomersName.text,
-                    cusEmail: CustomerEmailAddress.text,
-                    cusAddress: CustomerAddress.text,
-                    cusMobile: Car.text,
-                    cus_Delegera : Delegate.text,
-                    cus_orgenization_no : OrganizationNo.text,
-                    cus_invoice_address : InvoiceAddress.text,
-                    cus_wesite : WebsiteAddress.text,
-                    gdpr: _checkboxController.isChecked)
-                    .then((value) => newCustomerCompanyController.onInit());
-                CustomCompanyController.clear();
-              } else if (isEdite == false) {
-                return null;
-              }
-            },
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18), color: BlueColor),
+              child: TextButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.all(15)),
+                      foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ))),
+                  onPressed: () {
+                    if (isEdite == false) {
+                      newCustomerCompanyController
+                          .newCustomerCompany(
+                          branchId: box.read('branchId'),
+                          username: box.read('username'),
+                          cusName: CustomersName.text,
+                          cusEmail: CustomerEmailAddress.text,
+                          cusAddress: CustomerAddress.text,
+                          cusMobile: Car.text,
+                          cus_Delegera : Delegate.text,
+                          cus_orgenization_no : OrganizationNo.text,
+                          cus_invoice_address : InvoiceAddress.text,
+                          cus_wesite : WebsiteAddress.text,
+                          gdpr: _checkboxController.isChecked)
+                          .then((value) => newCustomerCompanyController.onInit());
+                      CustomCompanyController.clear();
+                    } else if (isEdite == false) {
+                      return null;
+                    }
+                  },
+                  child: const Text("Save",
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold))),
+            ),
           ),
+
         ],
       ),
     );
