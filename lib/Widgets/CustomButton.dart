@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({super.key, required this.text});
+  CustomButton({super.key, required this.text,required this.onPressed});
   String text;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
