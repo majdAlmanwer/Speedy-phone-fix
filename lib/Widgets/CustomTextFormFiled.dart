@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../Utils/AppStyle.dart';
+GlobalKey<FormState> formstate = GlobalKey();
 
 class CustomTextFormField extends StatelessWidget {
+
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String? hint;
@@ -9,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool obscureText;
+
   final String? Function(String?)? validator;
   final Function(String)? onChange;
   final Function()? onTap;
@@ -36,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+
       child: Padding(
         padding: EdgeInsets.only(
           right: 15.0,
@@ -76,5 +81,6 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
     );
+
   }
 }
