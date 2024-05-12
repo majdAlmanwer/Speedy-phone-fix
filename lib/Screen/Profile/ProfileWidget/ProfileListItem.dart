@@ -21,7 +21,7 @@ class ProfileListItem extends StatelessWidget {
             children: [
               SizedBox(
                   height: Get.height * 0.08,
-                  width: Get.width * 0.05,
+                  width: Get.width * 0.06,
                   child: Image.asset(imagePath)),
               SizedBox(
                 width: Get.height * 0.04,
