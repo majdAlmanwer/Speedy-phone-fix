@@ -40,7 +40,7 @@ class CustomSearchDropDown extends StatelessWidget {
         hintText: 'Search customer by mobile',
         items: const [],
         onChanged: (value) {
-          searchResult.value = value;
+          searchResult.value == value;
         },
       ),
     );

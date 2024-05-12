@@ -169,20 +169,6 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
               const SizedBox(
                 height: 20.0,
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Reset Your Password',
-                      style: TextStyle(
-                        color: BlueColor, fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        decoration: TextDecoration.underline,
-                        decorationColor:
-                            BlueColor, // You can adjust the line color
-                        decorationThickness: 1.0,
-                      ))
-                ],
-              ),
             ],
           ),
         ),
