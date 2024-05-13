@@ -5,15 +5,19 @@ import 'package:get_storage/get_storage.dart';
 import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 import '../../Controller/CustomerPrivateController.dart';
+
 class MyCheckboxController {
   bool isChecked = false;
 }
+
 class IndividualCustomerScreenBody extends StatefulWidget {
   IndividualCustomerScreenBody({super.key});
 
   @override
-  State<IndividualCustomerScreenBody> createState() => _IndividualCustomerState();
+  State<IndividualCustomerScreenBody> createState() =>
+      _IndividualCustomerState();
 }
+
 class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
   late MyCheckboxController _checkboxController;
 
@@ -22,7 +26,9 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
     super.initState();
     _checkboxController = MyCheckboxController();
   }
-  CustomerPrivateController customerPrivateController = Get.put(CustomerPrivateController());
+
+  CustomerPrivateController customerPrivateController =
+      Get.put(CustomerPrivateController());
   final CustomerPrivateController newCustomerPrivateController = Get.find();
   final box = GetStorage();
   TextEditingController CustomPrivateController = TextEditingController();
@@ -31,11 +37,11 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
   final TextEditingController mobileController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController customerTypeController = TextEditingController();
-  final TextEditingController gdprController  = TextEditingController();
+  final TextEditingController gdprController = TextEditingController();
 
   bool value = true;
   bool isEdite = false;
-  bool enabled = false ;
+  bool enabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +104,7 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
               width: 20,
               height: 20,
               image:
-              AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
+                  AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
           keyboardType: TextInputType.phone,
           controller: mobileController,
         ),
@@ -169,7 +175,8 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
             const SizedBox(
               width: 10,
             ),
-            Flexible( // Wrap the Text with Flexible
+            Flexible(
+              // Wrap the Text with Flexible
               child: Text(
                 'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
                 style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
@@ -189,22 +196,22 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         const EdgeInsets.all(15)),
                     foregroundColor:
-                    MaterialStateProperty.all<Color>(Colors.white),
+                        MaterialStateProperty.all<Color>(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ))),
+                      borderRadius: BorderRadius.circular(18.0),
+                    ))),
                 onPressed: () {
                   if (isEdite == false) {
                     newCustomerPrivateController
                         .newCustomerPrivate(
-                        branchId: box.read('branchId'),
-                        userName: box.read('username'),
-                        cusName: customerNameController.text,
-                        cusEmail: emailController.text,
-                        cusAddress: addressController.text,
-                        cusMobile: mobileController.text,
-                        gdpr: _checkboxController.isChecked)
+                            branchId: box.read('branchId'),
+                            userName: box.read('username'),
+                            cusName: customerNameController.text,
+                            cusEmail: emailController.text,
+                            cusAddress: addressController.text,
+                            cusMobile: mobileController.text,
+                            gdpr: _checkboxController.isChecked)
                         .then((value) => newCustomerPrivateController.onInit());
                     CustomPrivateController.clear();
                   } else if (isEdite == false) {
@@ -212,11 +219,10 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
                   }
                 },
                 child: const Text("Save",
-                    style: TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold))),
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
           ),
         ),
-
       ]),
     );
   }

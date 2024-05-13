@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:speedy_phone_fix/Screen/Auth/SignUp/TermsAndPrivacy.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
@@ -80,10 +81,6 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                     width: 10,
                   ),
                 ),
-                suffixIcon: const Icon(
-                  Icons.remove_red_eye,
-                  color: LightGrey,
-                ),
               ),
               const SizedBox(
                 height: 10.0,
@@ -99,11 +96,12 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   return null;
                 },
                 keyboardType: TextInputType.number,
-                prefixIcon: const Icon(
-                  Icons.phone,
-                  color: BlueColor,
-                ),
-                hint: 'Phone Number',
+                prefixIcon: const Image(
+                    width: 20,
+                    height: 20,
+                    image: AssetImage(
+                        "Assets/Icons/emojione-v1_flag-for-sweden.png")),
+                hint: '+46',
               ),
               const SizedBox(
                 height: 10.0,
@@ -149,15 +147,20 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
               const SizedBox(
                 height: 20.0,
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Terms of use & privacy policy',
-                      style: TextStyle(
-                          color: BlueColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14))
-                ],
+              InkWell(
+                onTap: () {
+                  Get.to(TermsAndPrivacyScreen());
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Terms of use & privacy policy',
+                        style: TextStyle(
+                            color: BlueColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14))
+                  ],
+                ),
               ),
             ],
           ),

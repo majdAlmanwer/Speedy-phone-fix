@@ -1,11 +1,10 @@
 // // ignore_for_file: file_names, prefer_const_constructors, sort_child_properties_last
-//
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-
 import '../../Controller/OrderController.dart';
 import '../../Utils/AppStyle.dart';
 import '../../Widgets/CustomTextFormFiled.dart';
@@ -97,6 +96,7 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             },
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 10.0, vertical: 30),
+
           ),
           const SizedBox(
             height: 10,
@@ -112,15 +112,13 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Add Customer Name',
             controller: customerNameController,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
           ),
           const SizedBox(
             height: 10,
@@ -136,6 +134,11 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: '+46',
             prefixIcon: Image(
                 width: 20,
@@ -144,13 +147,6 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
                     AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
             controller: customerMobileController,
             keyboardType: TextInputType.number,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
           ),
           const SizedBox(
             height: 10,
@@ -166,15 +162,13 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Customer Email Address',
             controller: customerEmailController,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
           ),
           const SizedBox(
             height: 10,
@@ -191,16 +185,15 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Quantity',
             controller: quantityController,
             keyboardType: TextInputType.number,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
+
           ),
           const SizedBox(
             height: 10,
@@ -216,16 +209,14 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
           ),
           CustomTextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "The Field is Empty";
+              }
+            },
             hint: 'Unit Price',
             controller: priceController,
             keyboardType: TextInputType.number,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
           ),
           const SizedBox(
             height: 10,
@@ -240,6 +231,7 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
               style: textStyle,
             ),
           ),
+
           Row(
             children: [
               Expanded(
@@ -277,25 +269,10 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
                     }
                   },
 
-                  // onTap: () async {
-                  //   var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-                  //   var now = DateTime.now();
-                  //   if (time != null) {
-                  //     setState(() {
-                  //       // Format time in 24-hour format
-                  //       String formattedTime = DateFormat('HH:mm').format(time);
-                  //       expectedDeliveryTimeController.text = formattedTime;
-                  //     });
-                  //   }
-                  // },
                 ),
               ),
             ],
           ),
-          // CustomTextFormField(
-          //   hint: '11/02/2024  10:00 a.m',
-          //   controller: orderDateController,
-          // ),
           SizedBox(
             height: 20,
           ),
@@ -313,7 +290,6 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
                       MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
                           ))),
                   onPressed: () {
                     if (isSave == false) {
