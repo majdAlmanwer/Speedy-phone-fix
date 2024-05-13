@@ -25,13 +25,14 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
   CustomerPrivateController customerPrivateController = Get.put(CustomerPrivateController());
   final CustomerPrivateController newCustomerPrivateController = Get.find();
   final box = GetStorage();
+  TextEditingController CustomPrivateController = TextEditingController();
   final TextEditingController customerNameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController mobileController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController customerTypeController = TextEditingController();
   final TextEditingController gdprController  = TextEditingController();
-  TextEditingController CustomPrivateController = TextEditingController();
+
   bool value = true;
   bool isEdite = false;
   bool enabled = false ;
@@ -151,7 +152,15 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
           children: [
             Checkbox(
               value: _checkboxController.isChecked,
+
               onChanged: (value) {
+                validator: (val) {
+                  print("Validating:  with value: $val");
+                  if (val == null || val.isEmpty) {
+                    return 'required'.tr;
+                  }
+                  return null;
+                };
                 setState(() {
                   _checkboxController.isChecked = value!;
                 });

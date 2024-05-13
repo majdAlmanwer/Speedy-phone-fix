@@ -4,30 +4,29 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:speedy_phone_fix/Api/Api.dart';
-import 'package:speedy_phone_fix/Model/CustomerCompanyResponseModel.dart';
-
 import '../Controller/LoaderController.dart';
+import '../Model/OrderResponseModel.dart';
 
-class CustomerCompanyService {
-  static CustomerCompanyService? _instance;
+class OrderService {
+  static OrderService? _instance;
 
   var dio = Dio();
-  factory CustomerCompanyService() => _instance ??= CustomerCompanyService._();
+  factory OrderService() => _instance ??= OrderService._();
 
-  CustomerCompanyService._();
+  OrderService._();
 
   final LoaderController loaderController = Get.find<LoaderController>();
 
   GetStorage box = GetStorage();
 
-  Future<CustomerCompanyResponseModel> saveCustomerCompany([dynamic data]) async {
+  Future<OrderResponseModel> saveOrder([dynamic data]) async {
     loaderController.loading(true);
 
     try {
-      var res = await Api().dio.post('/save_company_customer.aspx', data: data);
+      var res = await Api().dio.post('/save_order.aspx', data: data);
 
       if (res.statusCode == 200) {
-        return CustomerCompanyResponseModel.fromJson(jsonDecode(res.data));
+        return OrderResponseModel.fromJson(jsonDecode(res.data));
       }
     } catch (e) {
       if (e is DioException) {
@@ -37,7 +36,9 @@ class CustomerCompanyService {
       }
       loaderController.loading(false);
     }
-    return CustomerCompanyResponseModel();
+    return OrderResponseModel();
   }
+
+
 
 }

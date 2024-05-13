@@ -1,38 +1,47 @@
-// // ignore_for_file: file_names
-//
+// // // ignore_for_file: file_names
+// //
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:speedy_phone_fix/Controller/SaveCaseController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
-import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
-import 'package:speedy_phone_fix/Routes/Routes.dart';
+import '../../Controller/CustomerPrivateController.dart';
 import '../../Controller/LoaderController.dart';
+import '../../Controller/NewCaseController.dart';
+import '../../Routes/Routes.dart';
 import '../../Widgets/CustomAlertDialog.dart';
+import '../../Widgets/CustomDropdownListFormField.dart';
 import '../../Widgets/CustomSearchDropDown.dart';
-
-import 'package:intl/intl.dart';
-
+class MyCheckboxController {
+  bool isChecked = false;
+}
 class NewCaseScreenBody extends StatefulWidget {
-  const NewCaseScreenBody({super.key});
+  NewCaseScreenBody({super.key});
 
   @override
-  State<NewCaseScreenBody> createState() =>
-      _NewCaseScreenBodyState();
+  State<NewCaseScreenBody> createState() => _NewCaseScreenBodyState();
 }
-
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
 
-  @override
-  final box = GetStorage();
-  SaveCaseController caseController = Get.put(SaveCaseController());
 
-  final SaveCaseController CaseController = Get.find();
+  @override
+  void initState() {
+    super.initState();
+  }
+  SaveCaseController saveCaseController = Get.put(SaveCaseController());
+  final SaveCaseController newCaseController = Get.find();
+  final box = GetStorage();
   TextEditingController addCaseController = TextEditingController();
+  final TextEditingController customerNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController customerTypeController = TextEditingController();
+  final TextEditingController gdprController  = TextEditingController();
   final TextEditingController caseStatusController = TextEditingController();
   final TextEditingController caseType1Controller = TextEditingController();
   final TextEditingController caseType2Controller = TextEditingController();
@@ -45,8 +54,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   final TextEditingController discountController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
   final TextEditingController privateNoteController = TextEditingController();
-  final TextEditingController searchCustomerController =
-  TextEditingController();
+  final TextEditingController searchCustomerController = TextEditingController();
   final TextEditingController problemDescriptionController =
   TextEditingController();
   final TextEditingController expectedDeliveryDateController =
@@ -57,10 +65,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   final loaderController = Get.put(LoaderController());
   DateTime dateTime = DateTime(2022,2,2,5,4);
   bool isSave = false;
+
+  bool isEdite = false;
   @override
   Widget build(BuildContext context) {
-    final hours  = dateTime.hour.toString().padLeft(2,'0');
-    final minutes  = dateTime.minute.toString().padLeft(2,'0');
     return GetBuilder<NewCaseController>(
 
       builder: (controller) => loaderController.loading.value
@@ -114,15 +122,14 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
               )
             ],
           ),
-          // Obx(
-          //   () =>
+
           Padding(
             padding: const EdgeInsets.only(
               right: 15.0,
               left: 15.0,
             ),
-
-            child: controller.allCustomersList!.isEmpty
+            child:
+            controller.allCustomersList!.isEmpty
                 ? CircularProgressIndicator(color: BlueColor)
                 : CustomDropdown.search(
               decoration: CustomDropdownDecoration(
@@ -132,19 +139,23 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
               hintText: 'Choose customer',
               initialItem: searchCustomer.value,
               items:
-              // controller.allCustomersList!.isNotEmpty
-              //     ?
               controller.allCustomersList!
                   .map((e) => e.cusName)
                   .toList(),
-              // : List.generate(1, (index) => Text('...')),
               excludeSelected: false,
               onChanged: (value) {
                 searchCustomer.value == value;
                 print('changing value to: $value');
               },
-            ),
+              validator: (val) {
+                print("Validating:  with value: $val");
+                if (val == null || val.isEmpty) {
+                  return 'required'.tr;
+                }
+                return null;
+              },
 
+            ),
           ),
           // ),
 
@@ -203,6 +214,13 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
             onChanged: (Value) {},
             hint: 'Not Specified',
             controller: caseType1Controller,
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
 
           const SizedBox(
@@ -322,6 +340,13 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           CustomTextFormField(
             hint: 'Device Password',
             controller: devicePasswordController,
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
           const ListTile(
             leading: Icon(Icons.data_object_sharp),
@@ -355,6 +380,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           CustomTextFormField(
             hint: 'Price',
             controller: priceController,
+            keyboardType: TextInputType.number,
           ),
           const ListTile(
             leading: Icon(Icons.discount),
@@ -366,6 +392,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           CustomTextFormField(
             hint: 'Discount',
             controller: discountController,
+            keyboardType: TextInputType.number,
           ),
           const ListTile(
             leading: Icon(Icons.date_range_outlined),
@@ -380,6 +407,13 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 child:CustomTextFormField(
                   hint: '11/02/2024',
                   controller: expectedDeliveryDateController,
+                  validator: (val) {
+                    print("Validating:  with value: $val");
+                    if (val == null || val.isEmpty) {
+                      return 'required'.tr;
+                    }
+                    return null;
+                  },
                   onTap: () => onTapFunction(context: context),
                 ),
               ),
@@ -388,15 +422,33 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 child:CustomTextFormField(
                   hint: '5:30',
                   controller: expectedDeliveryTimeController,
-                  onTap: () async{
+
+                  onTap: () async {
                     var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-                    if(time !=null){
+                    if (time != null) {
                       setState(() {
-                        // timePicker.text = time.format(context);
-                        expectedDeliveryTimeController.text = time.format(context);
+                        // Extract hours and minutes from TimeOfDay object
+                        int hours = time.hour;
+                        int minutes = time.minute;
+
+                        // Format time in 24-hour format
+                        String formattedTime = DateFormat('HH:mm').format(DateTime(2024, 1, 1, hours, minutes));
+                        expectedDeliveryTimeController.text = formattedTime;
                       });
                     }
                   },
+
+                  // onTap: () async {
+                  //   var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+                  //   var now = DateTime.now();
+                  //   if (time != null) {
+                  //     setState(() {
+                  //       // Format time in 24-hour format
+                  //       String formattedTime = DateFormat('HH:mm').format(time);
+                  //       expectedDeliveryTimeController.text = formattedTime;
+                  //     });
+                  //   }
+                  // },
                 ),
               ),
             ],
@@ -412,6 +464,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
           CustomTextFormField(
             hint: 'Note',
             controller: noteController,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            contentPadding:
+            EdgeInsets.symmetric(horizontal: 10.0, vertical: 30),
           ),
           const ListTile(
             leading: Icon(Icons.note_add_outlined),
@@ -444,12 +500,13 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                             borderRadius: BorderRadius.circular(18.0),
                           ))),
                   onPressed: () {
-                    if (isSave == false) {
-                      CaseController
+                    if (isEdite == false) {
+                      newCaseController
                           .newCase(
                         branchId: box.read('branchId'),
                         username: box.read('username'),
-                        cus_name: searchCustomerController.text,
+                        cus_name: searchCustomer.value,
+                        cas_status : caseStatusController.text,
                         cas_Repair_type1: caseType1Controller.text,
                         cas_Repair_type2: caseType2Controller.text,
                         cas_Repair_type3: caseType3Controller.text,
@@ -464,11 +521,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         cas_estimated_delivery_time : expectedDeliveryTimeController.text,
                         cas_note:noteController.text,
                         cas_private_note:privateNoteController.text,
-                        cas_status : caseStatusController.text,
                       )
-                          .then((value) => CaseController.onInit());
+                          .then((value) => newCaseController.onInit());
                       addCaseController.clear();
-                    } else if (isSave == false) {
+                    } else if (isEdite == false) {
                       return null;
                     }
                   },
@@ -477,6 +533,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                           fontSize: 14, fontWeight: FontWeight.bold))),
             ),
           ),
+
+
         ]),
       ),
     );
@@ -487,9 +545,27 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
       lastDate: DateTime.now(),
       firstDate: DateTime(2015),
       initialDate: DateTime.now(),
+
     );
     if (pickedDate == null) return;
+
     expectedDeliveryDateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
   }
 }
+// class NewCaseScreenBody extends StatefulWidget {
+//   const NewCaseScreenBody({super.key});
+//
+//   @override
+//   State<NewCaseScreenBody> createState() =>
+//       _NewCaseScreenBodyState();
+// }
+//
+// class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
+//
+//   @override
+//   final box = GetStorage();
+//   SaveCaseController caseController = Get.put(SaveCaseController());
+//   final SaveCaseController CaseController = Get.find();
+//   TextEditingController addCaseController = TextEditingController();
+
 
