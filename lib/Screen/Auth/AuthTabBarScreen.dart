@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, sized_box_for_whitespace, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Utils/AppStyle.dart';
 import 'SignIn/SignInScreen.dart';
@@ -33,8 +34,8 @@ class _AuthTabBarPageState extends State<AuthTabBar>
     var passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-            child: Text('Welcome!',
+        title: Center(
+            child: Text('Welcome!'.tr,
                 style: TextStyle(
                     color: BlueColor,
                     fontWeight: FontWeight.bold,
@@ -68,12 +69,12 @@ class _AuthTabBarPageState extends State<AuthTabBar>
                         indicatorSize: TabBarIndicatorSize.tab,
                         dividerColor: Colors.transparent,
                         controller: _tabController,
-                        tabs: const [
+                        tabs: [
                           Tab(
                             child: Padding(
                               padding: EdgeInsets.only(left: 24.0, right: 24.0),
                               child: Text(
-                                'Sign In',
+                                'Sign In'.tr,
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   // fontWeight: FontWeight.bold,
@@ -86,7 +87,7 @@ class _AuthTabBarPageState extends State<AuthTabBar>
                             child: Padding(
                               padding: EdgeInsets.only(left: 12.0, right: 12.0),
                               child: Text(
-                                'Sign Up',
+                                'Sign Up'.tr,
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   // fontWeight: FontWeight.bold,

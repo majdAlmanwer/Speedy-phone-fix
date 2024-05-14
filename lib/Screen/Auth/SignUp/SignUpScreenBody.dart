@@ -1,7 +1,4 @@
 // ignore_for_file: file_names
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speedy_phone_fix/Screen/Auth/SignUp/TermsAndPrivacy.dart';
@@ -55,14 +52,14 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                     width: 10,
                   ),
                 ),
-                hint: 'Full Name',
+                hint: 'Full Name'.tr,
               ),
               const SizedBox(
                 height: 10.0,
               ),
               AuthFormField(
                 controller: emailController,
-                hint: 'Email',
+                hint: 'Email'.tr,
                 validator: (val) {
                   if (val == null || val.isEmpty) {
                     return 'Please Enter Email'.tr;
@@ -140,8 +137,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                             opacityColor: BlueColor.withOpacity(0.1));
                       }
                     },
-                    child: const Text("Submit",
-                        style: TextStyle(
+                    child: Text("Submit".tr,
+                        style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ),
               const SizedBox(
@@ -151,11 +148,11 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 onTap: () {
                   Get.to(TermsAndPrivacyScreen());
                 },
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Terms of use & privacy policy',
-                        style: TextStyle(
+                    Text('Terms of use & privacy policy'.tr,
+                        style: const TextStyle(
                             color: BlueColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 14))
