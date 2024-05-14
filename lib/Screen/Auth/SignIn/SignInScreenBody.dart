@@ -36,52 +36,6 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Center(child: Text('Welcome!',
-      //       style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold,
-      //       fontSize: 24))),
-      //   bottom: PreferredSize(
-      //       child: Padding(
-      //         padding: EdgeInsets.only(left:15, bottom: 5, right: 15, top:5),
-      //         child: Container(
-      //           width: double.infinity,
-      //           height: 50,
-      //           decoration: BoxDecoration(
-      //               borderRadius: BorderRadius.circular(30),
-      //               color: FormBackGraund,
-      //           ),
-      //           child: TabBar(
-      //             controller: _tabController,
-      //             tabs: [
-      //               Container(
-      //                 child: Padding(
-      //                   padding: EdgeInsets.only(left:15, bottom: 0, right: 15, top:0),
-      //                   child: Center(
-      //                     child: Text(
-      //                       'Sign Up',
-      //                         style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold,
-      //                             fontSize: 20)
-      //                     ),
-      //                   ),
-      //                 ),
-      //                 decoration: BoxDecoration(
-      //                   borderRadius: BorderRadius.circular(30),
-      //                   color: Colors.white,
-      //                 ),
-      //                 height: 40,
-      //               ),
-      //                Text('Sign In',
-      //                     style: TextStyle(color: TextGrey, fontWeight: FontWeight.bold,
-      //                         fontSize: 20)
-      //                 ),
-      //             ],
-      //               indicatorColor: Colors.transparent,
-      //           ),
-      //         ),
-      //       ),
-      //       preferredSize: Size.fromHeight(kToolbarHeight)
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
@@ -105,7 +59,7 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                     width: 10,
                   ),
                 ),
-                hint: 'User Name',
+                hint: 'User Name'.tr,
               ),
               const SizedBox(
                 height: 20.0,
@@ -123,7 +77,7 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                     width: 10,
                   ),
                 ),
-                hint: 'Password',
+                hint: 'Password'.tr,
                 suffixIcon: const Icon(
                   Icons.remove_red_eye,
                   color: LightGrey,
@@ -161,8 +115,8 @@ class _SignInScreenBodyPageState extends State<SignInScreenBody>
                             userName: emailController.text,
                             password: passwordController.text);
                       },
-                      child: const Text("Sign In",
-                          style: TextStyle(
+                      child: Text("Sign In".tr,
+                          style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.bold))),
                 ),
               ),

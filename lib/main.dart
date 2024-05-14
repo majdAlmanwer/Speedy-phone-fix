@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
       getPages: pages,
       title: 'Speedy Phone Fix',
       translationsKeys: AppTranslation.translationKeys,
-      locale: const Locale('en'),
-      fallbackLocale: const Locale('en'),
+      locale: const Locale('se'),
+      fallbackLocale: const Locale('se'),
       theme: ThemeData(),
     );
   }

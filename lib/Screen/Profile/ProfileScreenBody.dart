@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:speedy_phone_fix/Routes/Routes.dart';
+import 'package:speedy_phone_fix/Screen/Profile/Language/ChangeLanguageScreen.dart';
 import 'package:speedy_phone_fix/Screen/Profile/PrivacyPolicy/PricavyPolicyScreen.dart';
 import 'package:speedy_phone_fix/Screen/Profile/ProfileWidget/ProfileListItem.dart';
 import 'package:speedy_phone_fix/Screen/Profile/Terms/TermsScreen.dart';
@@ -39,6 +40,13 @@ class ProfileScreenBody extends StatelessWidget {
             },
             child: ProfileListItem(
                 title: 'Delete Account', imagePath: 'Assets/Icons/profile.png'),
+          ),
+          ProfileListItem(
+            title: 'Change Language',
+            imagePath: 'Assets/Icons/lang.png',
+            onTap: () {
+              Get.to(ChangeLanguageScreen());
+            },
           ),
           ProfileListItem(
             title: 'Privacy Policy',
