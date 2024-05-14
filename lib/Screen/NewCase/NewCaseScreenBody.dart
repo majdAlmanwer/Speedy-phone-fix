@@ -1,36 +1,46 @@
-// // ignore_for_file: file_names
-//
+// // // ignore_for_file: file_names
+// //
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:speedy_phone_fix/Controller/SaveCaseController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:speedy_phone_fix/Controller/NewCaseController.dart';
-import 'package:speedy_phone_fix/Widgets/CustomDropdownListFormField.dart';
-import 'package:speedy_phone_fix/Routes/Routes.dart';
+import '../../Controller/CustomerPrivateController.dart';
 import '../../Controller/LoaderController.dart';
+import '../../Controller/NewCaseController.dart';
+import '../../Routes/Routes.dart';
 import '../../Widgets/CustomAlertDialog.dart';
+import '../../Widgets/CustomDropdownListFormField.dart';
 import '../../Widgets/CustomSearchDropDown.dart';
-
-import 'package:intl/intl.dart';
-
+class MyCheckboxController {
+  bool isChecked = false;
+}
 class NewCaseScreenBody extends StatefulWidget {
-  const NewCaseScreenBody({super.key});
+  NewCaseScreenBody({super.key});
 
   @override
   State<NewCaseScreenBody> createState() => _NewCaseScreenBodyState();
 }
-
 class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
-  @override
-  final box = GetStorage();
-  SaveCaseController caseController = Get.put(SaveCaseController());
 
-  final SaveCaseController CaseController = Get.find();
+  @override
+  void initState() {
+    super.initState();
+  }
+  SaveCaseController saveCaseController = Get.put(SaveCaseController());
+  final SaveCaseController newCaseController = Get.find();
+  final box = GetStorage();
   TextEditingController addCaseController = TextEditingController();
+  final TextEditingController customerNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController customerTypeController = TextEditingController();
+  final TextEditingController gdprController  = TextEditingController();
   final TextEditingController caseStatusController = TextEditingController();
   final TextEditingController caseType1Controller = TextEditingController();
   final TextEditingController caseType2Controller = TextEditingController();
@@ -44,6 +54,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   final TextEditingController discountController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
   final TextEditingController privateNoteController = TextEditingController();
+
   final TextEditingController searchCustomerController =
       TextEditingController();
   final TextEditingController problemDescriptionController =
@@ -56,10 +67,12 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
   final loaderController = Get.put(LoaderController());
   DateTime dateTime = DateTime(2022, 2, 2, 5, 4);
   bool isSave = false;
+
+  bool isEdite = false;
   @override
   Widget build(BuildContext context) {
-    final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
+
     return GetBuilder<NewCaseController>(
       builder: (controller) => loaderController.loading.value
           ? Center(
@@ -322,6 +335,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   hint: 'Device Password',
                   controller: devicePasswordController,
                 ),
+
                 const ListTile(
                   leading: Icon(Icons.data_object_sharp),
                   title: Text(
@@ -354,6 +368,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 CustomTextFormField(
                   hint: 'Price',
                   controller: priceController,
+                  keyboardType: TextInputType.number,
                 ),
                 const ListTile(
                   leading: Icon(Icons.discount),
@@ -365,6 +380,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 CustomTextFormField(
                   hint: 'Discount',
                   controller: discountController,
+                  keyboardType: TextInputType.number,
                 ),
                 const ListTile(
                   leading: Icon(Icons.date_range_outlined),
@@ -387,21 +403,24 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         hint: '5:30',
                         controller: expectedDeliveryTimeController,
                         onTap: () async {
-                          var time = await showTimePicker(
-                              context: context, initialTime: TimeOfDay.now());
+                          var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
                           if (time != null) {
                             setState(() {
-                              // timePicker.text = time.format(context);
-                              expectedDeliveryTimeController.text =
-                                  time.format(context);
+                              // Extract hours and minutes from TimeOfDay object
+                              int hours = time.hour;
+                              int minutes = time.minute;
+
+                              // Format time in 24-hour format
+                              String formattedTime = DateFormat('HH:mm').format(DateTime(2024, 1, 1, hours, minutes));
+                              expectedDeliveryTimeController.text = formattedTime;
                             });
                           }
                         },
                       ),
                     ),
                   ],
-                ),
 
+                ),
                 const ListTile(
                   leading: Icon(Icons.note_add_outlined),
                   title: Text(
@@ -432,46 +451,43 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        color: BlueColor),
+                        borderRadius: BorderRadius.circular(18), color: BlueColor),
                     child: TextButton(
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(15)),
                             foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ))),
+                            MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ))),
                         onPressed: () {
-                          print('sfsfsfsfdsf${searchCustomer.value}');
-                          if (isSave == false) {
-                            CaseController.newCase(
+                          if (isEdite == false) {
+                            newCaseController
+                                .newCase(
                               branchId: box.read('branchId'),
                               username: box.read('username'),
                               cus_name: searchCustomer.value,
+                              cas_status : caseStatusController.text,
                               cas_Repair_type1: caseType1Controller.text,
                               cas_Repair_type2: caseType2Controller.text,
                               cas_Repair_type3: caseType3Controller.text,
-                              cas_make_model: makeModelController.text,
+                              cas_make_model : makeModelController.text,
                               cas_device_data: deviceDataController.text,
-                              cas_device_password:
-                                  devicePasswordController.text,
-                              cas_device_IMEI: imeiController.text,
-                              cas_problem_description:
-                                  problemDescriptionController.text,
-                              cas_estimated_price: priceController.text,
-                              cas_discount: discountController.text,
-                              cas_estimated_delivery_date:
-                                  expectedDeliveryDateController.text,
-                              cas_estimated_delivery_time:
-                                  expectedDeliveryTimeController.text,
-                              cas_note: noteController.text,
-                              cas_private_note: privateNoteController.text,
-                              cas_status: caseStatusController.text,
-                            ).then((value) => addCaseController.clear());
-                          } else if (isSave == false) {
+                              cas_device_password: devicePasswordController.text,
+                              cas_device_IMEI : imeiController.text,
+                              cas_problem_description : problemDescriptionController.text,
+                              cas_estimated_price : priceController.text,
+                              cas_discount : discountController.text,
+                              cas_estimated_delivery_date: expectedDeliveryDateController.text,
+                              cas_estimated_delivery_time : expectedDeliveryTimeController.text,
+                              cas_note:noteController.text,
+                              cas_private_note:privateNoteController.text,
+                            )
+                                .then((value) => newCaseController.onInit());
+                            addCaseController.clear();
+                          } else if (isEdite == false) {
                             return null;
                           }
                         },
@@ -482,6 +498,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                 ),
               ]),
             ),
+
     );
   }
 
@@ -491,9 +508,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
       lastDate: DateTime.now(),
       firstDate: DateTime(2015),
       initialDate: DateTime.now(),
+
     );
     if (pickedDate == null) return;
-    expectedDeliveryDateController.text =
-        DateFormat('yyyy-MM-dd').format(pickedDate);
+    expectedDeliveryDateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
   }
 }
+

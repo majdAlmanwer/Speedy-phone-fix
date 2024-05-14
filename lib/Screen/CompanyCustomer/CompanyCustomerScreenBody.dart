@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:speedy_phone_fix/Controller/CustomerCompanyController.dart';
 import 'package:speedy_phone_fix/Utils/AppStyle.dart';
-import 'package:speedy_phone_fix/Widgets/CustomButton.dart';
 import 'package:speedy_phone_fix/Widgets/CustomTextFormFiled.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:get_storage/get_storage.dart';
 class MyCheckboxController {
   bool isChecked = false;
@@ -44,7 +44,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
   TextEditingController OrganizationNo = TextEditingController();
 
   TextEditingController WebsiteAddress = TextEditingController();
-  // MyCheckboxController _checkboxController = MyCheckboxController();
   TextEditingController InvoiceAddress = TextEditingController();
   TextEditingController CustomCompanyController = TextEditingController();
   bool isEdite = false;
@@ -68,7 +67,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           CustomTextFormField(
             hint: "Add customer’s name",
             controller: CustomersName,
-            keyboardType: TextInputType.text,
           ),
           const SizedBox(
             height: 10,
@@ -86,7 +84,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           CustomTextFormField(
             hint: "Customer’s Address",
             controller: CustomerAddress,
-            keyboardType: TextInputType.phone,
           ),
           const SizedBox(
             height: 10,
@@ -127,7 +124,6 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           CustomTextFormField(
             controller: CustomerEmailAddress,
             hint: "Customer’s Email Address",
-            keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
             height: 10,
@@ -163,6 +159,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           CustomTextFormField(
             controller: Delegate,
             hint: "Delegate",
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 10,
@@ -179,8 +182,15 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           ),
           CustomTextFormField(
             controller: OrganizationNo,
-            hint: "Number",
+            hint: "Organization Number",
             keyboardType: TextInputType.number,
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 10,
@@ -215,8 +225,14 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
           ),
           CustomTextFormField(
             controller: InvoiceAddress,
-            hint: "Address",
-            keyboardType: TextInputType.phone,
+            hint: "Invoice Address",
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
           const SizedBox(
             height: 50,
@@ -227,6 +243,13 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
               Checkbox(
                 value: _checkboxController.isChecked,
                 onChanged: (value) {
+                  validator: (val) {
+                    print("Validating:  with value: $val");
+                    if (val == null || val.isEmpty) {
+                      return 'required'.tr;
+                    }
+                    return null;
+                  };
                   setState(() {
                     _checkboxController.isChecked = value!;
                   });
