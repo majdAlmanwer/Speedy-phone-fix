@@ -42,188 +42,203 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
   bool value = true;
   bool isEdite = false;
   bool enabled = false;
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
-        const ListTile(
-          leading: Image(
-              width: 23,
-              height: 23,
-              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
-          title: Text(
-            'Customer’s Name',
-            style: textStyle,
+      child: Form(
+        key: _formKey,
+        child: Column(children: [
+          const ListTile(
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
+            title: Text(
+              'Customer’s Name',
+              style: textStyle,
+            ),
           ),
-        ),
-        CustomTextFormField(
-          hint: "Add customer's name",
-          controller: customerNameController,
-          validator: (val) {
-            print("Validating:  with value: $val");
-            if (val == null || val.isEmpty) {
-              return 'required'.tr;
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const ListTile(
-          leading: Image(
-              width: 23,
-              height: 23,
-              image: AssetImage("Assets/Icons/bx_map.png")),
-          title: Text(
-            'Address',
-            style: textStyle,
+          CustomTextFormField(
+            hint: "Add customer's name",
+            controller: customerNameController,
+            validator: (val) {
+              print("Validating:  with value: $val");
+              if (val == null || val.isEmpty) {
+                return 'required'.tr;
+              }
+              return null;
+            },
           ),
-        ),
-        CustomTextFormField(
-          hint: "Customer's Address",
-          controller: addressController,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const ListTile(
-          leading: Image(
-              width: 23,
-              height: 23,
-              image: AssetImage("Assets/Icons/carbon_phone.png")),
-          title: Text(
-            'Car',
-            style: textStyle,
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        CustomTextFormField(
-          hint: "+46",
-          prefixIcon: const Image(
-              width: 20,
-              height: 20,
-              image:
-                  AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
-          keyboardType: TextInputType.phone,
-          controller: mobileController,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const ListTile(
-          leading: Image(
-              width: 23,
-              height: 23,
-              image: AssetImage("Assets/Icons/mail.png")),
-          title: Text(
-            'Email',
-            style: textStyle,
+          const ListTile(
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/bx_map.png")),
+            title: Text(
+              'Address',
+              style: textStyle,
+            ),
           ),
-        ),
-        CustomTextFormField(
-          hint: "Email Address",
-          keyboardType: TextInputType.emailAddress,
-          controller: emailController,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        const ListTile(
-          leading: Image(
-              width: 23,
-              height: 23,
-              image: AssetImage("Assets/Icons/iconamoon_profile.png")),
-          title: Text(
-            'Customer’s Type',
-            style: textStyle,
+          CustomTextFormField(
+            hint: "Customer's Address",
+            controller: addressController,
           ),
-        ),
-        CustomTextFormField(
-          hint: "Private",
-          controller: customerTypeController,
-          enabled: false,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        const ListTile(
-          title: Text(
-            'GDPR',
-            style: textStyle,
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Checkbox(
-              value: _checkboxController.isChecked,
+          const ListTile(
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/carbon_phone.png")),
+            title: Text(
+              'Car',
+              style: textStyle,
+            ),
+          ),
+          CustomTextFormField(
+            hint: "+46",
+            prefixIcon: const Image(
+                width: 20,
+                height: 20,
+                image:
+                    AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
+            keyboardType: TextInputType.phone,
+            controller: mobileController,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const ListTile(
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/mail.png")),
+            title: Text(
+              'Email',
+              style: textStyle,
+            ),
+          ),
+          CustomTextFormField(
+            hint: "Email Address",
+            keyboardType: TextInputType.emailAddress,
+            controller: emailController,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const ListTile(
+            leading: Image(
+                width: 23,
+                height: 23,
+                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
+            title: Text(
+              'Customer’s Type',
+              style: textStyle,
+            ),
+          ),
+          CustomTextFormField(
+            hint: "Private",
+            controller: customerTypeController,
+            enabled: false,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ListTile(
+            title: Text(
+              'GDPR',
+              style: textStyle,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Checkbox(
+                value: _checkboxController.isChecked,
 
-              onChanged: (value) {
-                validator: (val) {
-                  print("Validating:  with value: $val");
-                  if (val == null || val.isEmpty) {
-                    return 'required'.tr;
-                  }
-                  return null;
-                };
-                setState(() {
-                  _checkboxController.isChecked = value!;
-                });
-              },
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Flexible(
-              // Wrap the Text with Flexible
-              child: Text(
-                'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
-                style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
-                softWrap: true,
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18), color: BlueColor),
-            child: TextButton(
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.all(15)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ))),
-                onPressed: () {
-                  if (isEdite == false) {
-                    newCustomerPrivateController
-                        .newCustomerPrivate(
-                            branchId: box.read('branchId'),
-                            userName: box.read('username'),
-                            cusName: customerNameController.text,
-                            cusEmail: emailController.text,
-                            cusAddress: addressController.text,
-                            cusMobile: mobileController.text,
-                            gdpr: _checkboxController.isChecked)
-                        .then((value) => newCustomerPrivateController.onInit());
-                    CustomPrivateController.clear();
-                  } else if (isEdite == false) {
+                onChanged: (value) {
+                  validator: (val) {
+                    print("Validating:  with value: $val");
+                    if (val == null || val.isEmpty) {
+                      return 'required'.tr;
+                    }
                     return null;
-                  }
+                  };
+                  setState(() {
+                    _checkboxController.isChecked = value!;
+                  });
                 },
-                child: const Text("Save",
-                    style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Flexible(
+                // Wrap the Text with Flexible
+                child: Text(
+                  'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
+                  style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+                  softWrap: true,
+                ),
+              ),
+            ],
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18), color: BlueColor),
+              child: TextButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.all(15)),
+                      foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ))),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print('valid');
+                      if (isEdite == false) {
+                        Get.showOverlay(
+                            asyncFunction: () async =>
+                            await newCustomerPrivateController.newCustomerPrivate(
+                                branchId: box.read('branchId'),
+                                userName: box.read('username'),
+                                cusName: customerNameController.text,
+                                cusEmail: emailController.text,
+                                cusAddress: addressController.text,
+                                cusMobile: mobileController.text,
+                                gdpr: _checkboxController.isChecked
+                            ).then((value) => newCustomerPrivateController.onInit()),
+
+                            loadingWidget: const Center(
+                                child: CircularProgressIndicator(
+                                  color: BlueColor,
+                                )),
+                            opacityColor: BlueColor.withOpacity(0.1));
+                        CustomPrivateController.clear();
+                      }else if (isEdite == false) {
+                        return null;
+                      }
+
+                    }
+                  },
+                  child: const Text("Save",
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold))),
+
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

@@ -33,290 +33,305 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
 
   final TextEditingController expectedDeliveryTimeController = TextEditingController();
   bool isSave = false;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Center(
-              child: Text(
-            'Order Details',
-            style: TextStyle(
-                fontSize: 18, color: BlueColor, fontWeight: FontWeight.bold),
-          )),
-          const SizedBox(
-            height: 20,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/edit.png")),
-            title: Text(
-              'Item',
-              style: textStyle,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 30,
             ),
-          ),
-          CustomTextFormField(
-            controller: itemController,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/edit.png")),
-            title: Text(
-              'Unit',
-              style: textStyle,
+            Center(
+                child: Text(
+              'Order Details',
+              style: TextStyle(
+                  fontSize: 18, color: BlueColor, fontWeight: FontWeight.bold),
+            )),
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          CustomTextFormField(
-            controller: secondUnitController,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            validator: (val) {
-              print("Validating:  with value: $val");
-              if (val == null || val.isEmpty) {
-                return 'required'.tr;
-              }
-              return null;
-            },
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 10.0, vertical: 30),
-
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/iconamoon_profile.png")),
-            title: Text(
-              'Customer’s Name',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "The Field is Empty";
-              }
-            },
-            hint: 'Add Customer Name',
-            controller: customerNameController,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/carbon_phone.png")),
-            title: Text(
-              'Mobile',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "The Field is Empty";
-              }
-            },
-            hint: '+46',
-            prefixIcon: Image(
-                width: 20,
-                height: 20,
-                image:
-                    AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
-            controller: customerMobileController,
-            keyboardType: TextInputType.number,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/mail.png")),
-            title: Text(
-              'Email',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "The Field is Empty";
-              }
-            },
-            hint: 'Customer Email Address',
-            controller: customerEmailController,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 26,
-                height: 26,
-                image: AssetImage(
-                    "Assets/Icons/ant-design_field-number-outlined.png")),
-            title: Text(
-              'Quantity',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "The Field is Empty";
-              }
-            },
-            hint: 'Quantity',
-            controller: quantityController,
-            keyboardType: TextInputType.number,
-
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 26,
-                height: 26,
-                image: AssetImage("Assets/Icons/solar_tag-price-outline.png")),
-            title: Text(
-              'Price',
-              style: textStyle,
-            ),
-          ),
-          CustomTextFormField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "The Field is Empty";
-              }
-            },
-            hint: 'Unit Price',
-            controller: priceController,
-            keyboardType: TextInputType.number,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListTile(
-            leading: Image(
-                width: 23,
-                height: 23,
-                image: AssetImage("Assets/Icons/Icon7.png")),
-            title: Text(
-              'Order Delivery Date',
-              style: textStyle,
-            ),
-          ),
-
-          Row(
-            children: [
-              Expanded(
-                child:CustomTextFormField(
-                  hint: '11/02/2024',
-                  controller: orderDateController,
-                  validator: (val) {
-                    print("Validating:  with value: $val");
-                    if (val == null || val.isEmpty) {
-                      return 'required'.tr;
-                    }
-                    return null;
-                  },
-                  onTap: () => onTapFunction(context: context),
-                ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/edit.png")),
+              title: Text(
+                'Item',
+                style: textStyle,
               ),
-
-              Expanded(
-                child:CustomTextFormField(
-                  hint: '5:30',
-                  controller: expectedDeliveryTimeController,
-
-                  onTap: () async {
-                    var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-                    if (time != null) {
-                      setState(() {
-                        // Extract hours and minutes from TimeOfDay object
-                        int hours = time.hour;
-                        int minutes = time.minute;
-
-                        // Format time in 24-hour format
-                        String formattedTime = DateFormat('HH:mm').format(DateTime(2024, 1, 1, hours, minutes));
-                        expectedDeliveryTimeController.text = formattedTime;
-                      });
-                    }
-                  },
-
-                ),
+            ),
+            CustomTextFormField(
+              controller: itemController,
+              validator: (val) {
+                print("Validating:  with value: $val");
+                if (val == null || val.isEmpty) {
+                  return 'required'.tr;
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/edit.png")),
+              title: Text(
+                'Unit',
+                style: textStyle,
               ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18), color: BlueColor),
-              child: TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(15)),
-                      foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                          ))),
-                  onPressed: () {
-                    if (isSave == false) {
-                      newOrderController
-                          .saveNewOrder(
-                          branchId: box.read('branchId'),
-                          username: box.read('username'),
-                          item: itemController.text,
-                          customer_name: customerNameController.text,
-                          customer_email: customerEmailController.text,
-                          customer_mobile: customerMobileController.text,
-                          item_quantity: quantityController.text,
-                          item_price: priceController.text,
-                          delivery_date : orderDateController.text
-                      )
-                          .then((value) => newOrderController.onInit());
-                      saveOrderController.clear();
-                    } else if (isSave == false) {
+            ),
+            CustomTextFormField(
+              controller: secondUnitController,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              validator: (val) {
+                print("Validating:  with value: $val");
+                if (val == null || val.isEmpty) {
+                  return 'required'.tr;
+                }
+                return null;
+              },
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 30),
+
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/iconamoon_profile.png")),
+              title: Text(
+                'Customer’s Name',
+                style: textStyle,
+              ),
+            ),
+            CustomTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "The Field is Empty";
+                }
+              },
+              hint: 'Add Customer Name',
+              controller: customerNameController,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/carbon_phone.png")),
+              title: Text(
+                'Mobile',
+                style: textStyle,
+              ),
+            ),
+            CustomTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "The Field is Empty";
+                }
+              },
+              hint: '+46',
+              prefixIcon: Image(
+                  width: 20,
+                  height: 20,
+                  image:
+                      AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
+              controller: customerMobileController,
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/mail.png")),
+              title: Text(
+                'Email',
+                style: textStyle,
+              ),
+            ),
+            CustomTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "The Field is Empty";
+                }
+              },
+              hint: 'Customer Email Address',
+              controller: customerEmailController,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 26,
+                  height: 26,
+                  image: AssetImage(
+                      "Assets/Icons/ant-design_field-number-outlined.png")),
+              title: Text(
+                'Quantity',
+                style: textStyle,
+              ),
+            ),
+            CustomTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "The Field is Empty";
+                }
+              },
+              hint: 'Quantity',
+              controller: quantityController,
+              keyboardType: TextInputType.number,
+
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 26,
+                  height: 26,
+                  image: AssetImage("Assets/Icons/solar_tag-price-outline.png")),
+              title: Text(
+                'Price',
+                style: textStyle,
+              ),
+            ),
+            CustomTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "The Field is Empty";
+                }
+              },
+              hint: 'Unit Price',
+              controller: priceController,
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListTile(
+              leading: Image(
+                  width: 23,
+                  height: 23,
+                  image: AssetImage("Assets/Icons/Icon7.png")),
+              title: Text(
+                'Order Delivery Date',
+                style: textStyle,
+              ),
+            ),
+
+            Row(
+              children: [
+                Expanded(
+                  child:CustomTextFormField(
+                    hint: '11/02/2024',
+                    controller: orderDateController,
+                    validator: (val) {
+                      print("Validating:  with value: $val");
+                      if (val == null || val.isEmpty) {
+                        return 'required'.tr;
+                      }
                       return null;
-                    }
-                  },
-                  child: const Text("Save",
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold))),
+                    },
+                    onTap: () => onTapFunction(context: context),
+                  ),
+                ),
+
+                Expanded(
+                  child:CustomTextFormField(
+                    hint: '5:30',
+                    controller: expectedDeliveryTimeController,
+                    onTap: () async {
+                      var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+                      if (time != null) {
+                        setState(() {
+                          // Extract hours and minutes from TimeOfDay object
+                          int hours = time.hour;
+                          int minutes = time.minute;
+
+                          // Format time in 24-hour format
+                          String formattedTime = DateFormat('HH:mm').format(DateTime(2024, 1, 1, hours, minutes));
+                          expectedDeliveryTimeController.text = formattedTime;
+                        });
+                      }
+                    },
+
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18), color: BlueColor),
+                child: TextButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.all(15)),
+                        foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        print('valid');
+                        if (isSave == false) {
+                          Get.showOverlay(
+                              asyncFunction: () async =>
+                              await newOrderController.saveNewOrder(
+                                  branchId: box.read('branchId'),
+                                  username: box.read('username'),
+                                  item: itemController.text,
+                                  customer_name: customerNameController.text,
+                                  customer_email: customerEmailController.text,
+                                  customer_mobile: customerMobileController.text,
+                                  item_quantity: quantityController.text,
+                                  item_price: priceController.text,
+                                  delivery_date : orderDateController.text
+                              ).then((value) => newOrderController.onInit()),
+
+                              loadingWidget: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: BlueColor,
+                                  )),
+                              opacityColor: BlueColor.withOpacity(0.1));
+                          saveOrderController.clear();
+                        }else if (isSave == false) {
+                          return null;
+                        }
+
+                      }
+                    },
+                    child: const Text("Save",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))),
+
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
