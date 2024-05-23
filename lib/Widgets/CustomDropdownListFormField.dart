@@ -26,7 +26,7 @@ class CustomDropdownFormField extends StatelessWidget {
   FocusNode? focusNode;
   Widget? suffixIcon;
   bool obscureText = false;
-  final String? Function(String?)? validator;
+  String? Function(dynamic)? validator;
   Function(String)? onChange;
   Function()? onTap;
 
@@ -53,6 +53,7 @@ class CustomDropdownFormField extends StatelessWidget {
         onChanged: (value) {
           onChanged(value as String?); // دالة التحديث
         },
+        validator: validator,
         decoration: InputDecoration(
           filled: true,
           fillColor: FormBackGraund.withOpacity(.5),

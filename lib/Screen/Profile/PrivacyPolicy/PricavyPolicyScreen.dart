@@ -26,6 +26,9 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
             title: Text('Privacy Policy'),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
-        body: PrivacyBody());
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PrivacyBody(),
+        ));
   }
 }

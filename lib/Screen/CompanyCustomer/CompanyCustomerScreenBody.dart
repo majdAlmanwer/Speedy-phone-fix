@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get_storage/get_storage.dart';
+
 class MyCheckboxController {
   bool isChecked = false;
 }
+
 class CompanyCustomerScreenBody extends StatefulWidget {
   const CompanyCustomerScreenBody({super.key});
 
@@ -16,8 +18,8 @@ class CompanyCustomerScreenBody extends StatefulWidget {
   State<CompanyCustomerScreenBody> createState() =>
       _CompanyCustomerScreenBodyState();
 }
-class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
 
+class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
   late MyCheckboxController _checkboxController;
 
   @override
@@ -27,7 +29,8 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
   }
 
   final box = GetStorage();
-  CustomerCompanyController customerCompanyController = Get.put(CustomerCompanyController());
+  CustomerCompanyController customerCompanyController =
+      Get.put(CustomerCompanyController());
 
   final CustomerCompanyController newCustomerCompanyController = Get.find();
   final TextEditingController CustomersName = TextEditingController();
@@ -48,7 +51,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
   TextEditingController CustomCompanyController = TextEditingController();
   bool isEdite = false;
   bool value = false;
-  bool enabled = false ;
+  bool enabled = false;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -114,8 +117,8 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
               prefixIcon: const Image(
                   width: 20,
                   height: 20,
-                  image:
-                      AssetImage("Assets/Icons/emojione-v1_flag-for-sweden.png")),
+                  image: AssetImage(
+                      "Assets/Icons/emojione-v1_flag-for-sweden.png")),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(
@@ -252,9 +255,9 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
               children: [
                 Checkbox(
                   value: _checkboxController.isChecked,
-
                   onChanged: (value) {
-                    validator: (val) {
+                    validator:
+                    (val) {
                       print("Validating:  with value: $val");
                       if (val == null || val.isEmpty) {
                         return 'required'.tr;
@@ -266,72 +269,103 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
                     });
                   },
                 ),
-                Flexible( // Wrap the Text with Flexible
+                Flexible(
+                  // Wrap the Text with Flexible
                   child: Text(
                     'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
-                    style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: BlueColor, fontWeight: FontWeight.bold),
                     softWrap: true,
                   ),
-
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18), color: BlueColor),
-                child: TextButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            const EdgeInsets.all(15)),
-                        foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ))),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print('valid');
-                        if (isEdite == false) {
-                          Get.showOverlay(
-                              asyncFunction: () async =>
-                              await newCustomerCompanyController.newCustomerCompany(
-                                  branchId: box.read('branchId'),
-                                  username: box.read('username'),
-                                  cusName: CustomersName.text,
-                                  cusEmail: CustomerEmailAddress.text,
-                                  cusAddress: CustomerAddress.text,
-                                  cusMobile: Car.text,
-                                  cus_Delegera : Delegate.text,
-                                  cus_orgenization_no : OrganizationNo.text,
-                                  cus_invoice_address : InvoiceAddress.text,
-                                  cus_wesite : WebsiteAddress.text,
-                                  gdpr: _checkboxController.isChecked
-                              ).then((value) => newCustomerCompanyController.onInit()),
-
-                              loadingWidget: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: BlueColor,
-                                  )),
-                              opacityColor: BlueColor.withOpacity(0.1));
-                          CustomCompanyController.clear();
-                        }
-                        else if (isEdite == false) {
-                          return null;
-                        }
-
-                      }
-                    },
-                    child: const Text("Save",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold))),
-
-              ),
-            ),
-
+            _checkboxController.isChecked == true
+                ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: BlueColor),
+                      child: TextButton(
+                          style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsets>(
+                                  const EdgeInsets.all(15)),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              print('valid');
+                              if (isEdite == false) {
+                                Get.showOverlay(
+                                    asyncFunction: () async =>
+                                        await newCustomerCompanyController
+                                            .newCustomerCompany(
+                                                branchId: box.read('branchId'),
+                                                username: box.read('username'),
+                                                cusName: CustomersName.text,
+                                                cusEmail:
+                                                    CustomerEmailAddress.text,
+                                                cusAddress:
+                                                    CustomerAddress.text,
+                                                cusMobile: Car.text,
+                                                cus_Delegera: Delegate.text,
+                                                cus_orgenization_no:
+                                                    OrganizationNo.text,
+                                                cus_invoice_address:
+                                                    InvoiceAddress.text,
+                                                cus_wesite: WebsiteAddress.text,
+                                                gdpr: _checkboxController
+                                                    .isChecked)
+                                            .then((value) =>
+                                                newCustomerCompanyController
+                                                    .onInit()),
+                                    loadingWidget: const Center(
+                                        child: CircularProgressIndicator(
+                                      color: BlueColor,
+                                    )),
+                                    opacityColor: BlueColor.withOpacity(0.1));
+                                CustomCompanyController.clear();
+                              } else if (isEdite == false) {
+                                return null;
+                              }
+                            }
+                          },
+                          child: const Text("Save",
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold))),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: BlueColor.withOpacity(.5)),
+                      child: TextButton(
+                          style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsets>(
+                                  const EdgeInsets.all(15)),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
+                          onPressed: () {},
+                          child: const Text("Save",
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold))),
+                    ),
+                  ),
           ],
         ),
       ),
