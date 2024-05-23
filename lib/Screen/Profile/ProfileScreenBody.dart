@@ -9,11 +9,19 @@ import 'package:speedy_phone_fix/Screen/Profile/PrivacyPolicy/PricavyPolicyScree
 import 'package:speedy_phone_fix/Screen/Profile/ProfileWidget/ProfileListItem.dart';
 import 'package:speedy_phone_fix/Screen/Profile/Terms/TermsScreen.dart';
 
+import '../../Controller/TermsAndPrivacyController.dart';
 import 'ProfileWidget/ProfileInfoCard.dart';
 
-class ProfileScreenBody extends StatelessWidget {
+class ProfileScreenBody extends StatefulWidget {
   ProfileScreenBody({super.key});
+
+  @override
+  State<ProfileScreenBody> createState() => _ProfileScreenBodyState();
+}
+
+class _ProfileScreenBodyState extends State<ProfileScreenBody> {
   GetStorage box = GetStorage();
+  final termsAndPrivacyController = Get.put(TermsAndPrivacyController());
   @override
   Widget build(BuildContext context) {
     return Padding(

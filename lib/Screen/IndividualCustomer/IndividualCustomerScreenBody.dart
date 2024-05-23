@@ -160,15 +160,7 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
             children: [
               Checkbox(
                 value: _checkboxController.isChecked,
-
                 onChanged: (value) {
-                  validator: (val) {
-                    print("Validating:  with value: $val");
-                    if (val == null || val.isEmpty) {
-                      return 'required'.tr;
-                    }
-                    return null;
-                  };
                   setState(() {
                     _checkboxController.isChecked = value!;
                   });
@@ -181,62 +173,91 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
                 // Wrap the Text with Flexible
                 child: Text(
                   'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
-                  style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
                   softWrap: true,
                 ),
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18), color: BlueColor),
-              child: TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(15)),
-                      foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      print('valid');
-                      if (isEdite == false) {
-                        Get.showOverlay(
-                            asyncFunction: () async =>
-                            await newCustomerPrivateController.newCustomerPrivate(
-                                branchId: box.read('branchId'),
-                                userName: box.read('username'),
-                                cusName: customerNameController.text,
-                                cusEmail: emailController.text,
-                                cusAddress: addressController.text,
-                                cusMobile: mobileController.text,
-                                gdpr: _checkboxController.isChecked
-                            ).then((value) => newCustomerPrivateController.onInit()),
-
-                            loadingWidget: const Center(
-                                child: CircularProgressIndicator(
-                                  color: BlueColor,
-                                )),
-                            opacityColor: BlueColor.withOpacity(0.1));
-                        CustomPrivateController.clear();
-                      }else if (isEdite == false) {
-                        return null;
-                      }
-
-                    }
-                  },
-                  child: const Text("Save",
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold))),
-
-            ),
-          ),
+          _checkboxController.isChecked == true
+              ? Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        color: BlueColor),
+                    child: TextButton(
+                        style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.all(15)),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print('valid');
+                            if (isEdite == false) {
+                              Get.showOverlay(
+                                  asyncFunction: () async =>
+                                      await newCustomerPrivateController
+                                          .newCustomerPrivate(
+                                              branchId: box.read('branchId'),
+                                              userName: box.read('username'),
+                                              cusName:
+                                                  customerNameController.text,
+                                              cusEmail: emailController.text,
+                                              cusAddress:
+                                                  addressController.text,
+                                              cusMobile: mobileController.text,
+                                              gdpr:
+                                                  _checkboxController.isChecked)
+                                          .then((value) =>
+                                              newCustomerPrivateController
+                                                  .onInit()),
+                                  loadingWidget: const Center(
+                                      child: CircularProgressIndicator(
+                                    color: BlueColor,
+                                  )),
+                                  opacityColor: BlueColor.withOpacity(0.1));
+                              CustomPrivateController.clear();
+                            } else if (isEdite == false) {
+                              return null;
+                            }
+                          }
+                        },
+                        child: const Text("Save",
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold))),
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                        color: BlueColor.withOpacity(.5)),
+                    child: TextButton(
+                        style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.all(15)),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                        onPressed: () {},
+                        child: const Text("Save",
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold))),
+                  ),
+                ),
         ]),
       ),
     );

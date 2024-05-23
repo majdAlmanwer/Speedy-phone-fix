@@ -7,6 +7,7 @@ import 'package:speedy_phone_fix/Utils/AppStyle.dart';
 import 'package:speedy_phone_fix/Widgets/AuthFormFiled.dart';
 
 import '../../../Controller/AuthController.dart';
+import '../../../Controller/TermsAndPrivacyController.dart';
 
 class SignUpScreenBody extends StatefulWidget {
   const SignUpScreenBody({super.key});
@@ -16,6 +17,7 @@ class SignUpScreenBody extends StatefulWidget {
 }
 
 class _SignUpScreenBodyState extends State<SignUpScreenBody> {
+  final termsAndPrivacyController = Get.put(TermsAndPrivacyController());
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
   var nameController = TextEditingController();

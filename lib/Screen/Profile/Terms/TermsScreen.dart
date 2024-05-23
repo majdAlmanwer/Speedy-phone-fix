@@ -26,6 +26,9 @@ class _TermsScreenState extends State<TermsScreen> {
             title: Text('Privacy Policy'),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
-        body: TermsBody());
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TermsBody(),
+        ));
   }
 }
