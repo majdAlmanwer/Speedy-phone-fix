@@ -19,28 +19,28 @@ class HomeScreenBody extends StatelessWidget {
           children: [
             const HomeHeader(),
             HomeCardWidget(
-              title: 'Cases/Repairs',
+              title: 'Cases/Repairs'.tr,
               iconPath: 'Assets/Icons/Vector(4).png',
               onTap: () {
                 Get.toNamed(AppRoutes.newcasescreen);
               },
             ),
             HomeCardWidget(
-              title: 'Customers\n(Private)',
+              title: 'Customers\n(Private)'.tr,
               iconPath: 'Assets/Icons/Vector (2).png',
               onTap: () {
                 Get.toNamed(AppRoutes.individualCustomerScreen);
               },
             ),
             HomeCardWidget(
-              title: 'Customers\n(Companies)',
+              title: 'Customers\n(Companies)'.tr,
               iconPath: 'Assets/Icons/Vector (1).png',
               onTap: () {
                 Get.toNamed(AppRoutes.companyCustomerScreen);
               },
             ),
             HomeCardWidget(
-              title: 'Orders',
+              title: 'Orders'.tr,
               iconPath: 'Assets/Icons/Vector (3).png',
               onTap: () {
                 Get.toNamed(AppRoutes.orderScreen);

@@ -49,18 +49,18 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
       child: Form(
         key: _formKey,
         child: Column(children: [
-          const ListTile(
+           ListTile(
             leading: Image(
                 width: 23,
                 height: 23,
                 image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
-              'Customer’s Name',
+              'Customer’s Name'.tr,
               style: textStyle,
             ),
           ),
           CustomTextFormField(
-            hint: "Add customer's name",
+            hint: "Add customer's name".tr,
             controller: customerNameController,
             validator: (val) {
               print("Validating:  with value: $val");
@@ -73,30 +73,30 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
           const SizedBox(
             height: 10,
           ),
-          const ListTile(
+           ListTile(
             leading: Image(
                 width: 23,
                 height: 23,
                 image: AssetImage("Assets/Icons/bx_map.png")),
             title: Text(
-              'Address',
+              'Address'.tr,
               style: textStyle,
             ),
           ),
           CustomTextFormField(
-            hint: "Customer's Address",
+            hint: "Customer’s Address".tr,
             controller: addressController,
           ),
           const SizedBox(
             height: 10,
           ),
-          const ListTile(
+           ListTile(
             leading: Image(
                 width: 23,
                 height: 23,
                 image: AssetImage("Assets/Icons/carbon_phone.png")),
             title: Text(
-              'Car',
+              'Car'.tr,
               style: textStyle,
             ),
           ),
@@ -113,45 +113,45 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
           const SizedBox(
             height: 10,
           ),
-          const ListTile(
+           ListTile(
             leading: Image(
                 width: 23,
                 height: 23,
                 image: AssetImage("Assets/Icons/mail.png")),
             title: Text(
-              'Email',
+              'Email'.tr,
               style: textStyle,
             ),
           ),
           CustomTextFormField(
-            hint: "Email Address",
+            hint: "Email Address".tr,
             keyboardType: TextInputType.emailAddress,
             controller: emailController,
           ),
           const SizedBox(
             height: 10,
           ),
-          const ListTile(
+           ListTile(
             leading: Image(
                 width: 23,
                 height: 23,
                 image: AssetImage("Assets/Icons/iconamoon_profile.png")),
             title: Text(
-              'Customer’s Type',
+              'Customer’s Type'.tr,
               style: textStyle,
             ),
           ),
           CustomTextFormField(
-            hint: "Private",
+            hint: "Private".tr,
             controller: customerTypeController,
             enabled: false,
           ),
           const SizedBox(
             height: 20,
           ),
-          const ListTile(
+           ListTile(
             title: Text(
-              'GDPR',
+              'GDPR'.tr,
               style: textStyle,
             ),
           ),
@@ -172,7 +172,7 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
               Flexible(
                 // Wrap the Text with Flexible
                 child: Text(
-                  'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
+                  'I agree that Speedy Phone Fix (559026-6028) saves and processes my personal data in accordance with the Data Protection Act (GDPR)'.tr,
                   style:
                       TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
                   softWrap: true,
@@ -230,7 +230,7 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
                             }
                           }
                         },
-                        child: const Text("Save",
+                        child:  Text("Save".tr,
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold))),
                   ),
@@ -253,7 +253,7 @@ class _IndividualCustomerState extends State<IndividualCustomerScreenBody> {
                               borderRadius: BorderRadius.circular(18.0),
                             ))),
                         onPressed: () {},
-                        child: const Text("Save",
+                        child:  Text("Save".tr,
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold))),
                   ),

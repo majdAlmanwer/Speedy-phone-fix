@@ -40,38 +40,38 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
               Get.toNamed(AppRoutes.changepasswordscreen);
             },
             child: ProfileListItem(
-                title: 'Change Password', imagePath: 'Assets/Icons/lock.png'),
+                title: 'Change Password'.tr, imagePath: 'Assets/Icons/lock.png'),
           ),
           InkWell(
             onTap: () {
               Get.toNamed(AppRoutes.deleteaccountscreen);
             },
             child: ProfileListItem(
-                title: 'Delete Account', imagePath: 'Assets/Icons/profile.png'),
+                title: 'Delete Account'.tr, imagePath: 'Assets/Icons/profile.png'),
           ),
           ProfileListItem(
-            title: 'Change Language',
+            title: 'Change Language'.tr,
             imagePath: 'Assets/Icons/lang.png',
             onTap: () {
               Get.to(ChangeLanguageScreen());
             },
           ),
           ProfileListItem(
-            title: 'Privacy Policy',
+            title: 'Privacy Policy'.tr,
             imagePath: 'Assets/Icons/privacy.png',
             onTap: () {
               Get.to(PrivacyPolicyScreen());
             },
           ),
           ProfileListItem(
-            title: 'Terms of Use',
+            title: 'Terms of Use'.tr,
             imagePath: 'Assets/Icons/terms.png',
             onTap: () {
               Get.to(TermsScreen());
             },
           ),
           ProfileListItem(
-            title: 'Logout',
+            title: 'Logout'.tr,
             imagePath: 'Assets/Icons/logout.png',
             onTap: () {
               Get.offAllNamed(AppRoutes.authtabbar);

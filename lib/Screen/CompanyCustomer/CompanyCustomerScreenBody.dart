@@ -60,18 +60,18 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
         key: _formKey,
         child: Column(
           children: [
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/iconamoon_profile.png")),
               title: Text(
-                'Customer’s Name',
+                'Customer’s Name'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
-              hint: "Add customer’s name",
+              hint: "Add customer’s name".tr,
               controller: CustomersName,
               validator: (val) {
                 print("Validating:  with value: $val");
@@ -84,30 +84,30 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/bx_map.png")),
               title: Text(
-                'Address',
+                'Address'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
-              hint: "Customer’s Address",
+              hint: "Customer’s Address".tr,
               controller: CustomerAddress,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/carbon_phone.png")),
               title: Text(
-                'Car',
+                'Car'.tr,
                 style: textStyle,
               ),
             ),
@@ -124,54 +124,54 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/mail.png")),
               title: Text(
-                'Email',
+                'Email'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               controller: CustomerEmailAddress,
-              hint: "Customer’s Email Address",
+              hint: "Customer’s Email Address".tr,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/iconamoon_profile.png")),
               title: Text(
-                'Customer’s Type',
+                'Customer’s Type'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
-              hint: "Företag",
+              hint: "Företag".tr,
               enabled: false,
               controller: CustomerType,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/iconamoon_profile.png")),
               title: Text(
-                'Delegate',
+                'Delegate'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               controller: Delegate,
-              hint: "Delegate",
+              hint: "Delegate".tr,
               validator: (val) {
                 print("Validating:  with value: $val");
                 if (val == null || val.isEmpty) {
@@ -183,19 +183,19 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/build.png")),
               title: Text(
-                'Organization No.',
+                'Organization No.'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               controller: OrganizationNo,
-              hint: "Organization Number",
+              hint: "Organization Number".tr,
               keyboardType: TextInputType.number,
               validator: (val) {
                 print("Validating:  with value: $val");
@@ -208,37 +208,37 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/web.png")),
               title: Text(
-                'Customer Website',
+                'Customer Website'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               controller: WebsiteAddress,
-              hint: "Website Address",
+              hint: "Website Address".tr,
               keyboardType: TextInputType.url,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/save.png")),
               title: Text(
-                'Invoice Address',
+                'Invoice Address'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               controller: InvoiceAddress,
-              hint: "Invoice Address",
+              hint: 'Invoice Address'.tr,
               validator: (val) {
                 print("Validating:  with value: $val");
                 if (val == null || val.isEmpty) {
@@ -272,7 +272,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
                 Flexible(
                   // Wrap the Text with Flexible
                   child: Text(
-                    'Jag godkänner att Speedy Phone Fix (559026-6028) sparar och behandlar mina personuppgifter enligt dataskyddlagen (GDPR)',
+                    'I agree that Speedy Phone Fix (559026-6028) saves and processes my personal data in accordance with the Data Protection Act (GDPR)'.tr,
                     style: TextStyle(
                         color: BlueColor, fontWeight: FontWeight.bold),
                     softWrap: true,
@@ -337,7 +337,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
                               }
                             }
                           },
-                          child: const Text("Save",
+                          child:  Text("Save".tr,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold))),
                     ),
@@ -361,7 +361,7 @@ class _CompanyCustomerScreenBodyState extends State<CompanyCustomerScreenBody> {
                                 borderRadius: BorderRadius.circular(18.0),
                               ))),
                           onPressed: () {},
-                          child: const Text("Save",
+                          child:  Text("Save".tr,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold))),
                     ),

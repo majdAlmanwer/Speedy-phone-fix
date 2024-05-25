@@ -23,7 +23,7 @@ class _ChangePasswordScreenState extends State<DeleteAccountScreen> {
               ),
               color: TextGrey,
             ),
-            title: Text('Delete My Account'),
+            title: Text('Delete My Account.tr'),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
         body: DeleteAccountBody());

@@ -43,18 +43,18 @@ class _DeleteAccountBodyState extends State<DeleteAccountBody> {
                   child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: deleteController,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                         contentPadding: EdgeInsets.only(left: 20),
                         hintStyle: TextStyle(
                             color: Colors.grey,
                             fontFamily: "Poppins",
                             fontSize: 15.2),
-                        hintText: "Account Deletion Reason",
+                        hintText: "Account Deletion Reason".tr,
                         border: OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please Enter Deletion Reason';
+                          return 'Please Enter Deletion Reason'.tr;
                         }
 
                         return null;
@@ -86,7 +86,7 @@ class _DeleteAccountBodyState extends State<DeleteAccountBody> {
                             context: context,
                             builder: (BuildContext context) {
                               return ConfirmationDialog(
-                                title: 'Are You Sure ?',
+                                title: 'Are You Sure ?'.tr,
                                 firstOnPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     print(box.read('username'));
@@ -109,8 +109,8 @@ class _DeleteAccountBodyState extends State<DeleteAccountBody> {
                                 secundOnPressed: () {
                                   Get.back();
                                 },
-                                firstTitle: 'Yes',
-                                secundTitle: 'No',
+                                firstTitle: 'Yes'.tr,
+                                secundTitle: 'No'.tr,
                               );
                             });
                         // if (_formKey.currentState!.validate()) {
@@ -130,7 +130,7 @@ class _DeleteAccountBodyState extends State<DeleteAccountBody> {
                         //   print('not VALID');
                         // }
                       },
-                      child: const Text("Save",
+                      child:  Text("Save".tr,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold))),
                 ),

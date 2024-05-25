@@ -32,18 +32,18 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListTile(
+           ListTile(
             leading: Image(
               image: AssetImage("Assets/Icons/case-type.png"),
               width: 28,
             ),
             title: Text(
-              'Case Type',
+              'Case Type'.tr,
               style: TextStyle(color: TextGrey),
             ),
           ),
           CustomTextFormField(
-            hint: 'Case Type',
+            hint: 'Case Type'.tr,
             controller: caseController,
           ),
           const SizedBox(
@@ -83,7 +83,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                       caseController.clear();
                     }
                   },
-                  child: const Text("Save",
+                  child:  Text("Save".tr,
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.bold))),
             ),
@@ -98,7 +98,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
               },
               border: TableBorder.all(
                   color: BorderGrey, style: BorderStyle.solid, width: 2),
-              children: const [
+              children:  [
                 TableRow(children: [
                   SizedBox(
                     height: 50,
@@ -107,7 +107,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            '.No',
+                            '.No'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -121,7 +121,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Case',
+                            'Case'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -172,7 +172,7 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return EditOrDeleteDialog(
-                                      firstTitle: 'Edit',
+                                      firstTitle: 'Edit'.tr,
                                       firstOnPressed: () {
                                         setState(() {
                                           isEdite = true;
@@ -184,14 +184,14 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                                           Get.back();
                                         });
                                       },
-                                      secundTitle: 'Delete',
+                                      secundTitle: 'Delete'.tr,
                                       secundOnPressed: () {
                                         showDialog(
                                             barrierDismissible: true,
                                             context: context,
                                             builder: (BuildContext context) {
                                               return ConfirmationDialog(
-                                                title: 'Are You Sure ?',
+                                                title: 'Are You Sure ?'.tr,
                                                 firstOnPressed: () {
                                                   caseTypeController
                                                       .deleteCase(
@@ -210,8 +210,8 @@ class _CaseTypeBodyState extends State<CaseTypeBody> {
                                                 secundOnPressed: () {
                                                   Get.back();
                                                 },
-                                                firstTitle: 'Yes',
-                                                secundTitle: 'No',
+                                                firstTitle: 'Yes'.tr,
+                                                secundTitle: 'No'.tr,
                                               );
                                             });
                                       },

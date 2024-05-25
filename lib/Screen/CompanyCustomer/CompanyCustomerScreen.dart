@@ -20,7 +20,7 @@ class CompanyCustomerScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: Text('Customer Company'),
+          title: Text('Customer Company'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: CompanyCustomerScreenBody(),

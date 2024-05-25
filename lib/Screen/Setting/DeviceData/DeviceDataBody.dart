@@ -38,13 +38,13 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListTile(
+           ListTile(
             leading: Icon(
               Icons.phone_android,
               color: TextGrey,
             ),
             title: Text(
-              'Make & Model',
+              'Make & Model'.tr,
               style: TextStyle(color: TextGrey),
             ),
           ),
@@ -61,25 +61,25 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
 
                 controller.getCaseDeviceData(Value!);
               },
-              hint: 'Motorola',
+              hint: 'Motorola'.tr,
               controller: makeController,
             ),
           ),
           // const SizedBox(
           //   height: 20,
           // ),
-          const ListTile(
+           ListTile(
             leading: Icon(
               Icons.phone_android,
               color: TextGrey,
             ),
             title: Text(
-              'Device Data',
+              'Device Data'.tr,
               style: TextStyle(color: TextGrey),
             ),
           ),
           CustomTextFormField(
-            hint: 'Device Data',
+            hint: 'Device Data'.tr,
             controller: deviceController,
           ),
           Padding(
@@ -117,7 +117,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                       deviceController.clear();
                     }
                   },
-                  child: const Text("Save",
+                  child:  Text("Save".tr,
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.bold))),
             ),
@@ -132,7 +132,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
               },
               border: TableBorder.all(
                   color: BorderGrey, style: BorderStyle.solid, width: 2),
-              children: const [
+              children:  [
                 TableRow(children: [
                   SizedBox(
                     height: 50,
@@ -141,7 +141,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            '.No',
+                            '.No'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -155,7 +155,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Device Data',
+                            'Device Data'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -208,7 +208,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return EditOrDeleteDialog(
-                                      firstTitle: 'Edit',
+                                      firstTitle: 'Edit'.tr,
                                       firstOnPressed: () {
                                         setState(() {
                                           isEdite = true;
@@ -229,14 +229,14 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                           Get.back();
                                         });
                                       },
-                                      secundTitle: 'Delete',
+                                      secundTitle: 'Delete'.tr,
                                       secundOnPressed: () {
                                         showDialog(
                                             barrierDismissible: true,
                                             context: context,
                                             builder: (BuildContext context) {
                                               return ConfirmationDialog(
-                                                title: 'Are You Sure ?',
+                                                title: 'Are You Sure ?'.tr,
                                                 firstOnPressed: () {
                                                   controller.caseDeviceTypeList!
                                                           .isNotEmpty
@@ -257,8 +257,8 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                                 secundOnPressed: () {
                                                   Get.back();
                                                 },
-                                                firstTitle: 'Yes',
-                                                secundTitle: 'No',
+                                                firstTitle: 'Yes'.tr,
+                                                secundTitle: 'No'.tr,
                                               );
                                             });
                                       },
@@ -280,7 +280,7 @@ class _DeviceDataBodyState extends State<DeviceDataBody> {
                                             ? newCaseController
                                                     .caseDeviceTypeList![index]
                                                     .deviceType ??
-                                                ' empty'
+                                                'empty'.tr
                                             : '',
                                         style: const TextStyle(
                                             fontSize: 20.0, color: TextGrey),

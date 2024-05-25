@@ -18,7 +18,7 @@ class DeviceDataScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: const Text('Device Data'),
+          title:  Text('Device Data'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: DeviceDataBody(),

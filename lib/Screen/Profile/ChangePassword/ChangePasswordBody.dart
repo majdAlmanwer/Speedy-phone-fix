@@ -54,7 +54,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                         width: 10,
                       ),
                     ),
-                    hint: 'Current Password',
+                    hint: 'Current Password'.tr,
                     suffixIcon: Icon(
                       Icons.remove_red_eye,
                       color: LightGrey,
@@ -84,7 +84,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                         width: 10,
                       ),
                     ),
-                    hint: 'New Password',
+                    hint: 'New Password'.tr,
                     suffixIcon: const Icon(
                       Icons.remove_red_eye,
                       color: LightGrey,
@@ -116,7 +116,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                         width: 10,
                       ),
                     ),
-                    hint: 'Confirm Password',
+                    hint: 'Confirm Password'.tr,
                     suffixIcon: const Icon(
                       Icons.remove_red_eye,
                       color: LightGrey,
@@ -165,7 +165,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                         print('not VALID');
                       }
                     },
-                    child: const Text("Save",
+                    child:  Text("Save".tr,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold))),
               ),
