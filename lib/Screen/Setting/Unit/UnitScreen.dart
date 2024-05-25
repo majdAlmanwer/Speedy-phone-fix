@@ -20,7 +20,7 @@ class UnitScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: Text('Unit'),
+          title: Text('Unit'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: UnitBody(),

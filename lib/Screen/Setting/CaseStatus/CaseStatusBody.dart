@@ -34,18 +34,18 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListTile(
+           ListTile(
             leading: Image(
               image: AssetImage("Assets/Icons/case-status.png"),
               width: 28,
             ),
             title: Text(
-              'Case Status',
+              'Case Status'.tr,
               style: TextStyle(color: TextGrey),
             ),
           ),
           CustomTextFormField(
-            hint: 'Case status',
+            hint: 'Case Status'.tr,
             controller: caseController,
           ),
           const SizedBox(
@@ -86,7 +86,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                     caseController.clear();
                   }
                 },
-                child: const Text("Save",
+                child:  Text("Save".tr,
                     style:
                         TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
               ),
@@ -102,7 +102,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
               },
               border: TableBorder.all(
                   color: BorderGrey, style: BorderStyle.solid, width: 2),
-              children: const [
+              children:  [
                 TableRow(children: [
                   SizedBox(
                     height: 50,
@@ -111,7 +111,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            '.No',
+                            '.No'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -125,7 +125,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Case',
+                            'Case'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -176,7 +176,7 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return EditOrDeleteDialog(
-                                      firstTitle: 'Edit',
+                                      firstTitle: 'Edit'.tr,
                                       firstOnPressed: () {
                                         setState(() {
                                           isEdite = true;
@@ -189,14 +189,14 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                           Get.back();
                                         });
                                       },
-                                      secundTitle: 'Delete',
+                                      secundTitle: 'Delete'.tr,
                                       secundOnPressed: () {
                                         showDialog(
                                             barrierDismissible: true,
                                             context: context,
                                             builder: (BuildContext context) {
                                               return ConfirmationDialog(
-                                                title: 'Are You Sure ?',
+                                                title: 'Are You Sure ?'.tr,
                                                 firstOnPressed: () {
                                                   caseStatusController
                                                       .deleteCase(
@@ -214,8 +214,8 @@ class _CaseStatusBodyState extends State<CaseStatusBody> {
                                                 secundOnPressed: () {
                                                   Get.back();
                                                 },
-                                                firstTitle: 'Yes',
-                                                secundTitle: 'No',
+                                                firstTitle: 'Yes'.tr,
+                                                secundTitle: 'No'.tr,
                                               );
                                             });
                                       },

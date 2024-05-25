@@ -32,18 +32,18 @@ class _MakeModelBodyState extends State<MakeModelBody> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListTile(
+           ListTile(
             leading: Icon(
               Icons.phone_android,
               color: TextGrey,
             ),
             title: Text(
-              'Make & Model',
+              'Make & Model'.tr,
               style: TextStyle(color: TextGrey),
             ),
           ),
           CustomTextFormField(
-            hint: 'Make & Model',
+            hint: 'Make & Model'.tr,
             controller: makeController,
           ),
           const SizedBox(
@@ -83,7 +83,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                       makeController.clear();
                     }
                   },
-                  child: const Text("Save",
+                  child:  Text("Save".tr,
                       style: TextStyle(
                           fontSize: 14, fontWeight: FontWeight.bold))),
             ),
@@ -98,7 +98,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
               },
               border: TableBorder.all(
                   color: BorderGrey, style: BorderStyle.solid, width: 2),
-              children: const [
+              children:  [
                 TableRow(children: [
                   SizedBox(
                     height: 50,
@@ -107,7 +107,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            '.No',
+                            '.No'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -121,7 +121,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Make & Model',
+                            'Make & Model'.tr,
                             style: TextStyle(fontSize: 20.0, color: TextGrey),
                           ),
                         ),
@@ -172,7 +172,7 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return EditOrDeleteDialog(
-                                      firstTitle: 'Edit',
+                                      firstTitle: 'Edit'.tr,
                                       firstOnPressed: () {
                                         setState(() {
                                           isEdite = true;
@@ -186,14 +186,14 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                                           Get.back();
                                         });
                                       },
-                                      secundTitle: 'Delete',
+                                      secundTitle: 'Delete'.tr,
                                       secundOnPressed: () {
                                         showDialog(
                                             barrierDismissible: true,
                                             context: context,
                                             builder: (BuildContext context) {
                                               return ConfirmationDialog(
-                                                title: 'Are You Sure ?',
+                                                title: 'Are You Sure ?'.tr,
                                                 firstOnPressed: () {
                                                   makeModelController
                                                       .deleteMakeModel(
@@ -210,8 +210,8 @@ class _MakeModelBodyState extends State<MakeModelBody> {
                                                 secundOnPressed: () {
                                                   Get.back();
                                                 },
-                                                firstTitle: 'Yes',
-                                                secundTitle: 'No',
+                                                firstTitle: 'Yes'.tr,
+                                                secundTitle: 'No'.tr,
                                               );
                                             });
                                       },

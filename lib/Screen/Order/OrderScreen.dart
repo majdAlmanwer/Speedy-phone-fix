@@ -21,7 +21,7 @@ class OrderScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: Text('Order'),
+          title: Text('Order'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: OrderScreenBody(),

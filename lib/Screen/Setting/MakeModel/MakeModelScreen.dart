@@ -18,7 +18,7 @@ class MakeModelScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: const Text('Make Model'),
+          title:  Text('Make Model'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: MakeModelBody(),

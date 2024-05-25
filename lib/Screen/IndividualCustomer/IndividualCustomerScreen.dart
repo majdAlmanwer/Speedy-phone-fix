@@ -20,7 +20,7 @@ class IndividualCustomerScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: Text('New Customer'),
+          title: Text('New Customer'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: IndividualCustomerScreenBody(),

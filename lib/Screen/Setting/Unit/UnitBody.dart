@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../Utils/AppStyle.dart';
 import '../../../Widgets/CustomTextFormFiled.dart';
 
@@ -10,11 +11,11 @@ class UnitBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListTile(
+           ListTile(
             leading: Icon(Icons.my_library_books_sharp,
               color: TextGrey,),
             title: Text(
-              'Unit',
+              'Unit'.tr,
               style: TextStyle(
                   color: TextGrey,
                 fontWeight: FontWeight.bold
@@ -23,7 +24,7 @@ class UnitBody extends StatelessWidget {
           ),
 
           CustomTextFormField(
-            hint: 'Unit',
+            hint: 'Unit'.tr,
             controller: null,
           ),
           const SizedBox(
@@ -46,7 +47,7 @@ class UnitBody extends StatelessWidget {
                             borderRadius: BorderRadius.circular(18.0),
                           ))),
                   onPressed: () {},
-                  child: const Text("Save",
+                  child:  Text("Save".tr,
                       style:
                       TextStyle(fontSize: 14, fontWeight: FontWeight.bold))),
             ),
@@ -66,7 +67,7 @@ class UnitBody extends StatelessWidget {
                     },
                     border: TableBorder.all(
                         color: BorderGrey, style: BorderStyle.solid, width: 1),
-                    children: const [
+                    children:  [
                       TableRow(children: [
                         SizedBox(
                           height: 50,
@@ -75,7 +76,7 @@ class UnitBody extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  '.No',
+                                  '.No'.tr,
                                   style: TextStyle(fontSize: 20.0,
                                       color: TextGrey),
                                 ),
@@ -90,7 +91,7 @@ class UnitBody extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Unit',
+                                  'Unit'.tr,
                                   style: TextStyle(fontSize: 20.0,
                                       color: TextGrey),
                                 ),
@@ -121,7 +122,7 @@ class UnitBody extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text('Flutter',
+                                child: Text('Flutter'.tr,
                                   style: TextStyle(
                                       color: TextGrey
                                   ),),
@@ -151,7 +152,7 @@ class UnitBody extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text('Dart',
+                                child: Text('Dart'.tr,
                                   style: TextStyle(
                                       color: TextGrey
                                   ),),
@@ -181,7 +182,7 @@ class UnitBody extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text('Flutter Packages',
+                                child: Text('Flutter Packages'.tr,
                                   style: TextStyle(
                                       color: TextGrey
                                   ),),

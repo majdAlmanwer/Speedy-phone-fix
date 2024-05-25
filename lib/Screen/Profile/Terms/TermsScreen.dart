@@ -23,7 +23,7 @@ class _TermsScreenState extends State<TermsScreen> {
               ),
               color: TextGrey,
             ),
-            title: Text('Privacy Policy'),
+            title: Text('Privacy Policy'.tr),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
         body: Padding(

@@ -18,13 +18,13 @@ class SettingBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SettingCardWidget(
-                    title: 'Case Status',
+                    title: 'Case Status'.tr,
                     iconPath: 'Assets/Icons/case-status.png',
                     onTap: () {
                       Get.toNamed(AppRoutes.casestatusscreen);
                     }),
                 SettingCardWidget(
-                    title: 'Case Type',
+                    title: 'Case Type'.tr,
                     iconPath: 'Assets/Icons/case-type.png',
                     onTap: () {
                       Get.toNamed(AppRoutes.casetypescreen);
@@ -38,13 +38,13 @@ class SettingBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SettingCardWidget(
-                    title: 'Make Model',
+                    title: 'Make Model'.tr,
                     iconPath: 'Assets/Icons/make-model.png',
                     onTap: () {
                       Get.toNamed(AppRoutes.makemodelscreen);
                     }),
                 SettingCardWidget(
-                    title: 'Device Data',
+                    title: 'Device Data'.tr,
                     iconPath: 'Assets/Icons/device-data.png',
                     onTap: () {
                       Get.toNamed(AppRoutes.devicedatascreen);

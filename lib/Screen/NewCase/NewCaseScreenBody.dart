@@ -83,10 +83,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
               child: Form(
                 key: _formKey,
                 child: Column(children: [
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.search),
                     title: Text(
-                      'Search',
+                      'Search'.tr,
                       style: textStyle,
                     ),
                   ),
@@ -96,11 +96,11 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   //start ayah code
                   Row(
                     children: [
-                      const Expanded(
+                       Expanded(
                         child: ListTile(
                           leading: Icon(Icons.person_2_outlined),
                           title: Text(
-                            'Customer',
+                            'Customer'.tr,
                             style: textStyle,
                           ),
                         ),
@@ -118,8 +118,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         minWidth: 15,
                         height: 0,
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        child: const Text(
-                          'Add',
+                        child:  Text(
+                          'Add'.tr,
                           style: TextStyle(
                               color: BlueColor,
                               fontWeight: FontWeight.bold,
@@ -142,7 +142,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                                 closedFillColor: FormBackGraund.withOpacity(.5),
                                 closedBorderRadius: BorderRadius.circular(10.0),
                                 closedBorder: Border.all(color: BorderGrey)),
-                            hintText: 'Choose customer',
+                            hintText: 'Choose customer'.tr,
                             initialItem: searchCustomer.value,
                             items:
                                 // controller.allCustomersList!.isNotEmpty
@@ -170,10 +170,10 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                   ),
                   // ),
 
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.edit_location_alt_outlined),
                     title: Text(
-                      'Case Status',
+                      'Case Status'.tr,
                       style: textStyle,
                     ),
                   ),
@@ -186,17 +186,17 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     onChanged: (Value) {
                       print(Value);
                     },
-                    hint: 'Submitted for repair',
+                    hint: 'Submitted for repair'.tr,
                     controller: caseStatusController,
                   ),
 
                   Row(
                     children: [
-                      const Expanded(
+                       Expanded(
                         child: ListTile(
                           leading: Icon(Icons.edit_location_alt_outlined),
                           title: Text(
-                            'Case Type',
+                            'Case Type'.tr,
                           ),
                         ),
                       ),
@@ -207,8 +207,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         minWidth: 15,
                         height: 0,
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        child: const Text(
-                          'Add',
+                        child:  Text(
+                          'Add'.tr,
                           style: TextStyle(
                               color: BlueColor,
                               fontWeight: FontWeight.bold,
@@ -223,7 +223,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                             value: e.typeId, child: Text('${e.type}')))
                         .toList(),
                     onChanged: (Value) {},
-                    hint: 'Not Specified',
+                    hint: 'Not Specified'.tr,
                     controller: caseType1Controller,
                     validator: (val) {
                       print("Validating:  with value: $val");
@@ -244,7 +244,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                             value: e.typeId, child: Text('${e.type}')))
                         .toList(),
                     onChanged: (Value) {},
-                    hint: 'Not Specified',
+                    hint: 'Not Specified'.tr,
                     controller: caseType2Controller,
                   ),
 
@@ -258,16 +258,16 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                             value: e.typeId, child: Text('${e.type}')))
                         .toList(),
                     onChanged: (Value) {},
-                    hint: 'Not Specified',
+                    hint: 'Not Specified'.tr,
                     controller: caseType3Controller,
                   ),
                   Row(
                     children: [
-                      const Expanded(
+                       Expanded(
                         child: ListTile(
                           leading: Icon(Icons.mobile_friendly_outlined),
                           title: Text(
-                            'Make & Model',
+                            'Make & Model'.tr,
                             style: textStyle,
                           ),
                         ),
@@ -279,8 +279,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         minWidth: 15,
                         height: 0,
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        child: const Text(
-                          'Add',
+                        child:  Text(
+                          'Add'.tr,
                           style: TextStyle(
                               color: BlueColor,
                               fontWeight: FontWeight.bold,
@@ -298,16 +298,16 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     onChanged: (Value) {
                       controller.getCaseDeviceData(Value!);
                     },
-                    hint: 'Motorola',
+                    hint: 'Motorola'.tr,
                     controller: makeModelController,
                   ),
                   Row(
                     children: [
-                      const Expanded(
+                       Expanded(
                         child: ListTile(
                           leading: Icon(Icons.mobile_friendly_outlined),
                           title: Text(
-                            'Device Data',
+                            'Device Data'.tr,
                             style: textStyle,
                           ),
                         ),
@@ -319,8 +319,8 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                         minWidth: 15,
                         height: 0,
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        child: const Text(
-                          'Add',
+                        child:  Text(
+                          'Add'.tr,
                           style: TextStyle(
                               color: BlueColor,
                               fontWeight: FontWeight.bold,
@@ -337,19 +337,19 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                               child: Text('${e.deviceType}')))
                           .toList(),
                       onChanged: (Value) {},
-                      hint: 'g5',
+                      hint: 'g5'.tr,
                       controller: deviceDataController,
                     ),
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.password),
                     title: Text(
-                      'Device Password',
+                      'Device Password'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Device Password',
+                    hint: 'Device Password'.tr,
                     controller: devicePasswordController,
                     validator: (val) {
                       print("Validating:  with value: $val");
@@ -360,56 +360,56 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     },
                   ),
 
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.data_object_sharp),
                     title: Text(
-                      'IMEI',
+                      'IMEI'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'IMEI',
+                    hint: 'IMEI'.tr,
                     controller: imeiController,
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.edit_location_alt_outlined),
                     title: Text(
-                      'Problem Description',
+                      'Problem Description'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Write here...',
+                    hint: 'Write here...'.tr,
                     controller: problemDescriptionController,
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.price_change_outlined),
                     title: Text(
-                      'Price',
+                      'Price'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Price',
+                    hint: 'Price'.tr,
                     controller: priceController,
                     keyboardType: TextInputType.number,
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.discount),
                     title: Text(
-                      'Discount',
+                      'Discount'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Discount',
+                    hint: 'Discount'.tr,
                     controller: discountController,
                     keyboardType: TextInputType.number,
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.date_range_outlined),
                     title: Text(
-                      'Expected Delivery Date & Time',
+                      'Expected Delivery Date & Time'.tr,
                       style: textStyle,
                     ),
                   ),
@@ -452,26 +452,26 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
                     ],
 
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.note_add_outlined),
                     title: Text(
-                      'Note',
+                      'Note'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Note',
+                    hint: 'Note'.tr,
                     controller: noteController,
                   ),
-                  const ListTile(
+                   ListTile(
                     leading: Icon(Icons.note_add_outlined),
                     title: Text(
-                      'Private Note',
+                      'Private Note'.tr,
                       style: textStyle,
                     ),
                   ),
                   CustomTextFormField(
-                    hint: 'Private Note',
+                    hint: 'Private Note'.tr,
                     controller: privateNoteController,
                   ),
                   const SizedBox(
@@ -532,7 +532,7 @@ class _NewCaseScreenBodyState extends State<NewCaseScreenBody> {
 
                             }
                           },
-                          child: const Text("Save",
+                          child:  Text("Save".tr,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold))),
 

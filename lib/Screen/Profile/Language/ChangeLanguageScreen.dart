@@ -23,7 +23,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
               ),
               color: TextGrey,
             ),
-            title: Text('Change Language'),
+            title: Text('Change Language'.tr),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
         body: ChangeLanguageBody());

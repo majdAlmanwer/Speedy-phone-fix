@@ -20,7 +20,7 @@ class NewCaseScreen extends StatelessWidget {
             ),
             color: TextGrey,
           ),
-          title: Text('Add New Case'),
+          title: Text('Add New Case'.tr),
           centerTitle: true,
           titleTextStyle: AppBarTextStyle),
       body: NewCaseScreenBody(),

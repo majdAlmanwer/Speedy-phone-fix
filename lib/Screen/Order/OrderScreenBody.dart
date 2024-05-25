@@ -46,20 +46,20 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             ),
             Center(
                 child: Text(
-              'Order Details',
+              'Order Details'.tr,
               style: TextStyle(
                   fontSize: 18, color: BlueColor, fontWeight: FontWeight.bold),
             )),
             const SizedBox(
               height: 20,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/edit.png")),
               title: Text(
-                'Item',
+                'Item'.tr,
                 style: textStyle,
               ),
             ),
@@ -76,13 +76,13 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/edit.png")),
               title: Text(
-                'Unit',
+                'Unit'.tr,
                 style: textStyle,
               ),
             ),
@@ -104,42 +104,42 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/iconamoon_profile.png")),
               title: Text(
-                'Customer’s Name',
+                'Customer’s Name'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "The Field is Empty";
+                  return "The Field is Empty".tr;
                 }
               },
-              hint: 'Add Customer Name',
+              hint: 'Add Customer Name'.tr,
               controller: customerNameController,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/carbon_phone.png")),
               title: Text(
-                'Mobile',
+                'Mobile'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "The Field is Empty";
+                  return "The Field is Empty".tr;
                 }
               },
               hint: '+46',
@@ -154,46 +154,46 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/mail.png")),
               title: Text(
-                'Email',
+                'Email'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "The Field is Empty";
+                  return "The Field is Empty".tr;
                 }
               },
-              hint: 'Customer Email Address',
+              hint: 'Customer Email Address'.tr,
               controller: customerEmailController,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 26,
                   height: 26,
                   image: AssetImage(
                       "Assets/Icons/ant-design_field-number-outlined.png")),
               title: Text(
-                'Quantity',
+                'Quantity'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "The Field is Empty";
+                  return "The Field is Empty".tr;
                 }
               },
-              hint: 'Quantity',
+              hint: 'Quantity'.tr,
               controller: quantityController,
               keyboardType: TextInputType.number,
 
@@ -201,36 +201,36 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 26,
                   height: 26,
                   image: AssetImage("Assets/Icons/solar_tag-price-outline.png")),
               title: Text(
-                'Price',
+                'Price'.tr,
                 style: textStyle,
               ),
             ),
             CustomTextFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "The Field is Empty";
+                  return "The Field is Empty".tr;
                 }
               },
-              hint: 'Unit Price',
+              hint: 'Unit Price'.tr,
               controller: priceController,
               keyboardType: TextInputType.number,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ListTile(
+             ListTile(
               leading: Image(
                   width: 23,
                   height: 23,
                   image: AssetImage("Assets/Icons/Icon7.png")),
               title: Text(
-                'Order Delivery Date',
+                'Order Delivery Date'.tr,
                 style: textStyle,
               ),
             ),
@@ -324,7 +324,7 @@ class _OrderScreenBodyState extends State<OrderScreenBody> {
 
                       }
                     },
-                    child: const Text("Save",
+                    child:  Text("Save".tr,
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
 

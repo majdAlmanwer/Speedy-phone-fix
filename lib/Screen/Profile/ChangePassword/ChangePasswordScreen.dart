@@ -23,7 +23,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               color: TextGrey,
             ),
-            title: Text('Change Password'),
+            title: Text('Change Password'.tr),
             centerTitle: true,
             titleTextStyle: AppBarTextStyle),
         body: const ChangePasswordBody());
